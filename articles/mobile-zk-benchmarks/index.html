@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Benchmarking Zero-knowledge Credential Proofs on Low-end Mobile Devices</title>
+    <meta name="description" content="We measured zero-knowledge credential proofs on ten Android phones, from 4 GB low-end models to flagships, to see which proofs fit which phones.">
+    <link rel="canonical" href="index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Ethereum for digital public infrastructure">
+    <meta property="og:title" content="Benchmarking Zero-knowledge Credential Proofs on Low-end Mobile Devices">
+    <meta property="og:description" content="We measured zero-knowledge credential proofs on ten Android phones, from 4 GB low-end models to flagships, to see which proofs fit which phones.">
+    <meta property="og:url" content="https://publicsector.ethereum.foundation/articles/mobile-zk-benchmarks/">
+    <meta property="og:image" content="https://publicsector.ethereum.foundation/og/default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Benchmarking Zero-knowledge Credential Proofs on Low-end Mobile Devices">
+    <meta name="twitter:description" content="We measured zero-knowledge credential proofs on ten Android phones, from 4 GB low-end models to flagships, to see which proofs fit which phones.">
+    <meta name="twitter:image" content="https://publicsector.ethereum.foundation/og/default.jpg">
+    <!-- Browser chrome (and the iPhone status bar) in the page colour; up to 1119px the sticky
+         header sits on top, a frosted panel of 72% --bg-deep over the page, which comes out at #0b2218. -->
+    <meta name="theme-color" content="#0b2218" media="(max-width: 1119px)">
+    <meta name="theme-color" content="#0f2a1e">
+    
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="sitemap" href="../../sitemap.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@700..800&family=Funnel+Sans:wght@300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../_astro/FieldSection.CZ1fHz-b.css">
+<style>.page-hero[data-astro-cid-tfra22jg]{isolation:isolate;min-height:min(76svh,760px);margin-top:calc(-1 * var(--header-h));padding-left:max(var(--gutter), (100% - var(--wrap-max)) / 2);padding-right:calc(var(--field-edge,38vw) + clamp(20px, 2vw, 32px));border-bottom:1px solid var(--rule);align-items:center;display:grid;position:relative;overflow:hidden}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)) + var(--header-h));border-bottom:0}.page-hero-copy[data-astro-cid-tfra22jg]{z-index:2;padding:calc(var(--header-h) + 48px) 0 72px;justify-items:start;gap:28px;display:grid;position:relative}h1[data-astro-cid-tfra22jg]{letter-spacing:-.02em;max-width:14ch;font-size:clamp(44px,5.4vw,80px);font-weight:800;line-height:1;font-family:'Funnel Display','Funnel Sans',sans-serif}.large[data-astro-cid-tfra22jg] h1[data-astro-cid-tfra22jg]{max-width:none;font-size:clamp(46px,6.4vw,92px);line-height:.98}.page-lead[data-astro-cid-tfra22jg]{max-width:44ch;font-size:clamp(19px,1.6vw,23px);font-weight:300;line-height:1.45}@media (width>=601px){.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:fit-content}}.page-subtitle[data-astro-cid-tfra22jg]{width:0;min-width:100%;color:var(--ink);text-wrap:pretty;margin-top:-8px;font-size:clamp(24px,2.4vw,34px);font-weight:600;line-height:1.2}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg]{width:fit-content}.large[data-astro-cid-tfra22jg] .page-lead[data-astro-cid-tfra22jg]{text-wrap:pretty;width:0;min-width:100%;max-width:none;line-height:1.4}.page-next[data-astro-cid-tfra22jg]{z-index:2;left:max(var(--gutter), (100% - var(--wrap-max)) / 2);width:56px;height:56px;color:var(--muted);place-items:center;margin-left:-14px;transition:color .2s;display:grid;position:absolute;bottom:clamp(24px,4svh,40px)}.page-next[data-astro-cid-tfra22jg]:hover,.page-next[data-astro-cid-tfra22jg]:focus-visible{color:var(--ink)}.page-next[data-astro-cid-tfra22jg] svg[data-astro-cid-tfra22jg]{fill:currentColor;shape-rendering:crispedges;width:28px}h1[data-astro-cid-tfra22jg] .title-follow{color:var(--muted);margin-top:.12em;font-size:.78em;font-weight:300;display:block;font-family:'Funnel Sans','Helvetica Neue',Helvetica,Arial,sans-serif}@media (width>=420px){h1[data-astro-cid-tfra22jg] .title-follow{white-space:nowrap}}@media (width<=960px){.page-hero[data-astro-cid-tfra22jg]{min-height:auto;padding-inline:var(--gutter);margin-top:0}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)))}.page-hero-copy[data-astro-cid-tfra22jg]{text-align:center;justify-items:center;gap:20px;padding:calc(clamp(240px,75vw,360px)/1.25 + 32px) 0 64px}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg],.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:auto}.page-hero-copy[data-astro-cid-tfra22jg]>.button{justify-content:center;justify-self:stretch;width:100%}.page-next[data-astro-cid-tfra22jg]{margin-left:-28px;left:50%}}.page-hero[data-astro-cid-tfra22jg]:has(.page-next) .page-hero-copy[data-astro-cid-tfra22jg]{padding-bottom:120px}
+.pixel-edge[data-astro-cid-wvdxwvx6][hidden]{display:none}.pixel-edge[data-astro-cid-wvdxwvx6]{height:calc(var(--cell) * 4);pointer-events:none;position:absolute;inset:auto 0 0}svg[data-astro-cid-wvdxwvx6]{fill:var(--bg);display:block;position:absolute;bottom:0}.strip[data-astro-cid-wvdxwvx6]{width:100%;height:calc(var(--cell) * 2);left:0}.corner[data-astro-cid-wvdxwvx6]{width:calc(var(--cell) * 7);height:calc(var(--cell) * 4)}.left[data-astro-cid-wvdxwvx6]{left:0}.right[data-astro-cid-wvdxwvx6]{right:0}
+.byline[data-astro-cid-57z6rh23]{color:var(--muted);flex-wrap:wrap;gap:4px 16px;font-size:15px;display:flex}.article-layout[data-astro-cid-57z6rh23]{grid-template-columns:3fr 9fr;align-items:start;gap:48px 72px;display:grid}.article[data-astro-cid-57z6rh23]{grid-column:2;min-width:0}.contents[data-astro-cid-57z6rh23]{position:sticky;top:32px}.contents[data-astro-cid-57z6rh23] ol[data-astro-cid-57z6rh23]{border-bottom:1px solid var(--rule);margin:0;padding:0;list-style:none}.contents[data-astro-cid-57z6rh23] li[data-astro-cid-57z6rh23]+li[data-astro-cid-57z6rh23]{border-top:1px solid var(--rule)}.contents[data-astro-cid-57z6rh23] a[data-astro-cid-57z6rh23]{color:var(--muted);padding:12px 0 10px;font-size:16px;font-weight:600;text-decoration:none;display:block}.contents[data-astro-cid-57z6rh23] a[data-astro-cid-57z6rh23]:hover{color:var(--civic)}.article[data-astro-cid-57z6rh23]{--pad:clamp(24px, 4vw, 56px);padding:var(--pad) var(--pad) calc(var(--pad) + 56px);background:var(--bg-deep);grid-template-columns:minmax(0,1fr);gap:20px;display:grid;position:relative}.article[data-astro-cid-57z6rh23]>:not(.pixel-edge){max-width:68ch}.article[data-astro-cid-57z6rh23] h2{letter-spacing:-.01em;margin-top:clamp(24px,3vw,40px);scroll-margin-top:32px;font-size:clamp(26px,2.4vw,34px);font-weight:600;line-height:1.15}.article[data-astro-cid-57z6rh23] h2:first-child{margin-top:0}.article[data-astro-cid-57z6rh23] h3{margin-top:12px;font-size:21px;font-weight:700;line-height:1.25}.article[data-astro-cid-57z6rh23] :is(p,li){color:var(--muted)}.article[data-astro-cid-57z6rh23] strong{color:var(--ink)}.article[data-astro-cid-57z6rh23] a{overflow-wrap:anywhere;color:var(--ink);text-underline-offset:4px}.article[data-astro-cid-57z6rh23] a:hover{color:var(--civic)}.article[data-astro-cid-57z6rh23] :is(ul,ol){gap:8px;margin:0;padding-left:1.3em;display:grid}.article[data-astro-cid-57z6rh23] blockquote{margin:8px 0;padding-left:24px}.article[data-astro-cid-57z6rh23] blockquote p{color:var(--ink);font-size:20px}.article[data-astro-cid-57z6rh23] img{max-width:100%;height:auto}.article[data-astro-cid-57z6rh23] hr{border:0;border-top:1px solid var(--rule);width:100%;margin:16px 0}.article[data-astro-cid-57z6rh23] code{font-size:.9em}.article[data-astro-cid-57z6rh23] pre{background:var(--bg);padding:16px;font-size:15px;overflow-x:auto}.article[data-astro-cid-57z6rh23] table{border-collapse:collapse;max-width:100%;font-size:16px;display:block;overflow-x:auto}.article[data-astro-cid-57z6rh23] :is(th,td){border-bottom:1px solid var(--rule);text-align:left;padding:10px 16px 8px 0}@media (width<=960px){.byline[data-astro-cid-57z6rh23]{justify-content:center}.article-layout[data-astro-cid-57z6rh23]{grid-template-columns:1fr}.article[data-astro-cid-57z6rh23]{grid-column:auto}.contents[data-astro-cid-57z6rh23]{position:static}}
+</style></head>
+  <body>
+    <a href="index.html#main-content" class="skip-link">Skip to content</a>
+    <header class="site-header" data-astro-cid-sojskbm2>
+  <div class="menu-pixels" aria-hidden="true" data-astro-cid-sojskbm2></div>
+  <a class="lockup" href="../../index.html" data-astro-cid-ohkoixbv>
+  <img src="../../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+  <button class="menu" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-astro-cid-sojskbm2>
+    <span class="menu-label" data-astro-cid-sojskbm2>Menu</span>
+    <svg class="menu-x" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" data-astro-cid-sojskbm2>
+      <path d="M3 3l10 10M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.8" data-astro-cid-sojskbm2></path>
+    </svg>
+  </button>
+  <nav id="site-nav" aria-label="Main" data-astro-cid-sojskbm2>
+    <ul data-astro-cid-sojskbm2>
+      <li class="group" style="--i:0" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-0" data-astro-cid-sojskbm2>
+                Understand Ethereum
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-0" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../../what-is-ethereum/index.html" data-astro-cid-sojskbm2>What is Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../why-ethereum/index.html" data-astro-cid-sojskbm2>Why use Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../evaluating-ethereum/index.html" data-astro-cid-sojskbm2>Evaluating Ethereum</a>
+                  </li>
+              </ul>
+            </li><li style="--i:1" data-astro-cid-sojskbm2>
+              <a href="../../case-studies/index.html" data-astro-cid-sojskbm2>Case studies</a>
+            </li><li style="--i:2" data-astro-cid-sojskbm2>
+              <a href="../../potential-applications/index.html" data-astro-cid-sojskbm2>Potential applications</a>
+            </li><li class="group" style="--i:3" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-3" data-astro-cid-sojskbm2>
+                Getting started
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-3" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../../institutional-engagement/index.html" data-astro-cid-sojskbm2>Institutional engagement</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../technical-foundations/index.html" data-astro-cid-sojskbm2>Technical Foundations</a>
+                  </li>
+              </ul>
+            </li><li style="--i:4" data-astro-cid-sojskbm2>
+              <a href="../../resources/index.html" data-astro-cid-sojskbm2>Resources</a>
+            </li>
+      <li style="--i:5" data-astro-cid-sojskbm2><a class="contact" href="../../contact/index.html" data-astro-cid-sojskbm2>Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script type="module">var e=document.querySelector(`.site-header`),t=()=>e.classList.toggle(`is-scrolled`,window.scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),new ResizeObserver(()=>{e.classList.contains(`is-open`)||document.documentElement.style.setProperty(`--header-real`,`${e.getBoundingClientRect().height}px`)}).observe(e);var n=[...e.querySelectorAll(`.group`)],r=e.querySelector(`.menu`),i=e=>n.forEach(t=>{t!==e&&(t.querySelector(`button`).setAttribute(`aria-expanded`,`false`),t.querySelector(`ul`).hidden=!0)});n.forEach(e=>{let t=e.querySelector(`button`);t.addEventListener(`click`,()=>{let n=t.getAttribute(`aria-expanded`)!==`true`;i(e),t.setAttribute(`aria-expanded`,String(n)),e.querySelector(`ul`).hidden=!n}),e.addEventListener(`focusout`,t=>{e.contains(t.relatedTarget)||i()})});var a=matchMedia(`(prefers-reduced-motion: reduce)`),o=e.querySelector(`.menu-pixels`),s=()=>{let e=Math.ceil(innerWidth/40),t=Math.ceil(innerHeight/40),n=e+t;o.replaceChildren(...Array.from({length:e*t},(t,r)=>{let i=r%e,a=Math.floor(r/e),o=document.createElement(`span`);return o.style.cssText=`left:${i*40}px;top:${a*40}px;animation-delay:${Math.round((e-1-i+a)/n*300+Math.random()*70)}ms`,o}))},c=0;r.addEventListener(`click`,()=>{let t=r.getAttribute(`aria-expanded`)!==`true`;if(r.setAttribute(`aria-expanded`,String(t)),r.setAttribute(`aria-label`,t?`Close menu`:`Menu`),clearTimeout(c),e.classList.remove(`is-closing`),t){a.matches||s(),e.classList.add(`is-open`),document.documentElement.classList.add(`menu-open`);return}let n=()=>{e.classList.remove(`is-open`,`is-closing`),document.documentElement.classList.remove(`menu-open`)};if(a.matches)return n();e.classList.add(`is-closing`),c=window.setTimeout(n,200)}),document.addEventListener(`pointerdown`,t=>{e.contains(t.target)||i()}),document.addEventListener(`keydown`,t=>{if(t.key!==`Escape`)return;let a=n.find(e=>e.querySelector(`button`).getAttribute(`aria-expanded`)===`true`);a?(i(),a.querySelector(`button`).focus()):e.classList.contains(`is-open`)&&(r.click(),r.focus())});</script>
+    <main id="main-content">
+      
+  <section class="page-hero" aria-labelledby="page-title" data-astro-cid-tfra22jg>
+  <div class="page-hero-copy" data-astro-cid-tfra22jg>
+    <a class="back" href="../../resources/index.html#articles" data-astro-cid-57z6rh23><span aria-hidden="true" data-astro-cid-57z6rh23>←</span> All articles</a>
+    <h1 id="page-title" data-astro-cid-tfra22jg>Benchmarking Zero-knowledge Credential Proofs on Low-end Mobile Devices</h1>
+    
+    <p class="page-lead" data-astro-cid-tfra22jg>We measured zero-knowledge credential proofs on ten Android phones, from 4 GB low-end models to flagships, to see which proofs fit which phones.</p>
+    
+    
+    <p class="byline" data-astro-cid-57z6rh23>
+      <time datetime="2026-11-03" data-astro-cid-57z6rh23>3 November 2026</time>
+      <span data-astro-cid-57z6rh23>Moven Tsai · Technical Foundations</span>
+    </p>
+  
+  </div>
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+<div class="field-edge" aria-hidden="true" data-src="../../library-loggia.webp" data-focus="0.15000000000000002" data-from="top" data-stack="960" data-astro-cid-4qlbhge2></div>
+
+
+
+<script type="module" src="../../_astro/PixelField.astro_astro_type_script_index_0_lang.CiVv8QY2.js"></script>
+  
+</section>
+
+
+
+<script type="module">for(let e of document.querySelectorAll(`.page-next`))e.addEventListener(`click`,t=>{let n=document.querySelector(e.getAttribute(`href`));if(!n)return;t.preventDefault();let r=!matchMedia(`(prefers-reduced-motion: reduce)`).matches;n.scrollIntoView({behavior:r?`smooth`:`auto`}),history.replaceState(null,``,e.hash)});</script>
+
+  <script type="module">for(let e of document.querySelectorAll(`.pixel-edge`)){let t=e.parentElement;t.style.mask=e.dataset.mask,t.style.webkitMask=e.dataset.mask,e.hidden=!0}</script><div data-astro-cid-57z6rh23="true" data-astro-cid-cpczvml2="true" class="field-section section">
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+
+
+
+
+
+  
+    <div class="wrap article-layout" data-astro-cid-57z6rh23>
+      <nav class="contents" aria-label="On this page" data-astro-cid-57z6rh23>
+            <ol data-astro-cid-57z6rh23>
+              <li data-astro-cid-57z6rh23>
+                  <a href="index.html#summary" data-astro-cid-57z6rh23>Summary</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#the-problem" data-astro-cid-57z6rh23>The problem</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#why-it-matters" data-astro-cid-57z6rh23>Why it matters</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#what-we-built" data-astro-cid-57z6rh23>What we built</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#results-on-ten-phones" data-astro-cid-57z6rh23>Results on ten phones</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#how-it-is-different" data-astro-cid-57z6rh23>How it is different</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#limitations-and-next-steps" data-astro-cid-57z6rh23>Limitations and next steps</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#try-it-talk-to-us" data-astro-cid-57z6rh23>Try it, talk to us</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#appendix-a-how-we-tested" data-astro-cid-57z6rh23>Appendix A. How we tested</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#appendix-b-per-phone-results" data-astro-cid-57z6rh23>Appendix B. Per-phone results</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#sources" data-astro-cid-57z6rh23>Sources</a>
+                </li>
+            </ol>
+          </nav>
+      <article class="article" data-astro-cid-57z6rh23>
+        <p>This post was kindly reviewed by <a href="https://github.com/JohnGuilding" target="_blank" rel="noopener noreferrer">John Guilding</a>, <a href="https://github.com/0xvikasrushi" target="_blank" rel="noopener noreferrer">Vikas Rushi</a>, and <a href="https://github.com/zulu0echo" target="_blank" rel="noopener noreferrer">Zoey</a>.</p>
+<p>The article is part of a series on decentralised identity and private payments for humanitarian assistance on Ethereum. Read the overview: <a href="../decentralized-identity-and-private-payments/index.html">Decentralized Identity and Private Payments on Ethereum</a>.</p>
+<h2 id="summary">Summary</h2>
+<p>To preserve privacy, checks such as age verification that involve sensitive information, must run on the devices people already own, which in many markets are low-end Android phones. We measured zero-knowledge (ZK) proofs on ten Android phones ranging from 4 GB RAM low-end models to flagships inside an ordinary application. This ensured Android’s memory limits applied just as they would in real-world use.</p>
+<p>We ran field checks, device binding and hashing of a standard credential, all locally on the phone. The check on the standard credential in a single proof strained the low-end phones; on one of our three low-end phones, it hit Android’s memory limit and the operating system terminated it.</p>
+<p>For more details, the benchmark results are published in the <a href="https://github.com/ethereum/coordination-network/tree/6c27308d71ca2a4e2475cab8c432895e8ff44cff/packages/noir-prover-native/android-bench/results#per-phone" target="_blank" rel="noopener noreferrer">coordination-network</a> and <a href="https://github.com/ethereum/zkID/tree/591f49a95efd33cba8ee7ba8f768d46aac036993/wallet-unit-poc/mobile/bench-results#per-phone" target="_blank" rel="noopener noreferrer">zkID</a> repositories.</p>
+<h2 id="the-problem">The problem</h2>
+<p>Some privacy checks require verifiable statements as the source of truth: that the person is enrolled in and eligible for a programme, or meets an age requirement. A ZK proof lets the phone provide that statement without disclosing the rest of the credential stored on the phone, such as a date of birth. We call the answers from the credential, together with their proof, a presentation.</p>
+<p>In the full flow, an issuer signs the credential, the holder’s phone stores it and generates the proof, and a verifier sends the request and checks the proof. Because the phone generates the proof, the credential never leaves it and no server sees it. This improves privacy, since the sensitive information stays on the user’s phone throughout. Therefore, the proof has to fit the device the holder owns, in both speed (fast enough for good UX) and memory (generating proofs reliably without Android closing the app).</p>
+<p>Existing benchmarks such as <a href="https://ethproofs.org/csp-benchmarks" target="_blank" rel="noopener noreferrer">client-side proving (CSP) benchmarks</a> and laptop runs cannot show which proofs fit which phones under each Android phone’s memory limits. We found that on a low-end phone, RAM can be a major limit for generating ZK proofs over a standard credential. The limit is easier to hit because the phone may be running other apps in the background, and part of the RAM serves the operating system.</p>
+<p>To measure performance in real-world use cases, we benchmarked two credential systems, the Coordination Network and OpenAC, alongside three distinct single-statement proof circuits.</p>
+<h2 id="why-it-matters">Why it matters</h2>
+<p>Understanding the user experience of running ZK systems on low-end devices in real-world use cases helps us find the bottlenecks to mass adoption. In Southeast Asia, more than 60% of smartphones shipped in the third quarter of 2025 cost under US$200, according to <a href="https://www.businesswire.com/news/home/20251117149657/en/Omdia-Southeast-Asia-smartphone-shipments-slip-1-in-3Q25-as-vendors-face-mounting-cost-pressures" target="_blank" rel="noopener noreferrer">Omdia</a>.</p>
+<p>For UX, the wait before each presentation and the size of the files to download before first use (including keys and related artifacts, if any) are critical to both users and products adopting privacy-preserving solutions. Solid progress can only be made with a thorough understanding of the current landscape.</p>
+<h2 id="what-we-built">What we built</h2>
+<p>We built a benchmark of ZK proofs on ten Android phones. It runs inside an app so that Android’s memory limits apply. It measures time and memory. We group the phones into three tiers by memory: low-end (4 GB), mid-range (6 to 8 GB) and flagship (12 to 16 GB).</p>
+<p><img src="presentation-flow.svg" alt="Only the every-presentation band runs while the user waits. Times are repeat presentations on low-end phones."></p>
+<p><em>Figure 1. Only the every-presentation band runs while the user waits. Times are repeat presentations on low-end phones.</em></p>
+<h3 id="the-two-credential-systems">The two credential systems</h3>
+<p>The <a href="https://github.com/ethereum/coordination-network" target="_blank" rel="noopener noreferrer">coordination network</a>, which is featured in this work, is an identity and payment system for networks of organizations. Its issuer signs credentials in a format designed for proofs (EdDSA over Poseidon hashes), and <a href="https://github.com/ethereum/coordination-network/blob/main/packages/circuits/src/main.nr" target="_blank" rel="noopener noreferrer">one proof</a> covers the eight checks listed in Figure 1. The proof incorporates the verifier’s challenge, so it cannot begin before the request arrives. In its trust model, the device key resides on the holder’s phone alongside about 11 MB of files. The verifier holds a 3.7 KB key and learns that an approved issuer signed the credential, but not which one.</p>
+<p>The latest version of <a href="https://github.com/ethereum/zkID" target="_blank" rel="noopener noreferrer">OpenAC</a>+ (<a href="https://github.com/ethereum/zkID/releases/tag/v5.0.0" target="_blank" rel="noopener noreferrer">v5.0.0</a>, used in this benchmark), supporting generalized predicates from the zkID project, produces ZK presentations from SD-JWT (Selective Disclosure for JSON Web Tokens) credentials. Prepare runs once per credential: it hashes and parses the token, checks the issuer’s signature, selects two claim fields and saves the state. Each presentation re-randomizes the Prepare proof, so that verifiers cannot link two presentations, and generates a Show proof of the device key and up to two checks. Only Show incorporates the verifier’s challenge. In its trust model, the device key resides on the phone alongside about 500 MB of files, and the verifier holds about 437 MB of keys. The verifier currently learns which issuer signed, and revocation is handled outside the proof.</p>
+<h3 id="single-check-proofs">Single-check proofs</h3>
+<p>To separate the cost of a check from the cost of the prover, we added three single-check proofs: <a href="https://ethproofs.org/csp-benchmarks" target="_blank" rel="noopener noreferrer">CSP’s</a> circuits compiled with our toolchain. They are SHA-256 over a 2 KB message on UltraHonk (the coordination network’s prover) and on Spartan2 (OpenAC’s prover), and a P-256 signature check, as used in device binding.</p>
+<h2 id="results-on-ten-phones">Results on ten phones</h2>
+<p>Most checks completed on every phone; one large proof strained the low-end phones.</p>
+<h3 id="which-checks-fit-which-phones">Which checks fit which phones</h3>
+<p><img src="feasibility-map.svg" alt="Field checks are a laptop gate count; every other cell ran on phones. An OpenAC presentation is two rows taken together, re-randomizing and Show."></p>
+<p><em>Figure 2. Field checks are a laptop gate count; every other cell ran on phones. An OpenAC presentation is two rows taken together, re-randomizing and Show.</em></p>
+<p>Field checks, such as age verification or programme eligibility, fit every phone we tested, as do membership and signatures designed for proofs. A full coordination network proof takes 8 to 10s on a low-end phone, about three times as long as on a mid-range phone. Moreover, hashing a standard 2 KB credential with SHA-256 also fits every phone, on either prover. Checking a whole SD-JWT in one proof, OpenAC’s Prepare step, is the exception: on one of our three low-end phones, Android terminated it when it hit the memory limit.</p>
+<h3 id="memory-and-wait-time">Memory and wait time</h3>
+<p>Memory determines whether a proof can be generated or not; latency can be accommodated in the application’s design. On Android, background applications and your own application share the RAM, and Android’s <a href="https://source.android.com/docs/core/perf/lmkd" target="_blank" rel="noopener noreferrer">low-memory killer</a> closes applications when memory runs short.</p>
+<p>As a rule of thumb, we assume one application can use about half of a low-end phone’s RAM, approximately 2 GiB on a 4 GB phone.</p>
+<p><img src="memory-fit.svg" alt="Highest peak across our three low-end phones. To evaluate OpenAC presentations on the A06 without disruption, we used Prepare output generated on a laptop."></p>
+<p><em>Figure 3. Highest peak across our three low-end phones. To evaluate OpenAC presentations on the A06 without disruption, we used Prepare output generated on a laptop.</em></p>
+<p>A small proof such as OpenAC’s Show peaks at about 0.3 GiB and the coordination network’s presentation at about 0.5 GiB, while OpenAC’s Prepare and re-randomizing peak close to the line. On the Galaxy A06, Android terminated Prepare in the foreground at about 2.2 GiB, so the application closed before the credential was ready. On the other two low-end phones, Prepare’s first run took 15 and 35s.</p>
+<p>On a low-end phone, a repeat OpenAC presentation takes 6 to 12s, most of it spent re-randomizing (5.4 to 7.2s), against 1 to 2s on a flagship. Show takes under a second on most low-end phones. A coordination network presentation takes about 3s on a mid-range phone and about 2s on a flagship. Its first presentation after installation takes 13 to 17s on a low-end phone, including a one-time derivation of its verification key.</p>
+<h3 id="what-each-check-costs">What each check costs</h3>
+<p>In the coordination network, device binding is the most costly check. Device binding, a P-256 signature by the device key, accounts for 40% of the <a href="https://github.com/ethereum/coordination-network/blob/main/packages/circuits/src/main.nr" target="_blank" rel="noopener noreferrer">circuit’s</a> gates, because P-256 arithmetic is foreign to the curve the circuit proves over. Removing it made laptop proving 25% faster. The issuer’s signature accounts for 5%, because it uses EdDSA on the <a href="https://eips.ethereum.org/EIPS/eip-2494" target="_blank" rel="noopener noreferrer">Baby Jubjub curve</a> over <a href="https://eprint.iacr.org/2019/458" target="_blank" rel="noopener noreferrer">Poseidon hashes</a>, both designed to be inexpensive inside a proof. The validity window and the programme and country check take a dozen gates.</p>
+<p><img src="check-costs.svg" alt="Gates saved by removing each check, counted on a laptop. The bars do not add up to the total because some minor checks are not counted."></p>
+<p><em>Figure 4. Gates saved by removing each check, counted on a laptop. The bars do not add up to the total because some minor checks are not counted.</em></p>
+<p>OpenAC proves over a curve matched to P-256, so its device check fits within the small Show proof. Its large proof is Prepare, about 1.6 million constraints, mostly hashing and parsing the SD-JWT; Show is about 19,000. Gates and constraints are not directly comparable.</p>
+<p>The single checks show the prover trading time for memory. On a low-end phone, SHA-256 over a standard credential took about 10s and at most 0.72 GiB on UltraHonk, against about 3.6s and 1.33 GiB on Spartan2. P-256 alone took about 3.0s. All three completed on the low-end phones, though the UX could be further improved.</p>
+<p>As for the strain, we infer that it comes from hashing and parsing a whole SD-JWT in one proof. On OpenAC’s prover the hash alone peaked at 1.0 to 1.5 GiB, and the whole of Prepare at 1.8 to 2.8 GiB. Prepare adds decoding, substring matching and a second hash of each disclosed field, and the P-256 arithmetic in its signature check is small on OpenAC’s curve.</p>
+<p>What moves a proof between columns is the credential format, how much of a standard credential one proof hashes and parses, and the prover. The number of checks matters less: eight checks fit comfortably within the coordination network’s proof.</p>
+<h2 id="how-it-is-different">How it is different</h2>
+<p>A laptop run and the published CSP benchmarks provide a useful first estimate. We measured on phones, against predictions committed in two steps: for the two systems before any phone ran, and for the single checks before their own runs. A laptop predicted presentation time well and memory poorly.</p>
+<p>Presentation memory came in higher than predicted on every tier: OpenAC’s by up to 35%, and the coordination network’s most on low-end phones (0.62 against 0.38 GiB). An interesting fact is that the moto g05 and the Infinix SMART 8 have nearly the same chip score, yet differed threefold on repeat Prepare runs. A chip score is only a guide.</p>
+<p><img src="predictions.svg" alt="The two systems only; Appendix B lists the single-check predictions. On the center line the phone matched the prediction; shaded bands mark a miss."></p>
+<p><em>Figure 5. The two systems only; Appendix B lists the single-check predictions. On the center line the phone matched the prediction; shaded bands mark a miss.</em></p>
+<p>As a rough rule for readers who have only the published numbers, a presentation proof took a low-end phone about 6 to 7 times as long as CSP’s benchmark machine, a mid-range phone about twice as long, and a flagship about 1.5 times as long. On the single checks the rule came close for SHA-256 on low-end phones, overestimated P-256, whose published circuit is larger than ours, and underestimated Spartan2 on faster phones (Appendix A).</p>
+<h2 id="limitations-and-next-steps">Limitations and next steps</h2>
+<p>We tested ten physical phones, with one set of runs per phone per workload set. The table lists what the results do not cover, what each gap means for a reader, and a potential mitigation. Notice that the mitigations are proposals drawn from our own observations; none has been tested.</p>
+<h3 id="limitations">Limitations</h3>
+<table>
+<thead>
+<tr>
+<th>Limitation</th>
+<th>What it means for the results</th>
+<th>Potential mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One set of runs per phone: a first run and five repeats, on two dates</td>
+<td>Medians rest on five repeats, and the Infinix SMART 8’s firmware changed between the two dates</td>
+<td>Repeat the runs across more sessions and dates, and hold firmware constant within any comparison</td>
+</tr>
+<tr>
+<td>Peak memory is resident memory (VmHWM), which includes mapped key files and excludes pages compressed into zRAM. The Infinix SMART 8’s repeat runs reported far lower peaks than its first runs</td>
+<td>Peaks are comparable within our runs, but they are a floor on the Infinix and are not the quantity the low-memory killer acts on</td>
+<td>Measure PSS as well as VmHWM, separate anonymous from file-backed memory, and record memory-pressure signals alongside each peak</td>
+</tr>
+<tr>
+<td>Laptop predictions underestimated memory on every tier and missed four single-check cells</td>
+<td>A laptop alone will under-provision memory for low-end phones</td>
+<td>Calibrate memory predictions with a factor measured on at least one low-end phone, and calibrate time per prover and tier rather than by chip score alone</td>
+</tr>
+<tr>
+<td>Application size, battery use, integration effort and the wait users accept were not measured</td>
+<td>A proof that fits may still be too slow for a service point, and key downloads affect installation</td>
+<td>Run a study of users’ Tolerable Waiting Time. Load keys at application start, which removes the first-presentation delay from the point of use</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-talk-to-us">Try it, talk to us</h2>
+<p>The benchmark results are on the coordination network’s <a href="https://github.com/ethereum/coordination-network/tree/bench/android" target="_blank" rel="noopener noreferrer">bench/android</a> branch and zkID’s <a href="https://github.com/ethereum/zkID/tree/bench/android-midrange" target="_blank" rel="noopener noreferrer">bench/android-midrange</a> branch.</p>
+<p>If you are looking for a privacy-preserving credential system and would like a feasibility check on your target users’ devices, contact us: <a href="mailto:epic@ethereum.org">epic@ethereum.org</a></p>
+<h2 id="appendix-a-how-we-tested">Appendix A. How we tested</h2>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>RAM</th>
+<th>Phones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low-end</td>
+<td>4 GB</td>
+<td>Galaxy A06 (Helio G85), Infinix SMART 8 (Unisoc T606), moto g05 (Helio G81 Extreme)</td>
+</tr>
+<tr>
+<td>Mid-range</td>
+<td>6 to 8 GB</td>
+<td>Galaxy A35 (Exynos 1380), Galaxy A55 (Exynos 1480), Pixel 8a (Tensor G3)</td>
+</tr>
+<tr>
+<td>Flagship</td>
+<td>12 to 16 GB</td>
+<td>Pixel 9 Pro (Tensor G4), Galaxy S23 Ultra (Snapdragon 8 Gen 2), Pixel 11 Pro (Tensor G6), Galaxy S26+ (Snapdragon 8 Elite Gen 5)</td>
+</tr>
+</tbody>
+</table>
+<p>We rented ten physical phones on Google’s Developer Device Platform. The low-end selection follows regional sales data: the Galaxy A06 was Latin America’s best-selling phone of 2025, and the moto g05 was sixth on the same list (<a href="https://www.gsmarena.com/counterpoint_samsung_galaxy_a06_was_the_bestselling_phone_in_latam_for_2025-news-71620.php" target="_blank" rel="noopener noreferrer">Counterpoint, via GSMArena</a>). Transsion, which makes Infinix phones, leads in Indonesia and the Philippines (<a href="https://www.businesswire.com/news/home/20251117149657/en/Omdia-Southeast-Asia-smartphone-shipments-slip-1-in-3Q25-as-vendors-face-mounting-cost-pressures" target="_blank" rel="noopener noreferrer">Omdia</a>). The platform does not offer the S26 Ultra, so the S26+ stands in for the newest Samsung flagship.</p>
+<p>On each phone:</p>
+<ul>
+<li>We recorded the model, chip, RAM and Android version, the free memory before every run, and the thermal status every 10 seconds.</li>
+<li>Each workload ran in a fresh application process: one first run, then five repeats, reported as their median.</li>
+<li>The phone wrote its last proof to storage, and we verified it on a laptop. A run without a verifying proof does not count as having run.</li>
+<li>Before each run, we waited for the phone to return to a normal thermal state. No phone reached a throttling state.</li>
+<li>A run that Android terminated was retried once, and we kept the evidence of the termination from the system log.</li>
+</ul>
+<p>We ran an application rather than a command-line binary because a binary is not subject to Android’s low-memory killer, and would therefore understate the memory pressure a real application faces.</p>
+<p>Memory figures are in GiB and file sizes in MB. A phone sold as 4 GB reports about 3.6 GiB of usable RAM, so the 2 GiB rule sits a little above half of what the phone reports. Peak memory is the application process’s peak resident memory (VmHWM in /proc/self/status), reset just before each step; we report the highest across a workload’s runs. The Infinix SMART 8’s repeat runs reported far lower peaks than its first runs (0.22 against 1.29 GiB for an OpenAC presentation), so we treat its peaks as a floor.</p>
+<p>The single-check proofs use the circuits from the client-side proving (CSP) benchmarks: SHA-256 over a 2 KB message and ECDSA P-256 verification, compiled for UltraHonk with nargo 1.0.0-beta.22, the version the coordination network’s prover uses. Under it the SHA-256 circuit is 153,813 gates and the ECDSA circuit 46,000, against the 72,683 CSP publishes for ECDSA under an older compiler. For OpenAC’s prover we ported CSP’s SHA-256 circuit to the Spartan2 version OpenAC uses (873,466 constraints). That version’s prover failed on CSP’s layout, so the port commits the hash’s witness in a different phase; the statement it proves, the digest of the message, is unchanged.</p>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>On the phone</th>
+<th>Verifier needs</th>
+<th>Proof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coordination network</td>
+<td>2.1 MB circuit, 8.4 MB of setup data shared across circuits</td>
+<td>3.7 KB verification key</td>
+<td>14.7 KB</td>
+</tr>
+<tr>
+<td>OpenAC</td>
+<td>437 MB of keys shared by all credentials, plus 67.2 MB of saved Prepare state per credential</td>
+<td>about 437 MB of verification keys</td>
+<td>159.5 KB (two proofs)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="appendix-b-per-phone-results">Appendix B. Per-phone results</h2>
+<p>Repeat presentation time per phone, for both systems:</p>
+<p><img src="presentation-time.svg" alt="The first presentation after the application starts took about 1.7 times as long."></p>
+<p><em>Figure 6. The first presentation after the application starts took about 1.7 times as long.</em></p>
+<p>Peak memory per phone, against the 2 GiB rule on the 4 GB phones:</p>
+<p><img src="peak-memory.svg" alt="Free memory is not a hard limit. The A06’s presentation completed at 1.93 GiB with 1.3 to 1.6 GiB free, which suggests Android closed background applications to make room."></p>
+<p><em>Figure 7. Free memory is not a hard limit. The A06’s presentation completed at 1.93 GiB with 1.3 to 1.6 GiB free, which suggests Android closed background applications to make room.</em></p>
+<p>On the low-end phones, a repeat OpenAC presentation split into the following steps, as medians in seconds. The whole presentation is its own median, not the sum of the steps.</p>
+<table>
+<thead>
+<tr>
+<th>Phone</th>
+<th>Show</th>
+<th>Show re-randomizing</th>
+<th>Prepare re-randomizing</th>
+<th>Whole presentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Galaxy A06</td>
+<td>0.51</td>
+<td>0.26</td>
+<td>5.35</td>
+<td>6.2</td>
+</tr>
+<tr>
+<td>Infinix SMART 8</td>
+<td>3.69</td>
+<td>1.14</td>
+<td>7.24</td>
+<td>12.1</td>
+</tr>
+<tr>
+<td>moto g05</td>
+<td>0.69</td>
+<td>0.31</td>
+<td>5.91</td>
+<td>7.0</td>
+</tr>
+</tbody>
+</table>
+<p>Times in seconds, first / repeat:</p>
+<table>
+<thead>
+<tr>
+<th>Phone</th>
+<th>Free before run</th>
+<th>Coordination network</th>
+<th>OpenAC Show</th>
+<th>OpenAC Prepare</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Galaxy A06</td>
+<td>1.3 to 1.6 GiB</td>
+<td>13.3 / 7.9</td>
+<td>11.2 / 6.2</td>
+<td>terminated by Android</td>
+</tr>
+<tr>
+<td>Infinix SMART 8</td>
+<td>2.3 to 2.5 GiB</td>
+<td>15.7 / 9.1</td>
+<td>15.8 / 12.1</td>
+<td>35.3 / 33.5</td>
+</tr>
+<tr>
+<td>moto g05</td>
+<td>1.8 to 2.0 GiB</td>
+<td>16.9 / 9.6</td>
+<td>11.4 / 7.0</td>
+<td>14.6 / 10.2</td>
+</tr>
+<tr>
+<td>Galaxy A35</td>
+<td>2.7 GiB</td>
+<td>6.1 / 3.6</td>
+<td>4.9 / 2.7</td>
+<td>5.1 / 3.4</td>
+</tr>
+<tr>
+<td>Galaxy A55</td>
+<td>3.9 to 4.1 GiB</td>
+<td>4.7 / 2.8</td>
+<td>4.1 / 2.3</td>
+<td>4.2 / 2.9</td>
+</tr>
+<tr>
+<td>Pixel 8a</td>
+<td>3.2 to 3.5 GiB</td>
+<td>4.8 / 2.8</td>
+<td>3.9 / 2.5</td>
+<td>5.4 / 4.4</td>
+</tr>
+<tr>
+<td>Pixel 9 Pro</td>
+<td>10.2 to 10.5 GiB</td>
+<td>4.7 / 2.8</td>
+<td>3.5 / 2.2</td>
+<td>4.4 / 3.6</td>
+</tr>
+<tr>
+<td>Galaxy S23 Ultra</td>
+<td>6.8 to 6.9 GiB</td>
+<td>3.3 / 1.9</td>
+<td>2.8 / 1.5</td>
+<td>2.7 / 1.9</td>
+</tr>
+<tr>
+<td>Pixel 11 Pro</td>
+<td>6.6 to 6.7 GiB</td>
+<td>3.3 / 2.0</td>
+<td>3.1 / 1.9</td>
+<td>4.2 / 3.4</td>
+</tr>
+<tr>
+<td>Galaxy S26+</td>
+<td>6.0 GiB</td>
+<td>2.4 / 1.4</td>
+<td>2.2 / 1.2</td>
+<td>2.1 / 1.5</td>
+</tr>
+</tbody>
+</table>
+<p>Peak memory in GiB:</p>
+<table>
+<thead>
+<tr>
+<th>Phone</th>
+<th>Coordination network</th>
+<th>OpenAC Show</th>
+<th>OpenAC Prepare</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Galaxy A06</td>
+<td>0.62</td>
+<td>1.93</td>
+<td>terminated by Android</td>
+</tr>
+<tr>
+<td>Infinix SMART 8</td>
+<td>0.41</td>
+<td>1.29</td>
+<td>1.48</td>
+</tr>
+<tr>
+<td>moto g05</td>
+<td>0.39</td>
+<td>1.67</td>
+<td>1.79</td>
+</tr>
+<tr>
+<td>Galaxy A35</td>
+<td>0.48</td>
+<td>1.67</td>
+<td>1.80</td>
+</tr>
+<tr>
+<td>Galaxy A55</td>
+<td>0.50</td>
+<td>1.76</td>
+<td>1.90</td>
+</tr>
+<tr>
+<td>Pixel 8a</td>
+<td>0.44</td>
+<td>1.72</td>
+<td>1.82</td>
+</tr>
+<tr>
+<td>Pixel 9 Pro</td>
+<td>0.40</td>
+<td>1.74</td>
+<td>1.83</td>
+</tr>
+<tr>
+<td>Galaxy S23 Ultra</td>
+<td>0.42</td>
+<td>1.96</td>
+<td>2.79</td>
+</tr>
+<tr>
+<td>Pixel 11 Pro</td>
+<td>0.40</td>
+<td>1.73</td>
+<td>1.82</td>
+</tr>
+<tr>
+<td>Galaxy S26+</td>
+<td>0.45</td>
+<td>1.73</td>
+<td>1.82</td>
+</tr>
+</tbody>
+</table>
+<p>The single-check proofs, first / repeat seconds and peak MiB:</p>
+<table>
+<thead>
+<tr>
+<th>Phone</th>
+<th>SHA-256, UltraHonk</th>
+<th>P-256, UltraHonk</th>
+<th>SHA-256, Spartan2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Galaxy A06</td>
+<td>18.1 / 10.7, 739</td>
+<td>4.7 / 3.3, 250</td>
+<td>4.4 / 2.9, 1,359</td>
+</tr>
+<tr>
+<td>Infinix SMART 8</td>
+<td>17.1 / 10.3, 458</td>
+<td>4.6 / 3.0, 235</td>
+<td>12.8 / 11.8, 655</td>
+</tr>
+<tr>
+<td>moto g05</td>
+<td>17.5 / 10.5, 448</td>
+<td>4.8 / 3.0, 253</td>
+<td>5.2 / 3.6, 1,013</td>
+</tr>
+<tr>
+<td>Galaxy A35</td>
+<td>6.6 / 4.0, 502</td>
+<td>1.8 / 1.2, 283</td>
+<td>2.0 / 1.3, 1,027</td>
+</tr>
+<tr>
+<td>Galaxy A55</td>
+<td>5.1 / 3.1, 572</td>
+<td>1.4 / 1.0, 319</td>
+<td>1.6 / 1.1, 1,090</td>
+</tr>
+<tr>
+<td>Pixel 8a</td>
+<td>5.3 / 3.2, 490</td>
+<td>1.6 / 1.1, 274</td>
+<td>2.0 / 1.7, 1,030</td>
+</tr>
+<tr>
+<td>Pixel 9 Pro</td>
+<td>5.2 / 3.2, 468</td>
+<td>1.6 / 1.1, 262</td>
+<td>1.7 / 1.5, 1,040</td>
+</tr>
+<tr>
+<td>Galaxy S23 Ultra</td>
+<td>3.5 / 2.1, 509</td>
+<td>1.1 / 0.8, 308</td>
+<td>1.1 / 0.8, 1,547</td>
+</tr>
+<tr>
+<td>Pixel 11 Pro</td>
+<td>3.6 / 2.2, 459</td>
+<td>1.0 / 0.8, 262</td>
+<td>1.7 / 1.4, 1,029</td>
+</tr>
+<tr>
+<td>Galaxy S26+</td>
+<td>2.6 / 1.6, 503</td>
+<td>0.7 / 0.5, 269</td>
+<td>0.8 / 0.5, 1,034</td>
+</tr>
+</tbody>
+</table>
+<p>The low-end OpenAC Prepare row shows the moto g05 and the Infinix SMART 8 separately, because their median would hide the spread; Prepare did not complete on the A06. The A06’s OpenAC presentations used Prepare output generated on a laptop. The Infinix’s firmware changed between the two run dates, and its peaks are a floor on both.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>Low-end phones’ share of Southeast Asian shipments: <a href="https://www.businesswire.com/news/home/20251117149657/en/Omdia-Southeast-Asia-smartphone-shipments-slip-1-in-3Q25-as-vendors-face-mounting-cost-pressures" target="_blank" rel="noopener noreferrer">Omdia, via Business Wire</a></li>
+<li>Android’s low-memory killer: <a href="https://source.android.com/docs/core/perf/lmkd" target="_blank" rel="noopener noreferrer">Android lmkd documentation</a></li>
+<li>SD-JWT as a standard: <a href="https://www.rfc-editor.org/rfc/rfc9901" target="_blank" rel="noopener noreferrer">the IETF’s Selective Disclosure for JSON Web Tokens</a></li>
+<li>Single-check circuits: <a href="https://ethproofs.org/csp-benchmarks" target="_blank" rel="noopener noreferrer">client-side proving benchmarks</a></li>
+<li>Baby Jubjub and Poseidon: <a href="https://eips.ethereum.org/EIPS/eip-2494" target="_blank" rel="noopener noreferrer">the Baby Jubjub EIP</a>, <a href="https://eprint.iacr.org/2019/458" target="_blank" rel="noopener noreferrer">the Poseidon paper</a></li>
+<li>The coordination network: <a href="https://github.com/ethereum/coordination-network" target="_blank" rel="noopener noreferrer">its repository</a>; its proving tools, <a href="https://github.com/noir-lang/noir" target="_blank" rel="noopener noreferrer">Noir</a> and <a href="https://github.com/AztecProtocol/aztec-packages" target="_blank" rel="noopener noreferrer">Barretenberg</a></li>
+<li>OpenAC: <a href="https://github.com/ethereum/zkID" target="_blank" rel="noopener noreferrer">the zkID repository</a></li>
+<li>Low-end phone selection: <a href="https://www.gsmarena.com/counterpoint_samsung_galaxy_a06_was_the_bestselling_phone_in_latam_for_2025-news-71620.php" target="_blank" rel="noopener noreferrer">Counterpoint, via GSMArena</a></li>
+<li>Benchmark results on Coordination Network: <a href="https://github.com/ethereum/coordination-network/tree/6c27308d71ca2a4e2475cab8c432895e8ff44cff/packages/noir-prover-native/android-bench/results#per-phone" target="_blank" rel="noopener noreferrer">https://github.com/ethereum/coordination-network/tree/6c27308d71ca2a4e2475cab8c432895e8ff44cff/packages/noir-prover-native/android-bench/results#per-phone</a></li>
+<li>Benchmark results on OpenAC: <a href="https://github.com/ethereum/zkID/tree/591f49a95efd33cba8ee7ba8f768d46aac036993/wallet-unit-poc/mobile/bench-results#per-phone" target="_blank" rel="noopener noreferrer">https://github.com/ethereum/zkID/tree/591f49a95efd33cba8ee7ba8f768d46aac036993/wallet-unit-poc/mobile/bench-results#per-phone</a></li>
+</ul>
+
+        <div class="pixel-edge" aria-hidden="true" style="--cell:14px" data-mask="linear-gradient(#000 0 0) top / 100% calc(100% - 4 * 14px) no-repeat, linear-gradient(#000 0 0) calc(7 * 14px) calc(100% - 2 * 14px) / calc(100% - 14 * 14px) calc(2 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%202%22%20preserveAspectRatio%3D%22xMinYMax%20slice%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM7%200h1v1h-1zM8%200h1v1h-1zM9%200h1v1h-1zM10%200h1v1h-1zM11%200h1v1h-1zM12%200h1v1h-1zM13%200h1v1h-1zM14%200h1v1h-1zM15%200h1v1h-1zM16%200h1v1h-1zM17%200h1v1h-1zM18%200h1v1h-1zM19%200h1v1h-1zM20%200h1v1h-1zM21%200h1v1h-1zM22%200h1v1h-1zM23%200h1v1h-1zM24%200h1v1h-1zM25%200h1v1h-1zM26%200h1v1h-1zM27%200h1v1h-1zM28%200h1v1h-1zM29%200h1v1h-1zM30%200h1v1h-1zM31%200h1v1h-1zM32%200h1v1h-1zM33%200h1v1h-1zM34%200h1v1h-1zM35%200h1v1h-1zM36%200h1v1h-1zM37%200h1v1h-1zM39%200h1v1h-1zM40%200h1v1h-1zM42%200h1v1h-1zM43%200h1v1h-1zM44%200h1v1h-1zM45%200h1v1h-1zM46%200h1v1h-1zM47%200h1v1h-1zM48%200h1v1h-1zM49%200h1v1h-1zM50%200h1v1h-1zM51%200h1v1h-1zM52%200h1v1h-1zM53%200h1v1h-1zM54%200h1v1h-1zM55%200h1v1h-1zM56%200h1v1h-1zM57%200h1v1h-1zM58%200h1v1h-1zM59%200h1v1h-1zM60%200h1v1h-1zM61%200h1v1h-1zM62%200h1v1h-1zM63%200h1v1h-1zM64%200h1v1h-1zM65%200h1v1h-1zM66%200h1v1h-1zM67%200h1v1h-1zM68%200h1v1h-1zM69%200h1v1h-1zM70%200h1v1h-1zM71%200h1v1h-1zM72%200h1v1h-1zM73%200h1v1h-1zM74%200h1v1h-1zM75%200h1v1h-1zM76%200h1v1h-1zM77%200h1v1h-1zM78%200h1v1h-1zM79%200h1v1h-1zM80%200h1v1h-1zM81%200h1v1h-1zM82%200h1v1h-1zM83%200h1v1h-1zM84%200h1v1h-1zM85%200h1v1h-1zM86%200h1v1h-1zM87%200h1v1h-1zM88%200h1v1h-1zM89%200h1v1h-1zM90%200h1v1h-1zM91%200h1v1h-1zM92%200h1v1h-1zM93%200h1v1h-1zM94%200h1v1h-1zM95%200h1v1h-1zM96%200h1v1h-1zM97%200h1v1h-1zM98%200h1v1h-1zM99%200h1v1h-1zM100%200h1v1h-1zM102%200h1v1h-1zM103%200h1v1h-1zM104%200h1v1h-1zM105%200h1v1h-1zM106%200h1v1h-1zM107%200h1v1h-1zM108%200h1v1h-1zM109%200h1v1h-1zM110%200h1v1h-1zM111%200h1v1h-1zM112%200h1v1h-1zM113%200h1v1h-1zM114%200h1v1h-1zM115%200h1v1h-1zM116%200h1v1h-1zM117%200h1v1h-1zM119%200h1v1h-1zM0%201h1v1h-1zM1%201h1v1h-1zM2%201h1v1h-1zM4%201h1v1h-1zM5%201h1v1h-1zM6%201h1v1h-1zM8%201h1v1h-1zM10%201h1v1h-1zM11%201h1v1h-1zM12%201h1v1h-1zM13%201h1v1h-1zM14%201h1v1h-1zM16%201h1v1h-1zM18%201h1v1h-1zM19%201h1v1h-1zM20%201h1v1h-1zM21%201h1v1h-1zM22%201h1v1h-1zM23%201h1v1h-1zM25%201h1v1h-1zM26%201h1v1h-1zM28%201h1v1h-1zM29%201h1v1h-1zM30%201h1v1h-1zM32%201h1v1h-1zM33%201h1v1h-1zM34%201h1v1h-1zM36%201h1v1h-1zM37%201h1v1h-1zM38%201h1v1h-1zM39%201h1v1h-1zM40%201h1v1h-1zM41%201h1v1h-1zM42%201h1v1h-1zM45%201h1v1h-1zM46%201h1v1h-1zM47%201h1v1h-1zM49%201h1v1h-1zM50%201h1v1h-1zM52%201h1v1h-1zM53%201h1v1h-1zM54%201h1v1h-1zM55%201h1v1h-1zM56%201h1v1h-1zM57%201h1v1h-1zM58%201h1v1h-1zM59%201h1v1h-1zM64%201h1v1h-1zM65%201h1v1h-1zM68%201h1v1h-1zM69%201h1v1h-1zM70%201h1v1h-1zM71%201h1v1h-1zM72%201h1v1h-1zM73%201h1v1h-1zM76%201h1v1h-1zM77%201h1v1h-1zM79%201h1v1h-1zM80%201h1v1h-1zM81%201h1v1h-1zM82%201h1v1h-1zM83%201h1v1h-1zM84%201h1v1h-1zM87%201h1v1h-1zM88%201h1v1h-1zM90%201h1v1h-1zM91%201h1v1h-1zM94%201h1v1h-1zM95%201h1v1h-1zM96%201h1v1h-1zM97%201h1v1h-1zM98%201h1v1h-1zM99%201h1v1h-1zM101%201h1v1h-1zM104%201h1v1h-1zM105%201h1v1h-1zM106%201h1v1h-1zM107%201h1v1h-1zM108%201h1v1h-1zM110%201h1v1h-1zM112%201h1v1h-1zM113%201h1v1h-1zM114%201h1v1h-1zM115%201h1v1h-1zM116%201h1v1h-1zM117%201h1v1h-1zM118%201h1v1h-1zM119%201h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) calc(7 * 14px) 100% / calc(100% - 14 * 14px) calc(2 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%207%204%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM0%201h1v1h-1zM1%201h1v1h-1zM2%201h1v1h-1zM3%201h1v1h-1zM4%201h1v1h-1zM5%201h1v1h-1zM6%201h1v1h-1zM0%202h1v1h-1zM1%202h1v1h-1zM2%202h1v1h-1zM3%202h1v1h-1zM4%202h1v1h-1zM5%202h1v1h-1zM6%202h1v1h-1zM2%203h1v1h-1zM3%203h1v1h-1zM4%203h1v1h-1zM5%203h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) left bottom / calc(7 * 14px) calc(4 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%207%204%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM0%201h1v1h-1zM1%201h1v1h-1zM2%201h1v1h-1zM4%201h1v1h-1zM5%201h1v1h-1zM6%201h1v1h-1zM0%202h1v1h-1zM1%202h1v1h-1zM2%202h1v1h-1zM3%202h1v1h-1zM4%202h1v1h-1zM5%202h1v1h-1zM0%203h1v1h-1zM1%203h1v1h-1zM2%203h1v1h-1zM5%203h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) right bottom / calc(7 * 14px) calc(4 * 14px) no-repeat" data-astro-cid-wvdxwvx6>
+  <svg class="strip" viewBox="0 0 120 2" preserveAspectRatio="xMidYMax slice" data-astro-cid-wvdxwvx6>
+    <rect x="3" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="7" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="9" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="15" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="17" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="24" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="27" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="31" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="35" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="38" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="41" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="43" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="44" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="48" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="51" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="60" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="61" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="62" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="63" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="66" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="67" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="74" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="75" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="78" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="85" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="86" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="89" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="92" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="93" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="100" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="101" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="102" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="103" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="109" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="111" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="118" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+  <svg class="corner left" viewBox="0 0 7 4" data-astro-cid-wvdxwvx6>
+    <rect x="0" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="1" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="6" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+  <svg class="corner right" viewBox="0 0 7 4" data-astro-cid-wvdxwvx6>
+    <rect x="6" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="4" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="3" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="6" y="2" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="3" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+</div>
+
+
+      </article>
+    </div>
+  
+</div>
+
+    </main>
+    <footer class="site-footer" data-astro-cid-4hfmbvjp>
+  <div class="wrap" data-astro-cid-4hfmbvjp>
+    <a class="lockup" href="../../index.html" data-astro-cid-ohkoixbv>
+  <img src="../../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+    <div class="attribution" data-astro-cid-4hfmbvjp>
+      <p data-astro-cid-4hfmbvjp>Informational material only—not legal, regulatory, financial, investment, or procurement advice.</p>
+      <p data-astro-cid-4hfmbvjp>The Ethereum Foundation is one participant in the broader Ethereum ecosystem. It does not operate or control Ethereum.</p>
+    </div>
+    <nav aria-label="Footer" data-astro-cid-4hfmbvjp>
+      <a href="https://ethereum.foundation/" target="_blank" rel="noreferrer" data-astro-cid-4hfmbvjp>Ethereum Foundation</a>
+      <a href="../../contact/index.html" data-astro-cid-4hfmbvjp>Contact</a>
+    </nav>
+  </div>
+</footer>
+  </body>
+</html>

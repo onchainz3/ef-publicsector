@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Participatory budgeting on a verifiable shared record</title>
+    <meta name="description" content="How Ethereum could connect proposals, votes, allocations and payments in participatory budgeting, so residents can follow decisions into spending.">
+    <link rel="canonical" href="index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Ethereum for digital public infrastructure">
+    <meta property="og:title" content="Participatory budgeting on a verifiable shared record">
+    <meta property="og:description" content="How Ethereum could connect proposals, votes, allocations and payments in participatory budgeting, so residents can follow decisions into spending.">
+    <meta property="og:url" content="https://publicsector.ethereum.foundation/potential-applications/supporting-participatory-budgeting/">
+    <meta property="og:image" content="https://publicsector.ethereum.foundation/og/default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Participatory budgeting on a verifiable shared record">
+    <meta name="twitter:description" content="How Ethereum could connect proposals, votes, allocations and payments in participatory budgeting, so residents can follow decisions into spending.">
+    <meta name="twitter:image" content="https://publicsector.ethereum.foundation/og/default.jpg">
+    <!-- Browser chrome (and the iPhone status bar) in the page colour; up to 1119px the sticky
+         header sits on top, a frosted panel of 72% --bg-deep over the page, which comes out at #0b2218. -->
+    <meta name="theme-color" content="#0b2218" media="(max-width: 1119px)">
+    <meta name="theme-color" content="#0f2a1e">
+    
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="sitemap" href="../../sitemap.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@700..800&family=Funnel+Sans:wght@300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../_astro/FieldSection.CZ1fHz-b.css">
+<style>.use-case{gap:24px;max-width:72ch;display:grid}.use-case>:is(h1,h2){letter-spacing:-.025em;font-size:clamp(36px,4.4vw,64px);font-weight:700;line-height:1.02}.use-case>:is(h1,h2):focus{outline:none}.use-case>p{font-size:clamp(19px,1.6vw,22px);font-weight:300;line-height:1.45}.use-case section{gap:20px;margin-top:clamp(32px,4vw,56px);display:grid}.use-case section>:is(h2,h3){letter-spacing:-.01em;font-size:clamp(26px,2.4vw,34px);font-weight:600;line-height:1.15}.use-case section>p{color:var(--muted)}.use-case a{color:var(--ink);text-underline-offset:4px}.use-case .workflow{counter-reset:step;margin:12px 0 0;padding:0;list-style:none}.use-case .workflow>li{counter-increment:step;grid-template-columns:40px 1fr;gap:0 20px;padding-bottom:32px;display:grid;position:relative}.use-case .workflow-marker{background:var(--civic);width:40px;height:40px;color:var(--civic-ink);place-items:center;font-weight:700;display:grid}.use-case .workflow-marker:before{content:counter(step)}.use-case .workflow>li:not(:last-child):after{content:"";background:var(--rule);width:2px;position:absolute;top:48px;bottom:8px;left:19px}.use-case .workflow>li>div{gap:10px;padding-top:8px;display:grid}.use-case .workflow :is(h3,h4){font-size:21px;font-weight:600;line-height:1.25}.use-case .workflow p{color:var(--muted)}.use-case .definition{background-color:var(--bg-deep);background-image:linear-gradient(var(--bg) 1px, transparent 1px), linear-gradient(90deg, var(--bg) 1px, transparent 1px);background-size:14px 14px;padding:14px 18px 12px;font-size:16px}.use-case .contribution{border:1px solid var(--civic);padding:clamp(28px,4vw,48px)}.use-case .contribution>p{color:var(--ink)}
+.application-banner[data-astro-cid-o2iboitw]{isolation:isolate;height:calc(var(--header-h) + clamp(120px, 16vw, 260px));margin-top:calc(-1 * var(--header-h));border-bottom:1px solid var(--rule);position:relative;overflow:hidden}.application[data-astro-cid-o2iboitw]{padding-bottom:var(--section-space)}.back[data-astro-cid-o2iboitw]{margin:clamp(40px,5vw,72px) 0 28px;display:inline-block}@media (width<=960px){.application-banner[data-astro-cid-o2iboitw]{height:120px;margin-top:0}}
+</style></head>
+  <body>
+    <a href="index.html#main-content" class="skip-link">Skip to content</a>
+    <header class="site-header" data-astro-cid-sojskbm2>
+  <div class="menu-pixels" aria-hidden="true" data-astro-cid-sojskbm2></div>
+  <a class="lockup" href="../../index.html" data-astro-cid-ohkoixbv>
+  <img src="../../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+  <button class="menu" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-astro-cid-sojskbm2>
+    <span class="menu-label" data-astro-cid-sojskbm2>Menu</span>
+    <svg class="menu-x" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" data-astro-cid-sojskbm2>
+      <path d="M3 3l10 10M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.8" data-astro-cid-sojskbm2></path>
+    </svg>
+  </button>
+  <nav id="site-nav" aria-label="Main" data-astro-cid-sojskbm2>
+    <ul data-astro-cid-sojskbm2>
+      <li class="group" style="--i:0" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-0" data-astro-cid-sojskbm2>
+                Understand Ethereum
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-0" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../../what-is-ethereum/index.html" data-astro-cid-sojskbm2>What is Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../why-ethereum/index.html" data-astro-cid-sojskbm2>Why use Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../evaluating-ethereum/index.html" data-astro-cid-sojskbm2>Evaluating Ethereum</a>
+                  </li>
+              </ul>
+            </li><li style="--i:1" data-astro-cid-sojskbm2>
+              <a href="../../case-studies/index.html" data-astro-cid-sojskbm2>Case studies</a>
+            </li><li style="--i:2" data-astro-cid-sojskbm2>
+              <a href="../index.html" data-astro-cid-sojskbm2>Potential applications</a>
+            </li><li class="group" style="--i:3" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-3" data-astro-cid-sojskbm2>
+                Getting started
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-3" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../../institutional-engagement/index.html" data-astro-cid-sojskbm2>Institutional engagement</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../technical-foundations/index.html" data-astro-cid-sojskbm2>Technical Foundations</a>
+                  </li>
+              </ul>
+            </li><li style="--i:4" data-astro-cid-sojskbm2>
+              <a href="../../resources/index.html" data-astro-cid-sojskbm2>Resources</a>
+            </li>
+      <li style="--i:5" data-astro-cid-sojskbm2><a class="contact" href="../../contact/index.html" data-astro-cid-sojskbm2>Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script type="module">var e=document.querySelector(`.site-header`),t=()=>e.classList.toggle(`is-scrolled`,window.scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),new ResizeObserver(()=>{e.classList.contains(`is-open`)||document.documentElement.style.setProperty(`--header-real`,`${e.getBoundingClientRect().height}px`)}).observe(e);var n=[...e.querySelectorAll(`.group`)],r=e.querySelector(`.menu`),i=e=>n.forEach(t=>{t!==e&&(t.querySelector(`button`).setAttribute(`aria-expanded`,`false`),t.querySelector(`ul`).hidden=!0)});n.forEach(e=>{let t=e.querySelector(`button`);t.addEventListener(`click`,()=>{let n=t.getAttribute(`aria-expanded`)!==`true`;i(e),t.setAttribute(`aria-expanded`,String(n)),e.querySelector(`ul`).hidden=!n}),e.addEventListener(`focusout`,t=>{e.contains(t.relatedTarget)||i()})});var a=matchMedia(`(prefers-reduced-motion: reduce)`),o=e.querySelector(`.menu-pixels`),s=()=>{let e=Math.ceil(innerWidth/40),t=Math.ceil(innerHeight/40),n=e+t;o.replaceChildren(...Array.from({length:e*t},(t,r)=>{let i=r%e,a=Math.floor(r/e),o=document.createElement(`span`);return o.style.cssText=`left:${i*40}px;top:${a*40}px;animation-delay:${Math.round((e-1-i+a)/n*300+Math.random()*70)}ms`,o}))},c=0;r.addEventListener(`click`,()=>{let t=r.getAttribute(`aria-expanded`)!==`true`;if(r.setAttribute(`aria-expanded`,String(t)),r.setAttribute(`aria-label`,t?`Close menu`:`Menu`),clearTimeout(c),e.classList.remove(`is-closing`),t){a.matches||s(),e.classList.add(`is-open`),document.documentElement.classList.add(`menu-open`);return}let n=()=>{e.classList.remove(`is-open`,`is-closing`),document.documentElement.classList.remove(`menu-open`)};if(a.matches)return n();e.classList.add(`is-closing`),c=window.setTimeout(n,200)}),document.addEventListener(`pointerdown`,t=>{e.contains(t.target)||i()}),document.addEventListener(`keydown`,t=>{if(t.key!==`Escape`)return;let a=n.find(e=>e.querySelector(`button`).getAttribute(`aria-expanded`)===`true`);a?(i(),a.querySelector(`button`).focus()):e.classList.contains(`is-open`)&&(r.click(),r.focus())});</script>
+    <main id="main-content">
+      
+  <div class="application-banner" aria-hidden="true" data-astro-cid-o2iboitw>
+    <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+<div class="field-edge" aria-hidden="true" data-src="../../garden-hero.webp" data-focus="0.45" data-from="bottom" data-astro-cid-4qlbhge2></div>
+
+
+
+<script type="module" src="../../_astro/PixelField.astro_astro_type_script_index_0_lang.CiVv8QY2.js"></script>
+  </div>
+  <div data-astro-cid-o2iboitw="true" data-astro-cid-cpczvml2="true" class="field-section application">
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+
+
+
+
+
+  
+    <div class="wrap" data-astro-cid-o2iboitw>
+      <a class="back" href="../index.html#use-case-concepts" data-astro-cid-o2iboitw><span aria-hidden="true" data-astro-cid-o2iboitw>←</span> Back to use cases</a>
+      <article class="use-case" data-use-case="application-community-budgeting" data-astro-cid-o2iboitw>
+        <h1 id="use-case-title-application-community-budgeting" data-astro-cid-o2iboitw>Supporting participatory budgeting</h1>
+        
+  <p>
+    Participatory budgeting allows residents to help decide how public funds are allocated. An application using
+    Ethereum could connect proposals, voting outcomes, funding allocations, and subsequent disbursements in a shared
+    record, making it easier to follow how decisions translate into spending.
+  </p>
+  <section>
+    <h2>One possible approach</h2>
+    <p>
+      In this example, a local authority invites residents to propose projects and vote on how a defined portion of
+      its budget should be spent. A participatory budgeting application connects to Ethereum to record selected
+      parts of the process in a shared, independently verifiable record.
+    </p>
+    <ol class="workflow" role="list">
+      <li>
+        <span class="workflow-marker" aria-hidden="true"></span>
+        <div>
+          <h3>Submit the proposals</h3>
+          <p>
+            Residents submit proposals through the participatory budgeting application. Once a proposal is accepted
+            for consideration, the application records a reference to it on Ethereum, creating a shared record of
+            the projects included in the process.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="workflow-marker" aria-hidden="true"></span>
+        <div>
+          <h3>Record the votes</h3>
+          <p>
+            Eligible residents vote through the application. Privacy-preserving methods can allow voters to confirm
+            that their vote was included without making their individual choice public.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="workflow-marker" aria-hidden="true"></span>
+        <div>
+          <h3>Publish the results</h3>
+          <p>
+            The local authority publishes the voting results and confirms which projects will receive funding. The
+            application records the resulting allocations on Ethereum and links each one to the relevant proposal.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="workflow-marker" aria-hidden="true"></span>
+        <div>
+          <h3>Track funding disbursements</h3>
+          <p>
+            As projects receive funding, the application links each disbursement to the allocation approved by the
+            local authority. Payments made through Ethereum or existing payment systems can be recorded against the
+            same allocation, providing a clearer record of how approved funding is released.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="workflow-marker" aria-hidden="true"></span>
+        <div>
+          <h3>Automate approved disbursements</h3>
+          <p>
+            For payments made through Ethereum, a smart contract can check that a payment request matches the
+            approved allocation and, when the required conditions are met, automatically release the funds and
+            record the transaction. A smart contract is a program on Ethereum that carries out an agreed action when
+            specified conditions are met.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="contribution">
+    <h2>What Ethereum enables</h2>
+    <p>
+      Ethereum can provide a shared record linking proposals, voting outcomes, funding allocations, and
+      disbursements. Residents, auditors, and public institutions can review this record through the participatory
+      budgeting application. Because the relevant records are also maintained on Ethereum, another service connected
+      to the network could retrieve and verify the same information.
+    </p>
+    <p>
+      Where payments are made through Ethereum, smart contracts can also check payment requests against approved
+      allocations and release funds once the required conditions are met. This can reduce manual processing and help
+      ensure that approved funding rules are applied consistently.
+    </p>
+    <p>
+      Together, these features can support transparency, continuity, and independent oversight, while the local
+      authority remains responsible for setting the rules, approving allocations, and determining how public funds
+      are used.
+    </p>
+  </section>
+
+
+      </article>
+    </div>
+  
+</div>
+
+    </main>
+    <footer class="site-footer" data-astro-cid-4hfmbvjp>
+  <div class="wrap" data-astro-cid-4hfmbvjp>
+    <a class="lockup" href="../../index.html" data-astro-cid-ohkoixbv>
+  <img src="../../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+    <div class="attribution" data-astro-cid-4hfmbvjp>
+      <p data-astro-cid-4hfmbvjp>Informational material only—not legal, regulatory, financial, investment, or procurement advice.</p>
+      <p data-astro-cid-4hfmbvjp>The Ethereum Foundation is one participant in the broader Ethereum ecosystem. It does not operate or control Ethereum.</p>
+    </div>
+    <nav aria-label="Footer" data-astro-cid-4hfmbvjp>
+      <a href="https://ethereum.foundation/" target="_blank" rel="noreferrer" data-astro-cid-4hfmbvjp>Ethereum Foundation</a>
+      <a href="../../contact/index.html" data-astro-cid-4hfmbvjp>Contact</a>
+    </nav>
+  </div>
+</footer>
+  </body>
+</html>

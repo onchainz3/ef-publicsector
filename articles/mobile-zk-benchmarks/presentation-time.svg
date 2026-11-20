@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="viz" viewBox="0 0 560 494" width="560" height="494" role="img" aria-labelledby="fig-title fig-desc">
+<title id="fig-title">Repeat presentation time per phone</title><desc id="fig-desc">Bar chart with two bars per phone, one per system, grouped by tier. Low-end phones take 6 to 12 seconds per repeat presentation, mid-range phones 2 to 4 and flagships 1 to 3, with either system.</desc>
+<style>
+.viz { --surface:#ffffff; --ink:#0b0b0b; --ink2:#52514e; --muted:#73716b; --grid:#e1e0d9; --axis:#c3c2b7; --band:#e6e5de;
+  --s1:#2a78d6; --s2:#eb6834; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+.faded { opacity:.35; }
+.bg { fill:var(--surface); } .t { fill:var(--ink); font-size:17px; font-weight:600; }
+.sub { fill:var(--ink2); font-size:13px; } .lab { fill:var(--ink); font-size:14px; }
+.hdr { fill:var(--ink); font-size:14px; font-weight:600; } .grp { fill:var(--ink2); font-size:13px; font-weight:600; }
+.tick { fill:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; } .note { fill:var(--muted); font-size:13px; }
+.grid { stroke:var(--grid); stroke-width:1; } .axis { stroke:var(--axis); stroke-width:1; }
+.ref { stroke:var(--ink2); stroke-width:1.5; } .s1 { fill:var(--s1); } .s2 { fill:var(--s2); }
+.ring { stroke:var(--surface); stroke-width:2; } .x { stroke:var(--ink); stroke-width:2; }
+.o1 { fill:none; stroke:var(--s1); stroke-width:1.5; } .o2 { fill:none; stroke:var(--s2); stroke-width:1.5; }
+.band { fill:var(--band); stroke:var(--axis); stroke-width:1; }
+</style>
+<rect class="bg" width="560" height="494" rx="8"/>
+<text class="t" x="16.0" y="30.0" text-anchor="start">Repeat presentation time per phone, in seconds</text>
+<text class="sub" x="16.0" y="52.0" text-anchor="start">Median of five runs.</text>
+<rect class="s1" x="16" y="67" width="12" height="12" rx="2"/>
+<text class="hdr" x="34.0" y="78.0" text-anchor="start">Coordination network</text>
+<rect class="s2" x="216" y="67" width="12" height="12" rx="2"/>
+<text class="hdr" x="234.0" y="78.0" text-anchor="start">OpenAC</text>
+<line class="grid" x1="150.0" y1="88" x2="150.0" y2="460"/>
+<line class="grid" x1="260.3" y1="88" x2="260.3" y2="460"/>
+<line class="grid" x1="370.6" y1="88" x2="370.6" y2="460"/>
+<line class="grid" x1="480.9" y1="88" x2="480.9" y2="460"/>
+<line class="axis" x1="150" y1="88" x2="150" y2="460"/>
+<text class="grp" x="16.0" y="105.0" text-anchor="start">Low-end, 4 GB</text>
+<text class="lab" x="24.0" y="132.0" text-anchor="start">Galaxy A06</text>
+<path class="s1" d="M150.0,117.0 H363.4 Q366.4,117.0 366.4,120.0 V123.0 Q366.4,126.0 363.4,126.0 H150.0 Z"><title>Galaxy A06, Coordination network: 7.85 s repeat, 13.32 s first</title></path>
+<path class="s2" d="M150.0,128.0 H317.3 Q320.3,128.0 320.3,131.0 V134.0 Q320.3,137.0 317.3,137.0 H150.0 Z"><title>Galaxy A06, OpenAC: 6.18 s repeat, 11.24 s first</title></path>
+<text class="lab" x="24.0" y="162.0" text-anchor="start">Infinix SMART 8</text>
+<path class="s1" d="M150.0,147.0 H398.2 Q401.2,147.0 401.2,150.0 V153.0 Q401.2,156.0 398.2,156.0 H150.0 Z"><title>Infinix SMART 8, Coordination network: 9.11 s repeat, 15.74 s first</title></path>
+<path class="s2" d="M150.0,158.0 H479.8 Q482.8,158.0 482.8,161.0 V164.0 Q482.8,167.0 479.8,167.0 H150.0 Z"><title>Infinix SMART 8, OpenAC: 12.07 s repeat, 15.80 s first</title></path>
+<text class="lab" x="24.0" y="192.0" text-anchor="start">moto g05</text>
+<path class="s1" d="M150.0,177.0 H411.9 Q414.9,177.0 414.9,180.0 V183.0 Q414.9,186.0 411.9,186.0 H150.0 Z"><title>moto g05, Coordination network: 9.61 s repeat, 16.93 s first</title></path>
+<path class="s2" d="M150.0,188.0 H340.5 Q343.5,188.0 343.5,191.0 V194.0 Q343.5,197.0 340.5,197.0 H150.0 Z"><title>moto g05, OpenAC: 7.02 s repeat, 11.45 s first</title></path>
+<text class="grp" x="16.0" y="219.0" text-anchor="start">Mid-range, 6 to 8 GB</text>
+<text class="lab" x="24.0" y="246.0" text-anchor="start">Galaxy A35</text>
+<path class="s1" d="M150.0,231.0 H245.7 Q248.7,231.0 248.7,234.0 V237.0 Q248.7,240.0 245.7,240.0 H150.0 Z"><title>Galaxy A35, Coordination network: 3.58 s repeat, 6.11 s first</title></path>
+<path class="s2" d="M150.0,242.0 H221.2 Q224.2,242.0 224.2,245.0 V248.0 Q224.2,251.0 221.2,251.0 H150.0 Z"><title>Galaxy A35, OpenAC: 2.69 s repeat, 4.91 s first</title></path>
+<text class="lab" x="24.0" y="276.0" text-anchor="start">Galaxy A55</text>
+<path class="s1" d="M150.0,261.0 H223.4 Q226.4,261.0 226.4,264.0 V267.0 Q226.4,270.0 223.4,270.0 H150.0 Z"><title>Galaxy A55, Coordination network: 2.77 s repeat, 4.70 s first</title></path>
+<path class="s2" d="M150.0,272.0 H209.4 Q212.4,272.0 212.4,275.0 V278.0 Q212.4,281.0 209.4,281.0 H150.0 Z"><title>Galaxy A55, OpenAC: 2.26 s repeat, 4.11 s first</title></path>
+<text class="lab" x="24.0" y="306.0" text-anchor="start">Pixel 8a</text>
+<path class="s1" d="M150.0,291.0 H224.8 Q227.8,291.0 227.8,294.0 V297.0 Q227.8,300.0 224.8,300.0 H150.0 Z"><title>Pixel 8a, Coordination network: 2.82 s repeat, 4.78 s first</title></path>
+<path class="s2" d="M150.0,302.0 H216.5 Q219.5,302.0 219.5,305.0 V308.0 Q219.5,311.0 216.5,311.0 H150.0 Z"><title>Pixel 8a, OpenAC: 2.52 s repeat, 3.90 s first</title></path>
+<text class="grp" x="16.0" y="333.0" text-anchor="start">Flagship, 12 to 16 GB</text>
+<text class="lab" x="24.0" y="360.0" text-anchor="start">Pixel 9 Pro</text>
+<path class="s1" d="M150.0,345.0 H223.7 Q226.7,345.0 226.7,348.0 V351.0 Q226.7,354.0 223.7,354.0 H150.0 Z"><title>Pixel 9 Pro, Coordination network: 2.78 s repeat, 4.67 s first</title></path>
+<path class="s2" d="M150.0,356.0 H208.8 Q211.8,356.0 211.8,359.0 V362.0 Q211.8,365.0 208.8,365.0 H150.0 Z"><title>Pixel 9 Pro, OpenAC: 2.24 s repeat, 3.46 s first</title></path>
+<text class="lab" x="24.0" y="390.0" text-anchor="start">Galaxy S23 Ultra</text>
+<path class="s1" d="M150.0,375.0 H199.5 Q202.5,375.0 202.5,378.0 V381.0 Q202.5,384.0 199.5,384.0 H150.0 Z"><title>Galaxy S23 Ultra, Coordination network: 1.90 s repeat, 3.26 s first</title></path>
+<path class="s2" d="M150.0,386.0 H189.2 Q192.2,386.0 192.2,389.0 V392.0 Q192.2,395.0 189.2,395.0 H150.0 Z"><title>Galaxy S23 Ultra, OpenAC: 1.53 s repeat, 2.84 s first</title></path>
+<text class="lab" x="24.0" y="420.0" text-anchor="start">Pixel 11 Pro</text>
+<path class="s1" d="M150.0,405.0 H200.7 Q203.7,405.0 203.7,408.0 V411.0 Q203.7,414.0 200.7,414.0 H150.0 Z"><title>Pixel 11 Pro, Coordination network: 1.95 s repeat, 3.35 s first</title></path>
+<path class="s2" d="M150.0,416.0 H198.3 Q201.3,416.0 201.3,419.0 V422.0 Q201.3,425.0 198.3,425.0 H150.0 Z"><title>Pixel 11 Pro, OpenAC: 1.86 s repeat, 3.14 s first</title></path>
+<text class="lab" x="24.0" y="450.0" text-anchor="start">Galaxy S26+</text>
+<path class="s1" d="M150.0,435.0 H186.1 Q189.1,435.0 189.1,438.0 V441.0 Q189.1,444.0 186.1,444.0 H150.0 Z"><title>Galaxy S26+, Coordination network: 1.42 s repeat, 2.42 s first</title></path>
+<path class="s2" d="M150.0,446.0 H179.4 Q182.4,446.0 182.4,449.0 V452.0 Q182.4,455.0 179.4,455.0 H150.0 Z"><title>Galaxy S26+, OpenAC: 1.18 s repeat, 2.16 s first</title></path>
+<text class="tick" x="150.0" y="478.0" text-anchor="middle">0</text>
+<text class="tick" x="260.3" y="478.0" text-anchor="middle">4</text>
+<text class="tick" x="370.6" y="478.0" text-anchor="middle">8</text>
+<text class="tick" x="480.9" y="478.0" text-anchor="middle">12 s</text>
+</svg>

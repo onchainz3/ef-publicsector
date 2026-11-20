@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="viz" viewBox="0 0 560 378" width="560" height="378" role="img" aria-labelledby="fig-title fig-desc">
+<title id="fig-title">Laptop predictions against the phones</title><desc id="fig-desc">Dot plot of measured divided by predicted, on a log scale with dashed lines at half and double, for repeat time and peak memory of the two presentations, per tier. All dots fall between the dashed lines. Times sit close to 1 on every tier. Memory sits above 1 on every tier.</desc>
+<style>
+.viz { --surface:#ffffff; --ink:#0b0b0b; --ink2:#52514e; --muted:#73716b; --grid:#e1e0d9; --axis:#c3c2b7; --band:#e6e5de;
+  --s1:#2a78d6; --s2:#eb6834; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+.faded { opacity:.35; }
+.bg { fill:var(--surface); } .t { fill:var(--ink); font-size:17px; font-weight:600; }
+.sub { fill:var(--ink2); font-size:13px; } .lab { fill:var(--ink); font-size:14px; }
+.hdr { fill:var(--ink); font-size:14px; font-weight:600; } .grp { fill:var(--ink2); font-size:13px; font-weight:600; }
+.tick { fill:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; } .note { fill:var(--muted); font-size:13px; }
+.grid { stroke:var(--grid); stroke-width:1; } .axis { stroke:var(--axis); stroke-width:1; }
+.ref { stroke:var(--ink2); stroke-width:1.5; } .s1 { fill:var(--s1); } .s2 { fill:var(--s2); }
+.ring { stroke:var(--surface); stroke-width:2; } .x { stroke:var(--ink); stroke-width:2; }
+.o1 { fill:none; stroke:var(--s1); stroke-width:1.5; } .o2 { fill:none; stroke:var(--s2); stroke-width:1.5; }
+.band { fill:var(--band); stroke:var(--axis); stroke-width:1; }
+</style>
+<style>
+.box { fill:var(--surface); stroke-width:1.5; } .b1 { stroke:var(--s1); } .b2 { stroke:var(--s2); }
+.b0 { stroke:var(--axis); stroke-dasharray:4 4; } .tint { fill:var(--s2); fill-opacity:.14; }
+.arrow { stroke:var(--ink2); stroke-width:1.5; } .ah { fill:var(--ink2); }
+.small { fill:var(--ink2); font-size:14px; } .strong { fill:var(--ink); font-size:15px; font-weight:600; }
+.limit { stroke:var(--ink2); stroke-width:1; stroke-dasharray:3 3; }
+.inbar { fill:#ffffff; font-size:15px; font-weight:600; }
+</style>
+<rect class="bg" width="560" height="378" rx="8"/>
+<text class="t" x="16.0" y="34.0" text-anchor="start">Laptop predictions against the phones</text>
+<text class="sub" x="16.0" y="56.0" text-anchor="start">Measured ÷ predicted. Time sat near 1x, and memory came in above it.</text>
+<text class="hdr" x="221.0" y="92.0" text-anchor="middle">Repeat time</text>
+<text class="hdr" x="443.0" y="92.0" text-anchor="middle">Peak memory</text>
+<line class="limit" x1="144.6" y1="134" x2="144.6" y2="206"/>
+<line class="ref" x1="221.0" y1="134" x2="221.0" y2="206"/>
+<line class="limit" x1="297.4" y1="134" x2="297.4" y2="206"/>
+<line class="limit" x1="144.6" y1="238" x2="144.6" y2="310"/>
+<line class="ref" x1="221.0" y1="238" x2="221.0" y2="310"/>
+<line class="limit" x1="297.4" y1="238" x2="297.4" y2="310"/>
+<text class="tick" x="144.6" y="330.0" text-anchor="middle">0.5x</text>
+<text class="tick" x="221.0" y="330.0" text-anchor="middle">1x</text>
+<text class="tick" x="297.4" y="330.0" text-anchor="middle">2x</text>
+<line class="limit" x1="366.6" y1="134" x2="366.6" y2="206"/>
+<line class="ref" x1="443.0" y1="134" x2="443.0" y2="206"/>
+<line class="limit" x1="519.4" y1="134" x2="519.4" y2="206"/>
+<line class="limit" x1="366.6" y1="238" x2="366.6" y2="310"/>
+<line class="ref" x1="443.0" y1="238" x2="443.0" y2="310"/>
+<line class="limit" x1="519.4" y1="238" x2="519.4" y2="310"/>
+<text class="tick" x="366.6" y="330.0" text-anchor="middle">0.5x</text>
+<text class="tick" x="443.0" y="330.0" text-anchor="middle">1x</text>
+<text class="tick" x="519.4" y="330.0" text-anchor="middle">2x</text>
+<text class="grp" x="16.0" y="128.0" text-anchor="start">Coordination network presentation</text>
+<text class="lab" x="16.0" y="151.0" text-anchor="start">Low-end</text>
+<circle class="s1 ring" cx="238.4" cy="146.0" r="6"><title>Coordination network presentation, low-end: 9.1 s measured, 7.8 s predicted</title></circle>
+<circle class="s1 ring" cx="495.4" cy="146.0" r="6"><title>Coordination network presentation, low-end: 0.62 GiB measured, 0.38 GiB predicted</title></circle>
+<text class="lab" x="16.0" y="175.0" text-anchor="start">Mid-range</text>
+<circle class="s1 ring" cx="212.7" cy="170.0" r="6"><title>Coordination network presentation, mid-range: 2.8 s measured, 3.0 s predicted</title></circle>
+<circle class="s1 ring" cx="473.1" cy="170.0" r="6"><title>Coordination network presentation, mid-range: 0.50 GiB measured, 0.38 GiB predicted</title></circle>
+<text class="lab" x="16.0" y="199.0" text-anchor="start">Flagship</text>
+<circle class="s1 ring" cx="209.2" cy="194.0" r="6"><title>Coordination network presentation, flagship: 1.9 s measured, 2.1 s predicted</title></circle>
+<circle class="s1 ring" cx="460.2" cy="194.0" r="6"><title>Coordination network presentation, flagship: 0.45 GiB measured, 0.38 GiB predicted</title></circle>
+<text class="grp" x="16.0" y="232.0" text-anchor="start">OpenAC presentation</text>
+<text class="lab" x="16.0" y="255.0" text-anchor="start">Low-end</text>
+<circle class="s2 ring" cx="222.7" cy="250.0" r="6"><title>OpenAC presentation, low-end: 7.0 s measured, 6.9 s predicted</title></circle>
+<circle class="s2 ring" cx="474.5" cy="250.0" r="6"><title>OpenAC presentation, low-end: 1.93 GiB measured, 1.45 GiB predicted</title></circle>
+<text class="lab" x="16.0" y="279.0" text-anchor="start">Mid-range</text>
+<circle class="s2 ring" cx="213.3" cy="274.0" r="6"><title>OpenAC presentation, mid-range: 2.5 s measured, 2.7 s predicted</title></circle>
+<circle class="s2 ring" cx="464.4" cy="274.0" r="6"><title>OpenAC presentation, mid-range: 1.76 GiB measured, 1.45 GiB predicted</title></circle>
+<text class="lab" x="16.0" y="303.0" text-anchor="start">Flagship</text>
+<circle class="s2 ring" cx="208.2" cy="298.0" r="6"><title>OpenAC presentation, flagship: 1.7 s measured, 1.9 s predicted</title></circle>
+<circle class="s2 ring" cx="476.4" cy="298.0" r="6"><title>OpenAC presentation, flagship: 1.96 GiB measured, 1.45 GiB predicted</title></circle>
+<text class="note" x="16.0" y="356.0" text-anchor="start">Dashed lines: half and double the prediction.</text>
+</svg>

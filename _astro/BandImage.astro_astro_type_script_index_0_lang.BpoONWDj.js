@@ -1,0 +1,1 @@
+import{t as e}from"./rng.CjMInbdP.js";import{t}from"./blockMask.Dl7CRNHS.js";for(let n of document.querySelectorAll(`.band-image`))new ResizeObserver(()=>{let r=Math.ceil(n.offsetWidth/14),i=Math.ceil(n.offsetHeight/14),a=e(23);t(n,r,i,e=>a()<Math.min(1,Math.max(0,(e/r-.45)/.55/.35))**1.2)}).observe(n);

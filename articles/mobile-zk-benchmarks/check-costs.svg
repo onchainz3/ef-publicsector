@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="viz" viewBox="0 0 560 370" width="560" height="370" role="img" aria-labelledby="fig-title fig-desc">
+<title id="fig-title">What each check costs in the coordination network</title><desc id="fig-desc">Bar chart of gates saved by removing each check from the 110,792-gate circuit: Device binding 44,259, Revocation check 20,281, Issuer in approved set 19,767, Holder-key signature 6,499, Revocation-key signature 6,499, Issuer&#x27;s signature 5,576, Validity window 10, Programme and country 2.</desc>
+<style>
+.viz { --surface:#ffffff; --ink:#0b0b0b; --ink2:#52514e; --muted:#73716b; --grid:#e1e0d9; --axis:#c3c2b7; --band:#e6e5de;
+  --s1:#2a78d6; --s2:#eb6834; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+.faded { opacity:.35; }
+.bg { fill:var(--surface); } .t { fill:var(--ink); font-size:17px; font-weight:600; }
+.sub { fill:var(--ink2); font-size:13px; } .lab { fill:var(--ink); font-size:14px; }
+.hdr { fill:var(--ink); font-size:14px; font-weight:600; } .grp { fill:var(--ink2); font-size:13px; font-weight:600; }
+.tick { fill:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; } .note { fill:var(--muted); font-size:13px; }
+.grid { stroke:var(--grid); stroke-width:1; } .axis { stroke:var(--axis); stroke-width:1; }
+.ref { stroke:var(--ink2); stroke-width:1.5; } .s1 { fill:var(--s1); } .s2 { fill:var(--s2); }
+.ring { stroke:var(--surface); stroke-width:2; } .x { stroke:var(--ink); stroke-width:2; }
+.o1 { fill:none; stroke:var(--s1); stroke-width:1.5; } .o2 { fill:none; stroke:var(--s2); stroke-width:1.5; }
+.band { fill:var(--band); stroke:var(--axis); stroke-width:1; }
+</style>
+<style>
+.box { fill:var(--surface); stroke-width:1.5; } .b1 { stroke:var(--s1); } .b2 { stroke:var(--s2); }
+.b0 { stroke:var(--axis); stroke-dasharray:4 4; } .tint { fill:var(--s2); fill-opacity:.14; }
+.arrow { stroke:var(--ink2); stroke-width:1.5; } .ah { fill:var(--ink2); }
+.small { fill:var(--ink2); font-size:14px; } .strong { fill:var(--ink); font-size:15px; font-weight:600; }
+.limit { stroke:var(--ink2); stroke-width:1; stroke-dasharray:3 3; }
+.inbar { fill:#ffffff; font-size:15px; font-weight:600; }
+</style>
+<rect class="bg" width="560" height="370" rx="8"/>
+<text class="t" x="16.0" y="34.0" text-anchor="start">What each check costs in the coordination network</text>
+<text class="sub" x="16.0" y="56.0" text-anchor="start">Share of gates saved by removing each check.</text>
+<line class="axis" x1="206" y1="86" x2="206" y2="342"/>
+<text class="lab" x="16.0" y="107.0" text-anchor="start">Device binding</text>
+<path class="s1" d="M206.0,94.0 H412.0 Q416.0,94.0 416.0,98.0 V106.0 Q416.0,110.0 412.0,110.0 H206.0 Z"><title>Device binding: 44,259 gates, 39.9%</title></path>
+<text class="lab" x="424.0" y="107.0" text-anchor="start">40%</text>
+<text class="lab" x="16.0" y="139.0" text-anchor="start">Revocation check</text>
+<path class="s1 faded" d="M206.0,126.0 H298.2 Q302.2,126.0 302.2,130.0 V138.0 Q302.2,142.0 298.2,142.0 H206.0 Z"><title>Revocation check: 20,281 gates, 18.3%</title></path>
+<text class="lab" x="310.2" y="139.0" text-anchor="start">18%</text>
+<text class="lab" x="16.0" y="171.0" text-anchor="start">Issuer in approved set</text>
+<path class="s1 faded" d="M206.0,158.0 H295.8 Q299.8,158.0 299.8,162.0 V170.0 Q299.8,174.0 295.8,174.0 H206.0 Z"><title>Issuer in approved set: 19,767 gates, 17.8%</title></path>
+<text class="lab" x="307.8" y="171.0" text-anchor="start">18%</text>
+<text class="lab" x="16.0" y="203.0" text-anchor="start">Holder-key signature</text>
+<path class="s1 faded" d="M206.0,190.0 H232.8 Q236.8,190.0 236.8,194.0 V202.0 Q236.8,206.0 232.8,206.0 H206.0 Z"><title>Holder-key signature: 6,499 gates, 5.9%</title></path>
+<text class="lab" x="244.8" y="203.0" text-anchor="start">6%</text>
+<text class="lab" x="16.0" y="235.0" text-anchor="start">Revocation-key signature</text>
+<path class="s1 faded" d="M206.0,222.0 H232.8 Q236.8,222.0 236.8,226.0 V234.0 Q236.8,238.0 232.8,238.0 H206.0 Z"><title>Revocation-key signature: 6,499 gates, 5.9%</title></path>
+<text class="lab" x="244.8" y="235.0" text-anchor="start">6%</text>
+<text class="lab" x="16.0" y="267.0" text-anchor="start">Issuer&#x27;s signature</text>
+<path class="s1 faded" d="M206.0,254.0 H228.5 Q232.5,254.0 232.5,258.0 V266.0 Q232.5,270.0 228.5,270.0 H206.0 Z"><title>Issuer&#x27;s signature: 5,576 gates, 5.0%</title></path>
+<text class="lab" x="240.5" y="267.0" text-anchor="start">5%</text>
+<text class="lab" x="16.0" y="299.0" text-anchor="start">Validity window</text>
+<text class="lab" x="214.0" y="299.0" text-anchor="start">10 gates</text>
+<text class="lab" x="16.0" y="331.0" text-anchor="start">Programme and country</text>
+<text class="lab" x="214.0" y="331.0" text-anchor="start">2 gates</text>
+</svg>
