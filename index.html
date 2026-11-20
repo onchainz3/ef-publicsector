@@ -102,15 +102,27 @@
 <script type="module">var e=document.querySelector(`.site-header`),t=()=>e.classList.toggle(`is-scrolled`,window.scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),new ResizeObserver(()=>{e.classList.contains(`is-open`)||document.documentElement.style.setProperty(`--header-real`,`${e.getBoundingClientRect().height}px`)}).observe(e);var n=[...e.querySelectorAll(`.group`)],r=e.querySelector(`.menu`),i=e=>n.forEach(t=>{t!==e&&(t.querySelector(`button`).setAttribute(`aria-expanded`,`false`),t.querySelector(`ul`).hidden=!0)});n.forEach(e=>{let t=e.querySelector(`button`);t.addEventListener(`click`,()=>{let n=t.getAttribute(`aria-expanded`)!==`true`;i(e),t.setAttribute(`aria-expanded`,String(n)),e.querySelector(`ul`).hidden=!n}),e.addEventListener(`focusout`,t=>{e.contains(t.relatedTarget)||i()})});var a=matchMedia(`(prefers-reduced-motion: reduce)`),o=e.querySelector(`.menu-pixels`),s=()=>{let e=Math.ceil(innerWidth/40),t=Math.ceil(innerHeight/40),n=e+t;o.replaceChildren(...Array.from({length:e*t},(t,r)=>{let i=r%e,a=Math.floor(r/e),o=document.createElement(`span`);return o.style.cssText=`left:${i*40}px;top:${a*40}px;animation-delay:${Math.round((e-1-i+a)/n*300+Math.random()*70)}ms`,o}))},c=0;r.addEventListener(`click`,()=>{let t=r.getAttribute(`aria-expanded`)!==`true`;if(r.setAttribute(`aria-expanded`,String(t)),r.setAttribute(`aria-label`,t?`Close menu`:`Menu`),clearTimeout(c),e.classList.remove(`is-closing`),t){a.matches||s(),e.classList.add(`is-open`),document.documentElement.classList.add(`menu-open`);return}let n=()=>{e.classList.remove(`is-open`,`is-closing`),document.documentElement.classList.remove(`menu-open`)};if(a.matches)return n();e.classList.add(`is-closing`),c=window.setTimeout(n,200)}),document.addEventListener(`pointerdown`,t=>{e.contains(t.target)||i()}),document.addEventListener(`keydown`,t=>{if(t.key!==`Escape`)return;let a=n.find(e=>e.querySelector(`button`).getAttribute(`aria-expanded`)===`true`);a?(i(),a.querySelector(`button`).focus()):e.classList.contains(`is-open`)&&(r.click(),r.focus())});</script>
     <main id="main-content">
       
-  <section class="page-hero fold large" aria-labelledby="home-title" data-astro-cid-tfra22jg>
+  <section class="page-hero fold large" aria-labelledby="home-title" data-astro-cid-tfra22jg data-active="1">
   <div class="page-hero-copy" data-astro-cid-tfra22jg>
 
     <h1 id="home-title" data-astro-cid-tfra22jg>Digital public<br data-astro-cid-lcdefpme> infrastructure <span class="title-follow" data-astro-cid-lcdefpme>Sovereign by design</span></h1>
 
     <p class="page-lead" data-astro-cid-tfra22jg>Explore how institutions can use Ethereum to support their work and the people they serve</p>
 
+    <div class="variant-switch hero-variant-switch" data-astro-cid-lcdefpme data-stage-selector=".page-hero">
+      <button class="variant-switch-btn" type="button" data-variant="1" aria-pressed="true">Option 01</button>
+      <button class="variant-switch-btn" type="button" data-variant="3" aria-pressed="false">Option 02</button>
+      <button class="variant-switch-btn" type="button" data-variant="2" aria-pressed="false">Option 03</button>
+      <span class="variant-switch-thumb" aria-hidden="true"></span>
+    </div>
+
   </div>
-  <div class="hero-reveal" aria-hidden="true" data-src="shades/civic-garden-campus.webp" data-focus="0.5"><canvas></canvas></div>
+  <div class="hero-stage">
+  <div class="hero-pattern-bg" aria-hidden="true"></div>
+  <div class="hero-reveal hero-reveal-v1" aria-hidden="true" data-src="shades/civic-garden-campus.webp" data-focus="0.5"><canvas></canvas></div>
+  <div class="hero-reveal hero-reveal-v2" aria-hidden="true" data-src="shades/hero-campus-sunset.webp" data-focus="0.6"><canvas></canvas></div>
+  <div class="hero-reveal hero-reveal-v3" aria-hidden="true" data-src="shades/hero-campus-sunset.webp" data-focus="0.5"><canvas></canvas></div>
+  </div>
 
 
 
@@ -121,13 +133,34 @@ h1[data-astro-cid-tfra22jg] .title-follow{color:#fff}
 .use[data-astro-cid-ci52cktz] .glyph[data-astro-cid-b2djzhwr] rect{animation:glyph-hop 2.4s steps(1) infinite}
 @media (prefers-reduced-motion:reduce){.use[data-astro-cid-ci52cktz] .glyph[data-astro-cid-b2djzhwr] rect{animation:none}}
 @keyframes glyph-hop{0%,45%{opacity:.3}50%,95%{opacity:1}100%{opacity:.3}}
-.hero-reveal{position:absolute;inset:0;z-index:0;overflow:hidden;cursor:crosshair}
+.use-v2-red[data-astro-cid-ci52cktz]{--card:#832b21;--card-ink:#fbefe9}
+.use-v2-blue[data-astro-cid-ci52cktz]{--card:#1a3855;--card-ink:#eaf1f8}
+.use-v2-gold[data-astro-cid-ci52cktz]{--card:#c29031;--card-ink:#241c08}
+.use-v3-red[data-astro-cid-ci52cktz]{--card:#fadbce;--card-ink:#471c10}
+.use-v3-blue[data-astro-cid-ci52cktz]{--card:#1b3669;--card-ink:#e9eefb}
+.use-v3-gold[data-astro-cid-ci52cktz]{--card:#fdca6a;--card-ink:#3a2405}
+.uses-top{justify-content:space-between;align-items:center;gap:20px;display:flex;flex-wrap:wrap}
+.variant-switch{position:relative;background:var(--bg-deep);border:1px solid var(--rule);border-radius:999px;padding:4px;display:inline-flex;gap:2px}
+.variant-switch-btn{position:relative;z-index:1;background:0 0;border:0;color:var(--muted);font-size:14px;font-weight:600;font-family:'Funnel Sans','Helvetica Neue',Helvetica,Arial,sans-serif;padding:8px 18px;border-radius:999px;cursor:pointer;transition:color .2s}
+.variant-switch-btn[aria-pressed="true"]{color:var(--civic-ink)}
+.variant-switch-thumb{position:absolute;top:4px;left:4px;height:calc(100% - 8px);background:var(--civic);border-radius:999px;transition:transform .3s cubic-bezier(.2,.7,.2,1);z-index:0}
+.uses-stage[data-active="1"] .uses-v2,.uses-stage[data-active="1"] .uses-v3,.uses-stage[data-active="2"] .uses-v1,.uses-stage[data-active="2"] .uses-v3,.uses-stage[data-active="3"] .uses-v1,.uses-stage[data-active="3"] .uses-v2{display:none}
+.hero-stage{position:absolute;inset:0;z-index:0}
+.hero-reveal{position:absolute;inset:0;overflow:hidden;cursor:crosshair}
 .hero-reveal canvas{display:block;width:100%;height:100%}
+.hero-reveal-v2{left:auto;width:calc(42vw + 140px)}
+.hero-pattern-bg{position:absolute;inset:0;right:42vw;z-index:-3}
+.page-hero[data-active="1"] .hero-reveal-v2,.page-hero[data-active="1"] .hero-reveal-v3,.page-hero[data-active="2"] .hero-reveal-v1,.page-hero[data-active="2"] .hero-reveal-v3,.page-hero[data-active="3"] .hero-reveal-v1,.page-hero[data-active="3"] .hero-reveal-v2,.page-hero[data-active="1"] .hero-pattern-bg,.page-hero[data-active="3"] .hero-pattern-bg{display:none}
+.page-hero[data-active="3"]{padding-right:max(var(--gutter), (100% - var(--wrap-max)) / 2)}
+.page-hero[data-active="3"] .page-hero-copy[data-astro-cid-tfra22jg]{justify-self:center;justify-items:center;text-align:center}
+.hero-reveal-v3{cursor:default}
+.hero-variant-switch{margin-top:4px}
+@media (width<=960px){.hero-reveal-v2{width:100%}}
 </style>
 <script type="module">
 (() => {
-  const root = document.querySelector('.hero-reveal');
-  if (!root) return;
+function initPixelHero(root, opts) {
+  const { densityAt, cell = 66, colors = ['#0f2a1e', '#0f2a1e', '#0f2a1e', '#0a1f16', '#1d4331'], overlay = null, interactive = true, spill = 0, hoverRadius = (w) => Math.min(420, Math.max(260, w * 0.28)) } = opts;
   const canvas = root.querySelector('canvas');
   const ctx = canvas.getContext('2d');
   const img = new Image();
@@ -135,8 +168,43 @@ h1[data-astro-cid-tfra22jg] .title-follow{color:#fff}
   const focusX = parseFloat(root.dataset.focus || '0.5');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const CELL = 66;
-  const GREENS = ['#0f2a1e', '#0f2a1e', '#0f2a1e', '#0a1f16', '#1d4331'];
+  const CELL = cell;
+  const GREENS = colors;
+
+  // Matches the site's ambient pixel-field texture: a dense grid of small
+  // cells with subtle per-cell shade variance, seamed by faint hairlines.
+  // Same 2D hash as the site's ambient pixel-field texture, so cell shades
+  // don't repeat in an obviously tileable way (unlike a small seeded-RNG tile).
+  function hash2(x, y) {
+    let n = Math.imul(x + 17, 374761393) ^ Math.imul(y + 31, 668265263);
+    n = Math.imul(n ^ (n >>> 13), 1274126177);
+    return ((n ^ (n >>> 16)) >>> 0) / 4294967296;
+  }
+
+  function makeNoisePattern(hex) {
+    const h = hex.replace('#', '');
+    const br = parseInt(h.substr(0, 2), 16), bg = parseInt(h.substr(2, 2), 16), bb = parseInt(h.substr(4, 2), 16);
+    const cellPx = 6, cells = 48, tile = cellPx * cells;
+    const t = document.createElement('canvas');
+    t.width = t.height = tile;
+    const tc = t.getContext('2d');
+    for (let y = 0; y < cells; y++) {
+      for (let x = 0; x < cells; x++) {
+        const v = (hash2(x, y) - 0.5) * 10;
+        const r = Math.max(0, Math.min(255, Math.round(br + v)));
+        const g = Math.max(0, Math.min(255, Math.round(bg + v)));
+        const b = Math.max(0, Math.min(255, Math.round(bb + v)));
+        tc.fillStyle = `rgb(${r},${g},${b})`;
+        tc.fillRect(x * cellPx, y * cellPx, cellPx, cellPx);
+      }
+    }
+    const lr = Math.min(255, br + 6), lg = Math.min(255, bg + 6), lb = Math.min(255, bb + 6);
+    tc.fillStyle = `rgba(${lr},${lg},${lb},0.55)`;
+    for (let x = 0; x <= cells; x++) tc.fillRect(x * cellPx - 0.5, 0, 1, tile);
+    for (let y = 0; y <= cells; y++) tc.fillRect(0, y * cellPx - 0.5, tile, 1);
+    return ctx.createPattern(t, 'repeat');
+  }
+  const patterns = Object.fromEntries(GREENS.map(c => [c, makeNoisePattern(c)]));
 
   const sharpCanvas = document.createElement('canvas');
   const sharpCtx = sharpCanvas.getContext('2d');
@@ -151,20 +219,13 @@ h1[data-astro-cid-tfra22jg] .title-follow{color:#fff}
     return () => (s = (s * 1664525 + 1013904223) >>> 0, s / 4294967296);
   }
 
-  function smooth(t) { return t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t); }
-
   function drawCover(c, cw, ch) {
-    const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+    const pw = cw - spill;
+    const scale = Math.max(pw / img.naturalWidth, ch / img.naturalHeight);
     const iw = img.naturalWidth * scale, ih = img.naturalHeight * scale;
     c.clearRect(0, 0, cw, ch);
-    c.drawImage(img, (cw - iw) * focusX, (ch - ih) / 2, iw, ih);
-  }
-
-  // Density gradient: clean image on the left (where the text sits),
-  // thickening into a near-solid field of pixels on the right.
-  function densityAt(xNorm) {
-    const t = smooth((xNorm - 0.58) / (0.88 - 0.58));
-    return t * 0.94;
+    c.drawImage(img, spill + (pw - iw) * focusX, (ch - ih) / 2, iw, ih);
+    if (overlay) { c.fillStyle = overlay; c.fillRect(spill, 0, pw, ch); }
   }
 
   function buildGrid() {
@@ -183,7 +244,7 @@ h1[data-astro-cid-tfra22jg] .title-follow{color:#fff}
       for (let c = 0; c < cols; c++) {
         const i = r * cols + c;
         homeX[i] = c * CELL; homeY[i] = r * CELL;
-        active[i] = rnd() < densityAt((c * CELL) / w) ? 1 : 0;
+        active[i] = rnd() < densityAt((c * CELL - spill) / Math.max(1, w - spill), (r * CELL) / h) ? 1 : 0;
       }
     }
     for (let r = 0; r < rows; r++) {
@@ -228,7 +289,7 @@ h1[data-astro-cid-tfra22jg] .title-follow{color:#fff}
       if (alpha <= 0.02) continue;
       const s = CELL * cellSize[i];
       ctx.globalAlpha = alpha;
-      ctx.fillStyle = cellColor[i];
+      ctx.fillStyle = patterns[cellColor[i]] || cellColor[i];
       ctx.fillRect(homeX[i], homeY[i], s, s);
     }
     ctx.globalAlpha = 1;
@@ -260,7 +321,7 @@ h1[data-astro-cid-tfra22jg] .title-follow{color:#fff}
   }
   function kick() { if (!raf) raf = requestAnimationFrame(loop); }
 
-  const HOVER_R = () => Math.min(420, Math.max(260, w * 0.28));
+  const HOVER_R = () => hoverRadius(w);
 
   function setPointer(e) {
     const rect = canvas.getBoundingClientRect();
@@ -268,14 +329,87 @@ h1[data-astro-cid-tfra22jg] .title-follow{color:#fff}
     targetRadius = HOVER_R();
     kick();
   }
-  root.addEventListener('pointermove', setPointer);
-  root.addEventListener('pointerdown', setPointer);
-  root.addEventListener('pointerleave', () => { targetRadius = 0; kick(); });
-  root.addEventListener('pointercancel', () => { targetRadius = 0; kick(); });
+  if (interactive) {
+    root.addEventListener('pointermove', setPointer);
+    root.addEventListener('pointerdown', setPointer);
+    root.addEventListener('pointerleave', () => { targetRadius = 0; kick(); });
+    root.addEventListener('pointercancel', () => { targetRadius = 0; kick(); });
+  }
 
   img.decode().catch(() => {}).then(buildLayers);
   new ResizeObserver(buildLayers).observe(root);
+}
+
+function smoothStep(t) { return t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t); }
+
+// v1: clean image on the left (where the text sits), thickening into a
+// near-solid field of pixels on the right.
+const densityV1 = (xNorm) => smoothStep((xNorm - 0.58) / (0.88 - 0.58)) * 0.94;
+// v2: just a sparse accent along the left edge of the confined strip,
+// the rest of the image stays clear.
+const densityV2 = (xNorm, yNorm) => {
+  const edge = smoothStep((0.3 - xNorm) / 0.3) * 0.85;
+  const bottom = smoothStep((yNorm - 0.86) / (0.985 - 0.86)) * 0.985;
+  return Math.max(edge, bottom);
+};
+// v3: full-bleed, clear at the top, dissolving into a dense pixel field
+// toward the bottom, like it's handing off into the next section.
+const densityV3 = (xNorm, yNorm) => smoothStep((yNorm - 0.86) / (0.985 - 0.86)) * 0.985;
+
+const v1 = document.querySelector('.hero-reveal-v1');
+const v2 = document.querySelector('.hero-reveal-v2');
+const v3 = document.querySelector('.hero-reveal-v3');
+if (v1) initPixelHero(v1, { densityAt: densityV1, colors: ['#0f2a1e'] });
+if (v2) initPixelHero(v2, { densityAt: densityV2, spill: 140, cell: 32, colors: ['#0f2a1e'], hoverRadius: (w) => Math.min(180, Math.max(110, w * 0.14)) });
+if (v3) initPixelHero(v3, { densityAt: densityV3, cell: 28, colors: ['#0d281c'], overlay: 'rgba(10,31,22,0.48)', interactive: false });
+
+// Static tiled texture for the plain green area to the left of the
+// confined v2 strip, matching the same noise used inside the canvases.
+const patternBg = document.querySelector('.hero-pattern-bg');
+if (patternBg) {
+  function hash2bg(x, y) {
+    let n = Math.imul(x + 17, 374761393) ^ Math.imul(y + 31, 668265263);
+    n = Math.imul(n ^ (n >>> 13), 1274126177);
+    return ((n ^ (n >>> 16)) >>> 0) / 4294967296;
+  }
+  const cellPx = 6, cells = 48, tile = cellPx * cells;
+  const br = 0x0f, bg = 0x2a, bb = 0x1e;
+  const t = document.createElement('canvas');
+  t.width = t.height = tile;
+  const tc = t.getContext('2d');
+  for (let y = 0; y < cells; y++) {
+    for (let x = 0; x < cells; x++) {
+      const v = (hash2bg(x, y) - 0.5) * 10;
+      const r = Math.max(0, Math.min(255, Math.round(br + v)));
+      const g = Math.max(0, Math.min(255, Math.round(bg + v)));
+      const b = Math.max(0, Math.min(255, Math.round(bb + v)));
+      tc.fillStyle = `rgb(${r},${g},${b})`;
+      tc.fillRect(x * cellPx, y * cellPx, cellPx, cellPx);
+    }
+  }
+  const lr = Math.min(255, br + 6), lg = Math.min(255, bg + 6), lb = Math.min(255, bb + 6);
+  tc.fillStyle = `rgba(${lr},${lg},${lb},0.55)`;
+  for (let x = 0; x <= cells; x++) tc.fillRect(x * cellPx - 0.5, 0, 1, tile);
+  for (let y = 0; y <= cells; y++) tc.fillRect(0, y * cellPx - 0.5, tile, 1);
+  patternBg.style.backgroundImage = `url(${t.toDataURL()})`;
+  patternBg.style.backgroundRepeat = 'repeat';
+}
 })();
+</script>
+<script type="module">
+document.querySelectorAll('.variant-switch').forEach(switcher => {
+  const stage = document.querySelector(switcher.dataset.stageSelector);
+  if (!stage) return;
+  const thumb = switcher.querySelector('.variant-switch-thumb');
+  const buttons = [...switcher.querySelectorAll('.variant-switch-btn')];
+  const n = buttons.length;
+  thumb.style.width = `calc(${100 / n}% - 2px)`;
+  buttons.forEach((btn, i) => btn.addEventListener('click', () => {
+    stage.dataset.active = btn.dataset.variant;
+    thumb.style.transform = `translateX(${i * 100}%)`;
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+  }));
+});
 </script>
   <a class="page-next" href="index.html#basics" aria-label="Scroll to the next section" data-astro-cid-tfra22jg>
         <svg viewBox="0 0 7 9" aria-hidden="true" data-astro-cid-tfra22jg>
@@ -310,8 +444,17 @@ h1[data-astro-cid-tfra22jg] .title-follow{color:#fff}
           operator.
         </span>
       </h2>
-      <p class="uses-label" data-astro-cid-lcdefpme>With Ethereum, institutions can:</p>
-      <ul class="uses" data-astro-cid-lcdefpme>
+      <div class="uses-top" data-astro-cid-lcdefpme>
+        <p class="uses-label" data-astro-cid-lcdefpme>With Ethereum, institutions can:</p>
+        <div class="variant-switch" data-astro-cid-lcdefpme data-stage-selector=".uses-stage">
+          <button class="variant-switch-btn" type="button" data-variant="2" aria-pressed="true">Option 01</button>
+          <button class="variant-switch-btn" type="button" data-variant="1" aria-pressed="false">Option 02</button>
+          <button class="variant-switch-btn" type="button" data-variant="3" aria-pressed="false">Option 03</button>
+          <span class="variant-switch-thumb" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="uses-stage" data-active="2" data-astro-cid-lcdefpme>
+      <ul class="uses uses-v1" data-astro-cid-lcdefpme>
         <li class="use use-red" data-astro-cid-ci52cktz="true"><svg viewBox="0 0 7 3" class="glyph" style="--w:7" aria-hidden="true" data-astro-cid-b2djzhwr>
   <rect x="0.08" y="0.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="1.08" y="0.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="0.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="1.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="0.08" y="2.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="1.08" y="2.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="3.08" y="1.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="5.08" y="0.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="6.08" y="0.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="5.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="6.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="5.08" y="2.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="6.08" y="2.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect>
 </svg><div class="use-body" data-astro-cid-ci52cktz>
@@ -344,6 +487,73 @@ h1[data-astro-cid-tfra22jg] .title-follow{color:#fff}
 
 </li>
       </ul>
+      <ul class="uses uses-v2" data-astro-cid-lcdefpme hidden>
+        <li class="use use-v2-red" data-astro-cid-ci52cktz="true"><svg viewBox="0 0 7 3" class="glyph" style="--w:7" aria-hidden="true" data-astro-cid-b2djzhwr>
+  <rect x="0.08" y="0.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="1.08" y="0.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="0.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="1.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="0.08" y="2.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="1.08" y="2.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="3.08" y="1.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="5.08" y="0.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="6.08" y="0.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="5.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="6.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="5.08" y="2.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="6.08" y="2.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect>
+</svg><div class="use-body" data-astro-cid-ci52cktz>
+              <p data-astro-cid-lcdefpme>Verify presented documents against their recorded originals</p>
+            </div>
+  <div class="use-media" data-astro-cid-ci52cktz>
+    <img class="tinted" src="shades/variant2-library-red.webp" alt="" loading="lazy" style="--fx:50%;--fy:100%;--zoom:1.1" data-astro-cid-uaywa24b>
+  </div>
+
+
+</li><li class="use use-v2-blue" data-astro-cid-ci52cktz="true"><svg viewBox="0 0 7 3" class="glyph" style="--w:7" aria-hidden="true" data-astro-cid-b2djzhwr>
+  <rect x="0.08" y="0.08" width="0.84" height="0.84" class="fill-1" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="1.08" y="0.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="2.08" y="0.08" width="0.84" height="0.84" class="fill-1" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="0.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="1.08" y="1.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="2.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="0.08" y="2.08" width="0.84" height="0.84" class="fill-1" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="1.08" y="2.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="2.08" y="2.08" width="0.84" height="0.84" class="fill-1" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect>
+</svg><div class="use-body" data-astro-cid-ci52cktz>
+              <p data-astro-cid-lcdefpme>Confirm eligibility for services while minimizing the collection of personal data</p>
+            </div>
+  <div class="use-media" data-astro-cid-ci52cktz>
+    <img class="tinted" src="shades/variant2-panels-blue.webp" alt="" loading="lazy" style="--fx:50%;--fy:100%;--zoom:1.1" data-astro-cid-uaywa24b>
+  </div>
+
+
+</li><li class="use use-v2-gold" data-astro-cid-ci52cktz="true"><svg viewBox="0 0 7 3" class="glyph" style="--w:7" aria-hidden="true" data-astro-cid-b2djzhwr>
+  <rect x="0.08" y="1.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="1.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="2.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="3.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="3.08" y="0.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="3.08" y="2.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="4.08" y="0.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="4.08" y="2.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="5.08" y="0.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="5.08" y="2.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="6.08" y="0.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="6.08" y="2.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="4.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="5.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="6.08" y="1.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect>
+</svg><div class="use-body" data-astro-cid-ci52cktz>
+              <p data-astro-cid-lcdefpme>Track grant disbursements from funders to recipients</p>
+            </div>
+  <div class="use-media" data-astro-cid-ci52cktz>
+    <img class="tinted" src="shades/variant2-pavilion-yellow.webp" alt="" loading="lazy" style="--fx:50%;--fy:100%;--zoom:1.1" data-astro-cid-uaywa24b>
+  </div>
+
+
+</li>
+      </ul>
+      <ul class="uses uses-v3" data-astro-cid-lcdefpme hidden>
+        <li class="use use-v3-red" data-astro-cid-ci52cktz="true"><svg viewBox="0 0 7 3" class="glyph" style="--w:7" aria-hidden="true" data-astro-cid-b2djzhwr>
+  <rect x="0.08" y="0.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="1.08" y="0.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="0.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="1.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="0.08" y="2.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="1.08" y="2.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="3.08" y="1.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="5.08" y="0.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="6.08" y="0.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="5.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="6.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="5.08" y="2.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="6.08" y="2.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect>
+</svg><div class="use-body" data-astro-cid-ci52cktz>
+              <p data-astro-cid-lcdefpme>Verify presented documents against their recorded originals</p>
+            </div>
+  <div class="use-media" data-astro-cid-ci52cktz>
+    <img class="tinted" src="shades/variant3-library-crimson.webp" alt="" loading="lazy" style="--fx:50%;--fy:100%;--zoom:1.1" data-astro-cid-uaywa24b>
+  </div>
+
+
+</li><li class="use use-v3-blue" data-astro-cid-ci52cktz="true"><svg viewBox="0 0 7 3" class="glyph" style="--w:7" aria-hidden="true" data-astro-cid-b2djzhwr>
+  <rect x="0.08" y="0.08" width="0.84" height="0.84" class="fill-1" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="1.08" y="0.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="2.08" y="0.08" width="0.84" height="0.84" class="fill-1" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="0.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="1.08" y="1.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="2.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="0.08" y="2.08" width="0.84" height="0.84" class="fill-1" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="1.08" y="2.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="2.08" y="2.08" width="0.84" height="0.84" class="fill-1" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect>
+</svg><div class="use-body" data-astro-cid-ci52cktz>
+              <p data-astro-cid-lcdefpme>Confirm eligibility for services while minimizing the collection of personal data</p>
+            </div>
+  <div class="use-media" data-astro-cid-ci52cktz>
+    <img class="tinted" src="shades/variant3-panels-blue.webp" alt="" loading="lazy" style="--fx:50%;--fy:100%;--zoom:1.1" data-astro-cid-uaywa24b>
+  </div>
+
+
+</li><li class="use use-v3-gold" data-astro-cid-ci52cktz="true"><svg viewBox="0 0 7 3" class="glyph" style="--w:7" aria-hidden="true" data-astro-cid-b2djzhwr>
+  <rect x="0.08" y="1.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="1.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="2.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="3.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="3.08" y="0.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="3.08" y="2.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="4.08" y="0.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="4.08" y="2.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="5.08" y="0.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="5.08" y="2.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="6.08" y="0.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="6.08" y="2.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="4.08" y="1.08" width="0.84" height="0.84" class="fill-3" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect><rect x="5.08" y="1.08" width="0.84" height="0.84" class="fill-2" data-astro-cid-b2djzhwr style="animation-delay:0s"></rect><rect x="6.08" y="1.08" width="0.84" height="0.84" class="mark" data-astro-cid-b2djzhwr style="animation-delay:1.2s"></rect>
+</svg><div class="use-body" data-astro-cid-ci52cktz>
+              <p data-astro-cid-lcdefpme>Track grant disbursements from funders to recipients</p>
+            </div>
+  <div class="use-media" data-astro-cid-ci52cktz>
+    <img class="tinted" src="shades/variant3-pavilion-gold.webp" alt="" loading="lazy" style="--fx:50%;--fy:100%;--zoom:1.1" data-astro-cid-uaywa24b>
+  </div>
+
+
+</li>
+      </ul>
+      </div>
       <div class="pixel-panel" data-astro-cid-5f73diam>
   <div class="panel-ground" aria-hidden="true" data-astro-cid-5f73diam></div>
   <div class="panel-copy" data-astro-cid-5f73diam>
