@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bhutan National Digital Identity (NDI) on Ethereum</title>
+    <meta name="description" content="How Bhutan’s national digital identity uses Ethereum to verify credentials across public and private services, while personal data stays off-chain.">
+    <link rel="canonical" href="index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Ethereum for digital public infrastructure">
+    <meta property="og:title" content="Bhutan National Digital Identity (NDI) on Ethereum">
+    <meta property="og:description" content="How Bhutan’s national digital identity uses Ethereum to verify credentials across public and private services, while personal data stays off-chain.">
+    <meta property="og:url" content="https://publicsector.ethereum.foundation/case-studies/bhutan-national-digital-identity/">
+    <meta property="og:image" content="https://publicsector.ethereum.foundation/og/default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bhutan National Digital Identity (NDI) on Ethereum">
+    <meta name="twitter:description" content="How Bhutan’s national digital identity uses Ethereum to verify credentials across public and private services, while personal data stays off-chain.">
+    <meta name="twitter:image" content="https://publicsector.ethereum.foundation/og/default.jpg">
+    <!-- Browser chrome (and the iPhone status bar) in the page colour; up to 1119px the sticky
+         header sits on top, a frosted panel of 72% --bg-deep over the page, which comes out at #0b2218. -->
+    <meta name="theme-color" content="#0b2218" media="(max-width: 1119px)">
+    <meta name="theme-color" content="#0f2a1e">
+    
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="sitemap" href="../../sitemap.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@700..800&family=Funnel+Sans:wght@300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../_astro/FieldSection.CZ1fHz-b.css">
+<style>.page-hero[data-astro-cid-tfra22jg]{isolation:isolate;min-height:min(76svh,760px);margin-top:calc(-1 * var(--header-h));padding-left:max(var(--gutter), (100% - var(--wrap-max)) / 2);padding-right:calc(var(--field-edge,38vw) + clamp(20px, 2vw, 32px));border-bottom:1px solid var(--rule);align-items:center;display:grid;position:relative;overflow:hidden}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)) + var(--header-h));border-bottom:0}.page-hero-copy[data-astro-cid-tfra22jg]{z-index:2;padding:calc(var(--header-h) + 48px) 0 72px;justify-items:start;gap:28px;display:grid;position:relative}h1[data-astro-cid-tfra22jg]{letter-spacing:-.02em;max-width:14ch;font-size:clamp(44px,5.4vw,80px);font-weight:800;line-height:1;font-family:'Funnel Display','Funnel Sans',sans-serif}.large[data-astro-cid-tfra22jg] h1[data-astro-cid-tfra22jg]{max-width:none;font-size:clamp(46px,6.4vw,92px);line-height:.98}.page-lead[data-astro-cid-tfra22jg]{max-width:44ch;font-size:clamp(19px,1.6vw,23px);font-weight:300;line-height:1.45}@media (width>=601px){.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:fit-content}}.page-subtitle[data-astro-cid-tfra22jg]{width:0;min-width:100%;color:var(--ink);text-wrap:pretty;margin-top:-8px;font-size:clamp(24px,2.4vw,34px);font-weight:600;line-height:1.2}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg]{width:fit-content}.large[data-astro-cid-tfra22jg] .page-lead[data-astro-cid-tfra22jg]{text-wrap:pretty;width:0;min-width:100%;max-width:none;line-height:1.4}.page-next[data-astro-cid-tfra22jg]{z-index:2;left:max(var(--gutter), (100% - var(--wrap-max)) / 2);width:56px;height:56px;color:var(--muted);place-items:center;margin-left:-14px;transition:color .2s;display:grid;position:absolute;bottom:clamp(24px,4svh,40px)}.page-next[data-astro-cid-tfra22jg]:hover,.page-next[data-astro-cid-tfra22jg]:focus-visible{color:var(--ink)}.page-next[data-astro-cid-tfra22jg] svg[data-astro-cid-tfra22jg]{fill:currentColor;shape-rendering:crispedges;width:28px}h1[data-astro-cid-tfra22jg] .title-follow{color:var(--muted);margin-top:.12em;font-size:.78em;font-weight:300;display:block;font-family:'Funnel Sans','Helvetica Neue',Helvetica,Arial,sans-serif}@media (width>=420px){h1[data-astro-cid-tfra22jg] .title-follow{white-space:nowrap}}@media (width<=960px){.page-hero[data-astro-cid-tfra22jg]{min-height:auto;padding-inline:var(--gutter);margin-top:0}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)))}.page-hero-copy[data-astro-cid-tfra22jg]{text-align:center;justify-items:center;gap:20px;padding:calc(clamp(240px,75vw,360px)/1.25 + 32px) 0 64px}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg],.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:auto}.page-hero-copy[data-astro-cid-tfra22jg]>.button{justify-content:center;justify-self:stretch;width:100%}.page-next[data-astro-cid-tfra22jg]{margin-left:-28px;left:50%}}.page-hero[data-astro-cid-tfra22jg]:has(.page-next) .page-hero-copy[data-astro-cid-tfra22jg]{padding-bottom:120px}
+.pixel-edge[data-astro-cid-wvdxwvx6][hidden]{display:none}.pixel-edge[data-astro-cid-wvdxwvx6]{height:calc(var(--cell) * 4);pointer-events:none;position:absolute;inset:auto 0 0}svg[data-astro-cid-wvdxwvx6]{fill:var(--bg);display:block;position:absolute;bottom:0}.strip[data-astro-cid-wvdxwvx6]{width:100%;height:calc(var(--cell) * 2);left:0}.corner[data-astro-cid-wvdxwvx6]{width:calc(var(--cell) * 7);height:calc(var(--cell) * 4)}.left[data-astro-cid-wvdxwvx6]{left:0}.right[data-astro-cid-wvdxwvx6]{right:0}
+</style>
+<link rel="stylesheet" href="../../_astro/CaseStudy.q67UPBM2.css"></head>
+  <body>
+    <a href="index.html#main-content" class="skip-link">Skip to content</a>
+    <header class="site-header" data-astro-cid-sojskbm2>
+  <div class="menu-pixels" aria-hidden="true" data-astro-cid-sojskbm2></div>
+  <a class="lockup" href="../../index.html" data-astro-cid-ohkoixbv>
+  <img src="../../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+  <button class="menu" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-astro-cid-sojskbm2>
+    <span class="menu-label" data-astro-cid-sojskbm2>Menu</span>
+    <svg class="menu-x" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" data-astro-cid-sojskbm2>
+      <path d="M3 3l10 10M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.8" data-astro-cid-sojskbm2></path>
+    </svg>
+  </button>
+  <nav id="site-nav" aria-label="Main" data-astro-cid-sojskbm2>
+    <ul data-astro-cid-sojskbm2>
+      <li class="group" style="--i:0" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-0" data-astro-cid-sojskbm2>
+                Understand Ethereum
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-0" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../../what-is-ethereum/index.html" data-astro-cid-sojskbm2>What is Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../why-ethereum/index.html" data-astro-cid-sojskbm2>Why use Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../evaluating-ethereum/index.html" data-astro-cid-sojskbm2>Evaluating Ethereum</a>
+                  </li>
+              </ul>
+            </li><li style="--i:1" data-astro-cid-sojskbm2>
+              <a href="../index.html" data-astro-cid-sojskbm2>Case studies</a>
+            </li><li style="--i:2" data-astro-cid-sojskbm2>
+              <a href="../../potential-applications/index.html" data-astro-cid-sojskbm2>Potential applications</a>
+            </li><li class="group" style="--i:3" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-3" data-astro-cid-sojskbm2>
+                Getting started
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-3" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../../institutional-engagement/index.html" data-astro-cid-sojskbm2>Institutional engagement</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../technical-foundations/index.html" data-astro-cid-sojskbm2>Technical Foundations</a>
+                  </li>
+              </ul>
+            </li><li style="--i:4" data-astro-cid-sojskbm2>
+              <a href="../../resources/index.html" data-astro-cid-sojskbm2>Resources</a>
+            </li>
+      <li style="--i:5" data-astro-cid-sojskbm2><a class="contact" href="../../contact/index.html" data-astro-cid-sojskbm2>Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script type="module">var e=document.querySelector(`.site-header`),t=()=>e.classList.toggle(`is-scrolled`,window.scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),new ResizeObserver(()=>{e.classList.contains(`is-open`)||document.documentElement.style.setProperty(`--header-real`,`${e.getBoundingClientRect().height}px`)}).observe(e);var n=[...e.querySelectorAll(`.group`)],r=e.querySelector(`.menu`),i=e=>n.forEach(t=>{t!==e&&(t.querySelector(`button`).setAttribute(`aria-expanded`,`false`),t.querySelector(`ul`).hidden=!0)});n.forEach(e=>{let t=e.querySelector(`button`);t.addEventListener(`click`,()=>{let n=t.getAttribute(`aria-expanded`)!==`true`;i(e),t.setAttribute(`aria-expanded`,String(n)),e.querySelector(`ul`).hidden=!n}),e.addEventListener(`focusout`,t=>{e.contains(t.relatedTarget)||i()})});var a=matchMedia(`(prefers-reduced-motion: reduce)`),o=e.querySelector(`.menu-pixels`),s=()=>{let e=Math.ceil(innerWidth/40),t=Math.ceil(innerHeight/40),n=e+t;o.replaceChildren(...Array.from({length:e*t},(t,r)=>{let i=r%e,a=Math.floor(r/e),o=document.createElement(`span`);return o.style.cssText=`left:${i*40}px;top:${a*40}px;animation-delay:${Math.round((e-1-i+a)/n*300+Math.random()*70)}ms`,o}))},c=0;r.addEventListener(`click`,()=>{let t=r.getAttribute(`aria-expanded`)!==`true`;if(r.setAttribute(`aria-expanded`,String(t)),r.setAttribute(`aria-label`,t?`Close menu`:`Menu`),clearTimeout(c),e.classList.remove(`is-closing`),t){a.matches||s(),e.classList.add(`is-open`),document.documentElement.classList.add(`menu-open`);return}let n=()=>{e.classList.remove(`is-open`,`is-closing`),document.documentElement.classList.remove(`menu-open`)};if(a.matches)return n();e.classList.add(`is-closing`),c=window.setTimeout(n,200)}),document.addEventListener(`pointerdown`,t=>{e.contains(t.target)||i()}),document.addEventListener(`keydown`,t=>{if(t.key!==`Escape`)return;let a=n.find(e=>e.querySelector(`button`).getAttribute(`aria-expanded`)===`true`);a?(i(),a.querySelector(`button`).focus()):e.classList.contains(`is-open`)&&(r.click(),r.focus())});</script>
+    <main id="main-content">
+      
+  <section class="page-hero" aria-labelledby="page-title" data-astro-cid-tfra22jg>
+  <div class="page-hero-copy" data-astro-cid-tfra22jg>
+    <a class="back" href="../index.html" data-astro-cid-idtmirqk><span aria-hidden="true" data-astro-cid-idtmirqk>←</span> All case studies</a>
+    <h1 id="page-title" data-astro-cid-tfra22jg>Bhutan National Digital Identity</h1>
+    
+    <p class="page-lead" data-astro-cid-tfra22jg>Bhutan&#39;s national digital identity system uses Ethereum to support the verification of digital credentials across public and private services. Individuals control what information they share, while personal data remains outside the blockchain.</p>
+    
+    
+    <div class="facts" data-astro-cid-idtmirqk>
+      <p class="figure" data-astro-cid-idtmirqk>
+        <strong data-astro-cid-idtmirqk>449k+</strong>
+        <span data-astro-cid-idtmirqk>users successfully onboarded to Bhutan NDI by the end of 2025</span>
+      </p>
+      <p class="category" data-astro-cid-idtmirqk>National digital identity · Kingdom of Bhutan</p>
+    </div>
+  
+  </div>
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+<div class="field-edge" aria-hidden="true" data-src="../../harbour-front.webp" data-focus="0.8500000000000001" data-from="top" data-stack="960" data-astro-cid-4qlbhge2></div>
+
+
+
+<script type="module" src="../../_astro/PixelField.astro_astro_type_script_index_0_lang.CiVv8QY2.js"></script>
+  
+</section>
+
+
+
+<script type="module">for(let e of document.querySelectorAll(`.page-next`))e.addEventListener(`click`,t=>{let n=document.querySelector(e.getAttribute(`href`));if(!n)return;t.preventDefault();let r=!matchMedia(`(prefers-reduced-motion: reduce)`).matches;n.scrollIntoView({behavior:r?`smooth`:`auto`}),history.replaceState(null,``,e.hash)});</script>
+
+  <script type="module">for(let e of document.querySelectorAll(`.pixel-edge`)){let t=e.parentElement;t.style.mask=e.dataset.mask,t.style.webkitMask=e.dataset.mask,e.hidden=!0}</script><div data-astro-cid-idtmirqk="true" data-astro-cid-cpczvml2="true" class="field-section section">
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+
+
+
+
+
+  
+    <div class="wrap story-layout" data-astro-cid-idtmirqk>
+      <aside class="aside" data-astro-cid-idtmirqk>
+        <div class="logo" data-astro-cid-idtmirqk>
+              <img src="../../logos/bhutan-ndi.png" alt="Bhutan NDI" data-astro-cid-idtmirqk>
+            </div>
+        <nav aria-label="On this page" data-astro-cid-idtmirqk>
+          <ol data-astro-cid-idtmirqk>
+            <li data-astro-cid-idtmirqk>
+                  <a href="index.html#institutional-context" data-astro-cid-idtmirqk>Institutional context</a>
+                </li><li data-astro-cid-idtmirqk>
+                  <a href="index.html#system-design" data-astro-cid-idtmirqk>System design</a>
+                </li><li data-astro-cid-idtmirqk>
+                  <a href="index.html#ethereums-role" data-astro-cid-idtmirqk>Ethereum’s role</a>
+                </li><li data-astro-cid-idtmirqk>
+                  <a href="index.html#status-and-milestones" data-astro-cid-idtmirqk>Status and milestones</a>
+                </li><li data-astro-cid-idtmirqk>
+                  <a href="index.html#implementation-considerations" data-astro-cid-idtmirqk>Implementation considerations</a>
+                </li><li data-astro-cid-idtmirqk>
+                  <a href="index.html#sources" data-astro-cid-idtmirqk>Sources</a>
+                </li>
+          </ol>
+        </nav>
+      </aside>
+      <article class="story" data-astro-cid-idtmirqk>
+        
+  <section id="institutional-context">
+    <h2>Institutional context</h2>
+    <p>Launched in 2023, Bhutan’s <a href="https://www.bhutanndi.com/" target="_blank" rel="noopener noreferrer">National Digital Identity (NDI)</a> system aims to make identity verification more consistent across public and private services. With communities dispersed across mountainous terrain, accessing services in person can involve long journeys and significant expense. The system supports remote identity verification while giving individuals greater control over the personal information they share.</p>
+  </section>
+  <section id="system-design">
+    <h2>System design</h2>
+    <p>Government agencies and other authorized organizations issue digital credentials—digitally signed records that can be independently verified—to individuals’ Bhutan NDI Wallets. When a service requests information, the user approves what they share. The service can verify who issued the credential, whether it remains valid, and whether the information presented matches the credential that was issued.</p>
+    <p>Bhutan Development Bank has remotely onboarded more than 7,000 customers through its integration with NDI. The system was also used in a land-administration pilot announced in June 2026, allowing people in Thimphu, Paro, and Phuentsholing to verify their identity before consenting to land transactions. Those unable to access NDI could receive assistance at a land-record office.</p>
+    <p>A <a href="https://dashboard.ngotag.com/ndi-services-landing-page" target="_blank" rel="noopener noreferrer">public dashboard</a> provides indicators of Bhutan NDI’s adoption and use, including service requests, successful onboarding, and app downloads.</p>
+  </section>
+  <section id="ethereums-role">
+    <h2>Ethereum’s role</h2>
+    <p>Bhutan NDI has integrated Ethereum to support the verification of digital credentials through decentralized identifiers. These are unique digital references that individuals or organizations can control, allowing others to access information needed to verify digital signatures. They help participating services check whether a credential was signed by its stated issuer.</p>
+    <p>A shared register on Ethereum contains information about recognized credential issuers and descriptions of the information different types of credentials should contain. The credentials themselves are held in individuals’ NDI Wallets, rather than published on Ethereum.</p>
+    <p>When an individual shares a credential, a participating service can check its authenticity and validity using the NDI system and relevant registry information. This does not require every credential to be issued or verified through a transaction on Ethereum.</p>
+    <p>Bhutan NDI’s <a href="https://www.bhutanndi.com/governance" target="_blank" rel="noopener noreferrer">governance arrangements</a> determine which organizations are recognized as trusted issuers and verifiers. Ethereum supports technical verification but does not determine institutional authority or whether the information being certified is correct.</p>
+  </section>
+  <section id="status-and-milestones">
+    <h2>Status and milestones</h2>
+    <ol class="case-milestones">
+      <li>
+        <span>August 2026</span>
+        <p>Bhutan NDI’s 2025 annual report documented integration with more than 70 public services through the Government-to-Citizen portal, all five banks, and both telecommunications operators.</p>
+      </li>
+      <li>
+        <span>March 2026</span>
+        <p>The Bhutan NDI Wallet and electronic identity checks were integrated with the national passport system.</p>
+      </li>
+      <li>
+        <span>December 2025</span>
+        <p>By the end of 2025, Bhutan NDI had successfully onboarded 449,549 users, up from 172,922 at the end of 2024. This was an increase of 276,627 users.</p>
+      </li>
+      <li>
+        <span>October 2025</span>
+        <p>Bhutan NDI announced successful integration with Ethereum, with wider migration of the national identity system planned for early 2026.</p>
+      </li>
+      <li>
+        <span>March 2025</span>
+        <p>More than 234,000 digital IDs were reported as issued through the overall NDI rollout.</p>
+      </li>
+    </ol>
+  </section>
+  <section id="implementation-considerations">
+    <h2>Implementation considerations</h2>
+    <p>To ensure inclusive access, digital identity systems must account for people who need assistance registering, have limited internet connectivity, or need support recovering access to their credentials and managing credentials that are no longer valid.</p>
+    <p>Organizations integrating their services with Bhutan NDI must coordinate with the NDI team before making them available to users. Shared technical infrastructure does not remove the need for institutional coordination, user support, and clear responsibilities.</p>
+  </section>
+  <section id="sources">
+    <h2>Sources</h2>
+    <ul class="case-sources">
+      <li id="source-grl-case-study">
+        <a href="https://genevaresearchlab.org/media/404/download/Bhutan%20NDI%20Case%20Study_VF.pdf?v=1&inline=1" target="_blank" rel="noopener noreferrer">Bhutan’s National Digital Identity System — case study by the Geneva Research Lab for Digital Impact</a><span>October 2026</span>
+      </li>
+      <li id="source-ndi-annual-report">
+        <a href="https://www.bhutanndi.com/resources/insights/annual-report-2025" target="_blank" rel="noopener noreferrer">Bhutan NDI Annual Report 2025: adoption and platform development</a><span>19 August 2026</span>
+      </li>
+      <li id="source-ndi-land-consent">
+        <a href="https://www.bbs.bt/242771/" target="_blank" rel="noopener noreferrer">New digital consent system aims to strengthen land ownership protection</a><span>2 June 2026</span>
+      </li>
+      <li id="source-passport-integration">
+        <a href="https://www.mfa.gov.bt/%F0%9D%90%8F%F0%9D%90%91%F0%9D%90%84%F0%9D%90%92%F0%9D%90%92-%F0%9D%90%91%F0%9D%90%84%F0%9D%90%8B%F0%9D%90%84%F0%9D%90%80%F0%9D%90%92%F0%9D%90%84/" target="_blank" rel="noopener noreferrer">NDI wallet and eKYC integrated with passport system</a><span>13 March 2026</span>
+      </li>
+      <li id="source-ndi-migration">
+        <a href="https://www.bhutanndi.com/resources/news/bhutan-adopts-ethereum-for-national-identity-a-new-chapter-in-digital" target="_blank" rel="noopener noreferrer">Bhutan Adopts Ethereum for National Identity: A New Chapter in Digital Sovereignty</a><span>13 October 2025</span>
+      </li>
+      <li id="source-ndi-scale">
+        <a href="https://www.blockchain-council.org/blockchain/bhutan-uses-blockchain-in-digital-id-project/" target="_blank" rel="noopener noreferrer">Bhutan Uses Blockchain in Digital ID Project</a><span>18 July 2025</span>
+      </li>
+      <li id="source-ndi-historical-architecture">
+        <a href="https://trustoverip.org/permalink/Case-Study-Bhutan-NDI-National-Digital-Identity-ToIP-Digital-Trust-Ecosystems-V1.0-2024-05-21.ext_.pdf" target="_blank" rel="noopener noreferrer">Bhutan NDI and ToIP Digital Trust Ecosystems — historical 2024 architecture</a><span>21 May 2024</span>
+      </li>
+      <li id="source-ndi-website">
+        <a href="https://www.bhutanndi.com/" target="_blank" rel="noopener noreferrer">Bhutan National Digital Identity: official website</a>
+      </li>
+      <li id="source-ndi-dashboard">
+        <a href="https://dashboard.ngotag.com/ndi-services-landing-page" target="_blank" rel="noopener noreferrer">Bhutan NDI dashboard</a>
+      </li>
+      <li id="source-ndi-registry">
+        <a href="https://github.com/Bhutan-NDI/bhutanndi-ethr-did-registry" target="_blank" rel="noopener noreferrer">Bhutan NDI Ethereum DID registry</a>
+      </li>
+      <li id="source-ndi-faq">
+        <a href="https://www.bhutanndi.com/faqs" target="_blank" rel="noopener noreferrer">Bhutan NDI FAQs — issuers, verification, consent, and recovery</a>
+      </li>
+      <li id="source-ndi-governance">
+        <a href="https://www.bhutanndi.com/governance" target="_blank" rel="noopener noreferrer">Bhutan NDI governance framework</a>
+      </li>
+      <li id="source-ndi-integration">
+        <a href="https://docs.bhutanndi.com/" target="_blank" rel="noopener noreferrer">Bhutan NDI technical documentation — service integration and verification</a>
+      </li>
+      <li id="source-ndi-land-faq">
+        <a href="https://esakor.nlcs.gov.bt/faq_eSakor" target="_blank" rel="noopener noreferrer">eSakor FAQs — NDI consent pilot and assisted access</a>
+      </li>
+    </ul>
+  </section>
+
+
+        <div class="pixel-edge" aria-hidden="true" style="--cell:14px" data-mask="linear-gradient(#000 0 0) top / 100% calc(100% - 4 * 14px) no-repeat, linear-gradient(#000 0 0) calc(7 * 14px) calc(100% - 2 * 14px) / calc(100% - 14 * 14px) calc(2 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%202%22%20preserveAspectRatio%3D%22xMinYMax%20slice%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM7%200h1v1h-1zM8%200h1v1h-1zM9%200h1v1h-1zM10%200h1v1h-1zM11%200h1v1h-1zM12%200h1v1h-1zM13%200h1v1h-1zM14%200h1v1h-1zM15%200h1v1h-1zM16%200h1v1h-1zM17%200h1v1h-1zM18%200h1v1h-1zM19%200h1v1h-1zM20%200h1v1h-1zM21%200h1v1h-1zM22%200h1v1h-1zM23%200h1v1h-1zM24%200h1v1h-1zM25%200h1v1h-1zM26%200h1v1h-1zM27%200h1v1h-1zM29%200h1v1h-1zM30%200h1v1h-1zM31%200h1v1h-1zM32%200h1v1h-1zM33%200h1v1h-1zM34%200h1v1h-1zM35%200h1v1h-1zM36%200h1v1h-1zM37%200h1v1h-1zM38%200h1v1h-1zM39%200h1v1h-1zM40%200h1v1h-1zM41%200h1v1h-1zM42%200h1v1h-1zM43%200h1v1h-1zM44%200h1v1h-1zM45%200h1v1h-1zM46%200h1v1h-1zM47%200h1v1h-1zM48%200h1v1h-1zM49%200h1v1h-1zM50%200h1v1h-1zM51%200h1v1h-1zM52%200h1v1h-1zM53%200h1v1h-1zM54%200h1v1h-1zM55%200h1v1h-1zM56%200h1v1h-1zM57%200h1v1h-1zM59%200h1v1h-1zM60%200h1v1h-1zM61%200h1v1h-1zM62%200h1v1h-1zM63%200h1v1h-1zM64%200h1v1h-1zM65%200h1v1h-1zM66%200h1v1h-1zM67%200h1v1h-1zM68%200h1v1h-1zM71%200h1v1h-1zM72%200h1v1h-1zM73%200h1v1h-1zM74%200h1v1h-1zM75%200h1v1h-1zM77%200h1v1h-1zM78%200h1v1h-1zM79%200h1v1h-1zM80%200h1v1h-1zM81%200h1v1h-1zM82%200h1v1h-1zM83%200h1v1h-1zM84%200h1v1h-1zM85%200h1v1h-1zM86%200h1v1h-1zM88%200h1v1h-1zM89%200h1v1h-1zM90%200h1v1h-1zM91%200h1v1h-1zM92%200h1v1h-1zM93%200h1v1h-1zM94%200h1v1h-1zM95%200h1v1h-1zM96%200h1v1h-1zM98%200h1v1h-1zM99%200h1v1h-1zM101%200h1v1h-1zM102%200h1v1h-1zM103%200h1v1h-1zM104%200h1v1h-1zM105%200h1v1h-1zM106%200h1v1h-1zM107%200h1v1h-1zM109%200h1v1h-1zM110%200h1v1h-1zM111%200h1v1h-1zM112%200h1v1h-1zM113%200h1v1h-1zM114%200h1v1h-1zM115%200h1v1h-1zM116%200h1v1h-1zM117%200h1v1h-1zM118%200h1v1h-1zM119%200h1v1h-1zM0%201h1v1h-1zM1%201h1v1h-1zM4%201h1v1h-1zM5%201h1v1h-1zM6%201h1v1h-1zM7%201h1v1h-1zM8%201h1v1h-1zM10%201h1v1h-1zM11%201h1v1h-1zM12%201h1v1h-1zM13%201h1v1h-1zM14%201h1v1h-1zM15%201h1v1h-1zM16%201h1v1h-1zM17%201h1v1h-1zM18%201h1v1h-1zM19%201h1v1h-1zM20%201h1v1h-1zM21%201h1v1h-1zM22%201h1v1h-1zM23%201h1v1h-1zM24%201h1v1h-1zM25%201h1v1h-1zM26%201h1v1h-1zM27%201h1v1h-1zM29%201h1v1h-1zM30%201h1v1h-1zM32%201h1v1h-1zM33%201h1v1h-1zM34%201h1v1h-1zM36%201h1v1h-1zM37%201h1v1h-1zM38%201h1v1h-1zM40%201h1v1h-1zM41%201h1v1h-1zM42%201h1v1h-1zM43%201h1v1h-1zM44%201h1v1h-1zM45%201h1v1h-1zM46%201h1v1h-1zM48%201h1v1h-1zM49%201h1v1h-1zM51%201h1v1h-1zM52%201h1v1h-1zM53%201h1v1h-1zM54%201h1v1h-1zM58%201h1v1h-1zM59%201h1v1h-1zM60%201h1v1h-1zM61%201h1v1h-1zM62%201h1v1h-1zM63%201h1v1h-1zM64%201h1v1h-1zM65%201h1v1h-1zM67%201h1v1h-1zM68%201h1v1h-1zM70%201h1v1h-1zM72%201h1v1h-1zM73%201h1v1h-1zM74%201h1v1h-1zM75%201h1v1h-1zM76%201h1v1h-1zM78%201h1v1h-1zM79%201h1v1h-1zM80%201h1v1h-1zM81%201h1v1h-1zM82%201h1v1h-1zM83%201h1v1h-1zM85%201h1v1h-1zM87%201h1v1h-1zM88%201h1v1h-1zM89%201h1v1h-1zM90%201h1v1h-1zM93%201h1v1h-1zM94%201h1v1h-1zM95%201h1v1h-1zM96%201h1v1h-1zM97%201h1v1h-1zM98%201h1v1h-1zM99%201h1v1h-1zM100%201h1v1h-1zM102%201h1v1h-1zM104%201h1v1h-1zM105%201h1v1h-1zM107%201h1v1h-1zM108%201h1v1h-1zM109%201h1v1h-1zM110%201h1v1h-1zM111%201h1v1h-1zM112%201h1v1h-1zM113%201h1v1h-1zM115%201h1v1h-1zM117%201h1v1h-1zM118%201h1v1h-1zM119%201h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) calc(7 * 14px) 100% / calc(100% - 14 * 14px) calc(2 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%207%204%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM0%201h1v1h-1zM1%201h1v1h-1zM2%201h1v1h-1zM3%201h1v1h-1zM4%201h1v1h-1zM6%201h1v1h-1zM0%202h1v1h-1zM2%202h1v1h-1zM3%202h1v1h-1zM4%202h1v1h-1zM5%202h1v1h-1zM6%202h1v1h-1zM1%203h1v1h-1zM2%203h1v1h-1zM3%203h1v1h-1zM4%203h1v1h-1zM5%203h1v1h-1zM6%203h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) left bottom / calc(7 * 14px) calc(4 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%207%204%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM0%201h1v1h-1zM1%201h1v1h-1zM2%201h1v1h-1zM3%201h1v1h-1zM4%201h1v1h-1zM5%201h1v1h-1zM6%201h1v1h-1zM1%202h1v1h-1zM2%202h1v1h-1zM3%202h1v1h-1zM4%202h1v1h-1zM5%202h1v1h-1zM6%202h1v1h-1zM0%203h1v1h-1zM1%203h1v1h-1zM2%203h1v1h-1zM5%203h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) right bottom / calc(7 * 14px) calc(4 * 14px) no-repeat" data-astro-cid-wvdxwvx6>
+  <svg class="strip" viewBox="0 0 120 2" preserveAspectRatio="xMidYMax slice" data-astro-cid-wvdxwvx6>
+    <rect x="2" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="3" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="9" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="28" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="28" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="31" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="35" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="39" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="47" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="50" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="55" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="56" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="57" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="58" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="66" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="69" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="69" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="70" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="71" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="76" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="77" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="84" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="86" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="87" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="91" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="92" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="97" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="100" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="101" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="103" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="106" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="108" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="114" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="116" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+  <svg class="corner left" viewBox="0 0 7 4" data-astro-cid-wvdxwvx6>
+    <rect x="0" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="1" y="2" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="5" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+  <svg class="corner right" viewBox="0 0 7 4" data-astro-cid-wvdxwvx6>
+    <rect x="6" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="4" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="3" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="0" y="2" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+</div>
+
+
+      </article>
+    </div>
+
+    <nav class="wrap pager" aria-label="More case studies" data-astro-cid-idtmirqk>
+      <a class="prev" href="../un-crypto-stamp/index.html" data-astro-cid-idtmirqk>
+        <span class="muted" data-astro-cid-idtmirqk>Previous case study</span>
+        <strong data-astro-cid-idtmirqk>UN Crypto Stamp</strong>
+        <span class="arrow" aria-hidden="true" data-astro-cid-idtmirqk>←</span>
+      </a>
+      <a class="next" href="../unicef-cryptofund/index.html" data-astro-cid-idtmirqk>
+        <span class="muted" data-astro-cid-idtmirqk>Next case study</span>
+        <strong data-astro-cid-idtmirqk>UNICEF CryptoFund</strong>
+        <span class="arrow" aria-hidden="true" data-astro-cid-idtmirqk>→</span>
+      </a>
+    </nav>
+  
+</div>
+
+    </main>
+    <footer class="site-footer" data-astro-cid-4hfmbvjp>
+  <div class="wrap" data-astro-cid-4hfmbvjp>
+    <a class="lockup" href="../../index.html" data-astro-cid-ohkoixbv>
+  <img src="../../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+    <div class="attribution" data-astro-cid-4hfmbvjp>
+      <p data-astro-cid-4hfmbvjp>Informational material only—not legal, regulatory, financial, investment, or procurement advice.</p>
+      <p data-astro-cid-4hfmbvjp>The Ethereum Foundation is one participant in the broader Ethereum ecosystem. It does not operate or control Ethereum.</p>
+    </div>
+    <nav aria-label="Footer" data-astro-cid-4hfmbvjp>
+      <a href="https://ethereum.foundation/" target="_blank" rel="noreferrer" data-astro-cid-4hfmbvjp>Ethereum Foundation</a>
+      <a href="../../contact/index.html" data-astro-cid-4hfmbvjp>Contact</a>
+    </nav>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.125 49.549">
+  <!-- The Ethereum Foundation's coloured glyph (as on the EF Hub's favicon). -->
+  <polygon fill="#0dafd2" points="14.562 37.552 14.562 49.549 0 28.278"/>
+  <polygon fill="#667bbc" points="29.125 28.278 14.562 49.549 14.562 37.552"/>
+  <polygon fill="#9e69ac" points="29.125 25.281 14.562 17.006 14.562 34.556"/>
+  <polygon fill="#f58b77" points="29.125 25.281 14.562 0 14.562 17.006"/>
+  <polygon fill="#f9ec7b" points="14.562 0 14.562 17.006 0 25.281"/>
+  <polygon fill="#54bc7a" points="14.562 17.006 14.562 34.556 0 25.281"/>
+</svg>

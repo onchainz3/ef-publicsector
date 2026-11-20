@@ -1,0 +1,1 @@
+import{t as e}from"./rng.CjMInbdP.js";import{t}from"./blockMask.Dl7CRNHS.js";var n=document.querySelector(`.callout`),r=matchMedia(`(max-width: 960px)`);n&&new ResizeObserver(()=>{let i=Math.ceil(n.offsetWidth/14),a=Math.ceil(n.offsetHeight/14),o=e(23);t(n,i,a,(e,t)=>{let n=r.matches?a-t:i-e;return n>7||o()<(n/8)**1.3},void 0,void 0,r.matches?`stacked`:``)}).observe(n);

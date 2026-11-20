@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Semaphore Paymaster: Private Transaction Sponsorship</title>
+    <meta name="description" content="An ERC-4337 paymaster that pays fees for any member of a Semaphore group without learning which member sent the operation.">
+    <link rel="canonical" href="index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Ethereum for digital public infrastructure">
+    <meta property="og:title" content="Semaphore Paymaster: Private Transaction Sponsorship">
+    <meta property="og:description" content="An ERC-4337 paymaster that pays fees for any member of a Semaphore group without learning which member sent the operation.">
+    <meta property="og:url" content="https://publicsector.ethereum.foundation/articles/semaphore-paymaster/">
+    <meta property="og:image" content="https://publicsector.ethereum.foundation/og/default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Semaphore Paymaster: Private Transaction Sponsorship">
+    <meta name="twitter:description" content="An ERC-4337 paymaster that pays fees for any member of a Semaphore group without learning which member sent the operation.">
+    <meta name="twitter:image" content="https://publicsector.ethereum.foundation/og/default.jpg">
+    <!-- Browser chrome (and the iPhone status bar) in the page colour; up to 1119px the sticky
+         header sits on top, a frosted panel of 72% --bg-deep over the page, which comes out at #0b2218. -->
+    <meta name="theme-color" content="#0b2218" media="(max-width: 1119px)">
+    <meta name="theme-color" content="#0f2a1e">
+    
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="sitemap" href="../../sitemap.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@700..800&family=Funnel+Sans:wght@300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../_astro/FieldSection.CZ1fHz-b.css">
+<style>.page-hero[data-astro-cid-tfra22jg]{isolation:isolate;min-height:min(76svh,760px);margin-top:calc(-1 * var(--header-h));padding-left:max(var(--gutter), (100% - var(--wrap-max)) / 2);padding-right:calc(var(--field-edge,38vw) + clamp(20px, 2vw, 32px));border-bottom:1px solid var(--rule);align-items:center;display:grid;position:relative;overflow:hidden}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)) + var(--header-h));border-bottom:0}.page-hero-copy[data-astro-cid-tfra22jg]{z-index:2;padding:calc(var(--header-h) + 48px) 0 72px;justify-items:start;gap:28px;display:grid;position:relative}h1[data-astro-cid-tfra22jg]{letter-spacing:-.02em;max-width:14ch;font-size:clamp(44px,5.4vw,80px);font-weight:800;line-height:1;font-family:'Funnel Display','Funnel Sans',sans-serif}.large[data-astro-cid-tfra22jg] h1[data-astro-cid-tfra22jg]{max-width:none;font-size:clamp(46px,6.4vw,92px);line-height:.98}.page-lead[data-astro-cid-tfra22jg]{max-width:44ch;font-size:clamp(19px,1.6vw,23px);font-weight:300;line-height:1.45}@media (width>=601px){.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:fit-content}}.page-subtitle[data-astro-cid-tfra22jg]{width:0;min-width:100%;color:var(--ink);text-wrap:pretty;margin-top:-8px;font-size:clamp(24px,2.4vw,34px);font-weight:600;line-height:1.2}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg]{width:fit-content}.large[data-astro-cid-tfra22jg] .page-lead[data-astro-cid-tfra22jg]{text-wrap:pretty;width:0;min-width:100%;max-width:none;line-height:1.4}.page-next[data-astro-cid-tfra22jg]{z-index:2;left:max(var(--gutter), (100% - var(--wrap-max)) / 2);width:56px;height:56px;color:var(--muted);place-items:center;margin-left:-14px;transition:color .2s;display:grid;position:absolute;bottom:clamp(24px,4svh,40px)}.page-next[data-astro-cid-tfra22jg]:hover,.page-next[data-astro-cid-tfra22jg]:focus-visible{color:var(--ink)}.page-next[data-astro-cid-tfra22jg] svg[data-astro-cid-tfra22jg]{fill:currentColor;shape-rendering:crispedges;width:28px}h1[data-astro-cid-tfra22jg] .title-follow{color:var(--muted);margin-top:.12em;font-size:.78em;font-weight:300;display:block;font-family:'Funnel Sans','Helvetica Neue',Helvetica,Arial,sans-serif}@media (width>=420px){h1[data-astro-cid-tfra22jg] .title-follow{white-space:nowrap}}@media (width<=960px){.page-hero[data-astro-cid-tfra22jg]{min-height:auto;padding-inline:var(--gutter);margin-top:0}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)))}.page-hero-copy[data-astro-cid-tfra22jg]{text-align:center;justify-items:center;gap:20px;padding:calc(clamp(240px,75vw,360px)/1.25 + 32px) 0 64px}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg],.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:auto}.page-hero-copy[data-astro-cid-tfra22jg]>.button{justify-content:center;justify-self:stretch;width:100%}.page-next[data-astro-cid-tfra22jg]{margin-left:-28px;left:50%}}.page-hero[data-astro-cid-tfra22jg]:has(.page-next) .page-hero-copy[data-astro-cid-tfra22jg]{padding-bottom:120px}
+.pixel-edge[data-astro-cid-wvdxwvx6][hidden]{display:none}.pixel-edge[data-astro-cid-wvdxwvx6]{height:calc(var(--cell) * 4);pointer-events:none;position:absolute;inset:auto 0 0}svg[data-astro-cid-wvdxwvx6]{fill:var(--bg);display:block;position:absolute;bottom:0}.strip[data-astro-cid-wvdxwvx6]{width:100%;height:calc(var(--cell) * 2);left:0}.corner[data-astro-cid-wvdxwvx6]{width:calc(var(--cell) * 7);height:calc(var(--cell) * 4)}.left[data-astro-cid-wvdxwvx6]{left:0}.right[data-astro-cid-wvdxwvx6]{right:0}
+.byline[data-astro-cid-57z6rh23]{color:var(--muted);flex-wrap:wrap;gap:4px 16px;font-size:15px;display:flex}.article-layout[data-astro-cid-57z6rh23]{grid-template-columns:3fr 9fr;align-items:start;gap:48px 72px;display:grid}.article[data-astro-cid-57z6rh23]{grid-column:2;min-width:0}.contents[data-astro-cid-57z6rh23]{position:sticky;top:32px}.contents[data-astro-cid-57z6rh23] ol[data-astro-cid-57z6rh23]{border-bottom:1px solid var(--rule);margin:0;padding:0;list-style:none}.contents[data-astro-cid-57z6rh23] li[data-astro-cid-57z6rh23]+li[data-astro-cid-57z6rh23]{border-top:1px solid var(--rule)}.contents[data-astro-cid-57z6rh23] a[data-astro-cid-57z6rh23]{color:var(--muted);padding:12px 0 10px;font-size:16px;font-weight:600;text-decoration:none;display:block}.contents[data-astro-cid-57z6rh23] a[data-astro-cid-57z6rh23]:hover{color:var(--civic)}.article[data-astro-cid-57z6rh23]{--pad:clamp(24px, 4vw, 56px);padding:var(--pad) var(--pad) calc(var(--pad) + 56px);background:var(--bg-deep);grid-template-columns:minmax(0,1fr);gap:20px;display:grid;position:relative}.article[data-astro-cid-57z6rh23]>:not(.pixel-edge){max-width:68ch}.article[data-astro-cid-57z6rh23] h2{letter-spacing:-.01em;margin-top:clamp(24px,3vw,40px);scroll-margin-top:32px;font-size:clamp(26px,2.4vw,34px);font-weight:600;line-height:1.15}.article[data-astro-cid-57z6rh23] h2:first-child{margin-top:0}.article[data-astro-cid-57z6rh23] h3{margin-top:12px;font-size:21px;font-weight:700;line-height:1.25}.article[data-astro-cid-57z6rh23] :is(p,li){color:var(--muted)}.article[data-astro-cid-57z6rh23] strong{color:var(--ink)}.article[data-astro-cid-57z6rh23] a{overflow-wrap:anywhere;color:var(--ink);text-underline-offset:4px}.article[data-astro-cid-57z6rh23] a:hover{color:var(--civic)}.article[data-astro-cid-57z6rh23] :is(ul,ol){gap:8px;margin:0;padding-left:1.3em;display:grid}.article[data-astro-cid-57z6rh23] blockquote{margin:8px 0;padding-left:24px}.article[data-astro-cid-57z6rh23] blockquote p{color:var(--ink);font-size:20px}.article[data-astro-cid-57z6rh23] img{max-width:100%;height:auto}.article[data-astro-cid-57z6rh23] hr{border:0;border-top:1px solid var(--rule);width:100%;margin:16px 0}.article[data-astro-cid-57z6rh23] code{font-size:.9em}.article[data-astro-cid-57z6rh23] pre{background:var(--bg);padding:16px;font-size:15px;overflow-x:auto}.article[data-astro-cid-57z6rh23] table{border-collapse:collapse;max-width:100%;font-size:16px;display:block;overflow-x:auto}.article[data-astro-cid-57z6rh23] :is(th,td){border-bottom:1px solid var(--rule);text-align:left;padding:10px 16px 8px 0}@media (width<=960px){.byline[data-astro-cid-57z6rh23]{justify-content:center}.article-layout[data-astro-cid-57z6rh23]{grid-template-columns:1fr}.article[data-astro-cid-57z6rh23]{grid-column:auto}.contents[data-astro-cid-57z6rh23]{position:static}}
+</style></head>
+  <body>
+    <a href="index.html#main-content" class="skip-link">Skip to content</a>
+    <header class="site-header" data-astro-cid-sojskbm2>
+  <div class="menu-pixels" aria-hidden="true" data-astro-cid-sojskbm2></div>
+  <a class="lockup" href="../../index.html" data-astro-cid-ohkoixbv>
+  <img src="../../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+  <button class="menu" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-astro-cid-sojskbm2>
+    <span class="menu-label" data-astro-cid-sojskbm2>Menu</span>
+    <svg class="menu-x" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" data-astro-cid-sojskbm2>
+      <path d="M3 3l10 10M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.8" data-astro-cid-sojskbm2></path>
+    </svg>
+  </button>
+  <nav id="site-nav" aria-label="Main" data-astro-cid-sojskbm2>
+    <ul data-astro-cid-sojskbm2>
+      <li class="group" style="--i:0" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-0" data-astro-cid-sojskbm2>
+                Understand Ethereum
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-0" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../../what-is-ethereum/index.html" data-astro-cid-sojskbm2>What is Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../why-ethereum/index.html" data-astro-cid-sojskbm2>Why use Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../evaluating-ethereum/index.html" data-astro-cid-sojskbm2>Evaluating Ethereum</a>
+                  </li>
+              </ul>
+            </li><li style="--i:1" data-astro-cid-sojskbm2>
+              <a href="../../case-studies/index.html" data-astro-cid-sojskbm2>Case studies</a>
+            </li><li style="--i:2" data-astro-cid-sojskbm2>
+              <a href="../../potential-applications/index.html" data-astro-cid-sojskbm2>Potential applications</a>
+            </li><li class="group" style="--i:3" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-3" data-astro-cid-sojskbm2>
+                Getting started
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-3" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../../institutional-engagement/index.html" data-astro-cid-sojskbm2>Institutional engagement</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../technical-foundations/index.html" data-astro-cid-sojskbm2>Technical Foundations</a>
+                  </li>
+              </ul>
+            </li><li style="--i:4" data-astro-cid-sojskbm2>
+              <a href="../../resources/index.html" data-astro-cid-sojskbm2>Resources</a>
+            </li>
+      <li style="--i:5" data-astro-cid-sojskbm2><a class="contact" href="../../contact/index.html" data-astro-cid-sojskbm2>Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script type="module">var e=document.querySelector(`.site-header`),t=()=>e.classList.toggle(`is-scrolled`,window.scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),new ResizeObserver(()=>{e.classList.contains(`is-open`)||document.documentElement.style.setProperty(`--header-real`,`${e.getBoundingClientRect().height}px`)}).observe(e);var n=[...e.querySelectorAll(`.group`)],r=e.querySelector(`.menu`),i=e=>n.forEach(t=>{t!==e&&(t.querySelector(`button`).setAttribute(`aria-expanded`,`false`),t.querySelector(`ul`).hidden=!0)});n.forEach(e=>{let t=e.querySelector(`button`);t.addEventListener(`click`,()=>{let n=t.getAttribute(`aria-expanded`)!==`true`;i(e),t.setAttribute(`aria-expanded`,String(n)),e.querySelector(`ul`).hidden=!n}),e.addEventListener(`focusout`,t=>{e.contains(t.relatedTarget)||i()})});var a=matchMedia(`(prefers-reduced-motion: reduce)`),o=e.querySelector(`.menu-pixels`),s=()=>{let e=Math.ceil(innerWidth/40),t=Math.ceil(innerHeight/40),n=e+t;o.replaceChildren(...Array.from({length:e*t},(t,r)=>{let i=r%e,a=Math.floor(r/e),o=document.createElement(`span`);return o.style.cssText=`left:${i*40}px;top:${a*40}px;animation-delay:${Math.round((e-1-i+a)/n*300+Math.random()*70)}ms`,o}))},c=0;r.addEventListener(`click`,()=>{let t=r.getAttribute(`aria-expanded`)!==`true`;if(r.setAttribute(`aria-expanded`,String(t)),r.setAttribute(`aria-label`,t?`Close menu`:`Menu`),clearTimeout(c),e.classList.remove(`is-closing`),t){a.matches||s(),e.classList.add(`is-open`),document.documentElement.classList.add(`menu-open`);return}let n=()=>{e.classList.remove(`is-open`,`is-closing`),document.documentElement.classList.remove(`menu-open`)};if(a.matches)return n();e.classList.add(`is-closing`),c=window.setTimeout(n,200)}),document.addEventListener(`pointerdown`,t=>{e.contains(t.target)||i()}),document.addEventListener(`keydown`,t=>{if(t.key!==`Escape`)return;let a=n.find(e=>e.querySelector(`button`).getAttribute(`aria-expanded`)===`true`);a?(i(),a.querySelector(`button`).focus()):e.classList.contains(`is-open`)&&(r.click(),r.focus())});</script>
+    <main id="main-content">
+      
+  <section class="page-hero" aria-labelledby="page-title" data-astro-cid-tfra22jg>
+  <div class="page-hero-copy" data-astro-cid-tfra22jg>
+    <a class="back" href="../../resources/index.html#articles" data-astro-cid-57z6rh23><span aria-hidden="true" data-astro-cid-57z6rh23>←</span> All articles</a>
+    <h1 id="page-title" data-astro-cid-tfra22jg>Semaphore Paymaster: Private Transaction Sponsorship</h1>
+    
+    <p class="page-lead" data-astro-cid-tfra22jg>An ERC-4337 paymaster that pays fees for any member of a Semaphore group without learning which member sent the operation.</p>
+    
+    
+    <p class="byline" data-astro-cid-57z6rh23>
+      <time datetime="2026-11-03" data-astro-cid-57z6rh23>3 November 2026</time>
+      <span data-astro-cid-57z6rh23>John Guilding · Technical Foundations</span>
+    </p>
+  
+  </div>
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+<div class="field-edge" aria-hidden="true" data-src="../../library-loggia.webp" data-focus="0.45" data-from="top" data-stack="960" data-astro-cid-4qlbhge2></div>
+
+
+
+<script type="module" src="../../_astro/PixelField.astro_astro_type_script_index_0_lang.CiVv8QY2.js"></script>
+  
+</section>
+
+
+
+<script type="module">for(let e of document.querySelectorAll(`.page-next`))e.addEventListener(`click`,t=>{let n=document.querySelector(e.getAttribute(`href`));if(!n)return;t.preventDefault();let r=!matchMedia(`(prefers-reduced-motion: reduce)`).matches;n.scrollIntoView({behavior:r?`smooth`:`auto`}),history.replaceState(null,``,e.hash)});</script>
+
+  <script type="module">for(let e of document.querySelectorAll(`.pixel-edge`)){let t=e.parentElement;t.style.mask=e.dataset.mask,t.style.webkitMask=e.dataset.mask,e.hidden=!0}</script><div data-astro-cid-57z6rh23="true" data-astro-cid-cpczvml2="true" class="field-section section">
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+
+
+
+
+
+  
+    <div class="wrap article-layout" data-astro-cid-57z6rh23>
+      <nav class="contents" aria-label="On this page" data-astro-cid-57z6rh23>
+            <ol data-astro-cid-57z6rh23>
+              <li data-astro-cid-57z6rh23>
+                  <a href="index.html#summary" data-astro-cid-57z6rh23>Summary</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#transaction-sponsorship-when-distributing-humanitarian-aid" data-astro-cid-57z6rh23>Transaction sponsorship when distributing humanitarian aid</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#comparison-to-existing-solutions" data-astro-cid-57z6rh23>Comparison to existing solutions</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#use-cases" data-astro-cid-57z6rh23>Use cases</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#what-an-integrator-gets" data-astro-cid-57z6rh23>What an integrator gets</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#technical-implementation-deep-dive" data-astro-cid-57z6rh23>Technical implementation deep dive</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#limitations-and-next-steps" data-astro-cid-57z6rh23>Limitations and next steps</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#talk-to-us-or-try-it-yourself" data-astro-cid-57z6rh23>Talk to us or try it yourself</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#sources" data-astro-cid-57z6rh23>Sources</a>
+                </li>
+            </ol>
+          </nav>
+      <article class="article" data-astro-cid-57z6rh23>
+        <p>This post was kindly reviewed by Nam, <a href="https://github.com/zulu0echo" target="_blank" rel="noopener noreferrer">Zoey</a> &amp; <a href="https://x.com/AndyGuzmanEth" target="_blank" rel="noopener noreferrer">Andy</a>.</p>
+<p>The article is part of a series on decentralised identity and private payments for humanitarian assistance on Ethereum. Read the overview: <a href="../decentralized-identity-and-private-payments/index.html">Decentralized Identity and Private Payments on Ethereum</a>.</p>
+<h2 id="summary">Summary</h2>
+<p>Every transaction on Ethereum must pay a gas fee, otherwise it will not be included in any block. Organisations want to offer financial tools to their users, but their users do not have wallets, or their own funds to pay for these transactions. Solutions that do exist often add a trusted vendor into the transaction pipeline, and by nature of doing so, a trusted vendor can see every sponsored transaction at the expense of user privacy.</p>
+<p>We built a simple onchain smart contract that organisations can use if they want their users to have higher data sovereignty, and provide sponsorship without risk of downtime from a specific third party service. This simple transaction sponsorship contract provides private transaction sponsorship for your ecosystem.</p>
+<h2 id="transaction-sponsorship-when-distributing-humanitarian-aid">Transaction sponsorship when distributing humanitarian aid</h2>
+<p>We initially built this as part of a wider project examining what it would take to run a humanitarian aid distribution network fully on Ethereum. The currently outlined culmination of this development is designed for real aid organisations and aid claimants.</p>
+<p><strong>The problem statement for an aid use case:</strong> An organisation needs to sponsor transactions because certain users do not have devices to hold funded wallets and send transactions, and we don’t want to link organisations originating transactions to specific retailers and beneficiaries. E.g. if organisation A sponsors user 1, we don’t want to see that transaction come from organisation A’s account, otherwise an external observer can see that organisation A is sending transactions for user 1.</p>
+<p>For the aid use-case, we are concerned with 3 user types: 1) Organisations, 2) Retailers, and 3) Beneficiaries. Organisations are the aid institutions providing humanitarian aid, retailers are entities that materially distribute aid, and beneficiaries are the people that receive aid. We renamed these domain-specific user types in order to make the project more generic. The codebase supports those three user types with the corresponding 3 names: 1) Network members, 2) users, and 3) delegated users. Beneficiaries are potentially delegated users since they sometimes don’t own a phone and must take actions via a chosen delegator.</p>
+<p>We need transaction sponsorship for 3 reasons:</p>
+<ul>
+<li>Retailers and beneficiaries should not need ETH to transact.</li>
+<li>Aid beneficiaries may not have mobile devices, so cannot hold or control an Ethereum account without additional support from a delegation mechanism.</li>
+<li>In a setting with many organisations, aid-giving organisations should not reveal which retailers and beneficiaries they are supporting.</li>
+</ul>
+<p>An interesting aspect of this project was the interplay between maximising CROPS alignment, and supporting real-world use-cases which place restrictions on the implementation of CROPS solutions. CROPS stands for Censorship Resistance, Open source, Privacy, Security — it is the set of values the <a href="https://blog.ethereum.org/2026/03/13/ef-mandate" target="_blank" rel="noopener noreferrer">Ethereum Foundation upholds for Ethereum development</a>. An important part of our trust model is that certain aspects of the system we can assume are trusted, and some aspects we can assume are untrusted. For example, the governance process that decides which network members are added to a given aid jurisdiction is an offchain governance process that cannot be automated away in a completely decentralised way using smart contracts.</p>
+<h2 id="comparison-to-existing-solutions">Comparison to existing solutions</h2>
+<p>Privacy protocols on Ethereum today such as Tornado Cash and Railgun solve “private sponsorship”, by submitting transactions through relayers. These services are trusted. Even when anyone can run one, the relayer sees each transaction and can censor it.</p>
+<p>Account abstraction standards and protocol improvements such as <a href="https://eips.ethereum.org/EIPS/eip-4337" target="_blank" rel="noopener noreferrer">ERC-4337</a> and <a href="https://eips.ethereum.org/EIPS/eip-7702" target="_blank" rel="noopener noreferrer">EIP-7702</a> have also been providing support for transaction sponsorship for some time. However, existing primitives, contracts and services do not support private transaction sponsorship. A common component for handling sponsorship is called a paymaster, which is a smart contract that acts like a gas tank that can pay for any valid transactions. When you normally use a paymaster, either use of the paymaster itself reveals what account you are using, or the entity running the paymaster service knows what account you are using.</p>
+<p>The main problem we set out to solve was user privacy with censorship resistance. Existing production paymasters do not protect user privacy. Production paymasters in use today such as those run by Pimlico and Alchemy sign each operation offchain, so the operator sees every account it pays for. And other sponsorship solutions such as relayers (e.g. those run for Tornado Cash and Railgun) are trusted infrastructure.</p>
+<p>The design makes iterations on some earlier attempts in order to meet the requirements of this project. We use a project called <a href="https://semaphore.pse.dev/" target="_blank" rel="noopener noreferrer">Semaphore</a> to hide which entity is being sponsored by the paymaster — Semaphore allows you to take private actions within a group of other entities. For example, voting for a candidate in an election, without revealing who you are. We built a privacy-preserving paymaster that pays for any member of a Semaphore group without learning which member sent the operation.</p>
+<p><img src="group-member-sponsorship.png" alt="Any group member can be sponsored. The paymaster checks only that the sender is in the group, not which member it is."></p>
+<p><em>Any group member can be sponsored. The paymaster checks only that the sender is in the group, not which member it is.</em></p>
+<p>A number of open source privacy-preserving paymaster designs have been proposed previously and exist today — some of which use Semaphore too. Some of these differences include:</p>
+<ol>
+<li>Our Semaphore paymaster sponsors users using third party-sourced funds, rather than funds being provided by the user themselves.</li>
+<li>We modify the standard Semaphore proof verification logic in our paymaster contract to be fully compatible with ERC-7562 validation rules.</li>
+<li>The paymaster is relatively simple compared to others.</li>
+</ol>
+<p>With our proposed design, the system pays gas through one shared Semaphore paymaster on a public chain. No one is able to link a transaction to a member from the chain. Each operation comes from a fresh stealth address with a group membership proof. A stealth address is a fresh one-time-use address for unlinkable payments. <strong>The result is that censorship resistance and user privacy are improved from the status quo.</strong></p>
+<h2 id="use-cases">Use cases</h2>
+<p>The ideal use-case for this paymaster is a specific network with its own user base that it admits to the network. Alternatively, a network seeking to replace relayer-based sponsorship with private and censorship resistant sponsorship.</p>
+<p>In our Sepolia demo, the paymaster paid for registrations and revocations by two network members, using the reference apps on one Android phone. The <a href="https://github.com/ethereum/coordination-network/blob/main/apps/docs/docs/guides/sepolia-demo.mdx" target="_blank" rel="noopener noreferrer">Sepolia demo guide</a> has a recorded run, and outlines an additional run where a stealth account sends a sponsored token transfer.</p>
+<h3 id="candidate-use-cases">Candidate use cases</h3>
+<ul>
+<li><strong>Any network sponsoring its own users.</strong> This should apply where there is some form of authentication or governance that controls and enforces which users can enter the system.</li>
+<li><strong>Anonymous DAO voting.</strong> The DAO pays gas for members’ votes. Paying from a member’s own wallet would reveal who voted.</li>
+<li><strong>Any other privacy protocol could sponsor its own users</strong>. A protocol that only wants to sponsor its users could use the Semaphore paymaster.</li>
+</ul>
+<h2 id="what-an-integrator-gets">What an integrator gets</h2>
+<p>If you are an organisation integrating this software, the paymaster is useful if you want to pay for user transactions while ensuring user sovereignty and privacy, but still operate within the constraints of legacy project governance systems. An integrator gets:</p>
+<ul>
+<li>Private transaction sponsorship for your ecosystem.</li>
+<li>Control over who enters, but users get permissionless sponsorship when in the system.</li>
+<li>You don’t need to run a relayer or a signing service. The paymaster contract is MIT-licensed, and the <code>@coordination-network</code> SDK generates the proof.</li>
+</ul>
+<p>You do need the following: A chosen bundler (the service that sends 4337 transactions); to fund the stake for your deployed instance of the paymaster which is staked (This can be 0.1-1 ETH for the stake); funds for the deposit to pay for your users’ transactions; an owner account or smart contract who can add each member to the group; monitoring set up to manage the paymaster deposit.</p>
+<p>Any integrator should be mindful of the tradeoffs of censorship resistant paymasters without the offchain signing that production paymasters use today, notably that a group member can drain the paymaster’s deposit — these tradeoffs are outlined further below.</p>
+<h2 id="technical-implementation-deep-dive">Technical implementation deep dive</h2>
+<p>The following section dives deeper into the technical aspects of the system.</p>
+<p>We produced a simple <strong>Semaphore paymaster</strong> that can sponsor transactions across the system. It is used with EIP-7702 accounts, since regular EOAs (standard Ethereum accounts) cannot be sponsored. The main exception to sponsorship is that a network member self-pays for its own registration record, and some other actions involving project governance.</p>
+<p>Validation is done against a Semaphore proof. We call the Semaphore verifier directly instead of Semaphore’s <code>verifyProof</code>, because that reads <code>block.timestamp</code>, which ERC-7562 bans during validation.</p>
+<p><img src="paymaster-sequence-diagram.png" alt="Sequence diagram of a user operation sponsored by the Semaphore paymaster"></p>
+<h3 id="permissionlessness">Permissionlessness</h3>
+<p>We opted to make paymaster usage permissionless. By permissionless, we mean any member already in the Semaphore group can use it, without the sponsor approving each operation. However, joining the group in the first place remains gated. One important user operation parameter in this context is <code>preVerificationGas</code>. This value is used to declare how much to pay the bundler for gas the EntryPoint can’t measure onchain, such as calldata and per-bundle overhead. <code>preVerificationGas</code> is self-declared and never refunded. This means a caller can inflate this value and drain the paymaster, since it is permissionless for any Semaphore group member. This is currently mitigated as the paymaster membership is gated, so you can control who enters the system, and <code>MAX_COST_PER_OP</code>. It can further be mitigated by adding gas or operation number limits to the paymaster (this issue is discussed further in limitations below).</p>
+<p>Existing paymasters in production today are not permissionless in this sense, so do not have to worry about users draining funds from the paymaster maliciously. We add a cap on gas costs to limit the damage such an attack can have on paymaster funds. <code>MAX_COST_PER_OP</code> caps individual operations to a specific gas cost, but not the number of operations. This is a tradeoff of our paymaster, we outline other current and future mitigations in the “Limitations and next steps” section. Since we already allow users to use the paymaster an unlimited number of times, and trust specific aspects of the system, we only add a single cap to limit damage in a worst case scenario. This is made possible as the network being supported is gated, so we have control over who enters the system.</p>
+<h3 id="censorship-resistance">Censorship resistance</h3>
+<p>An entity that seeks to censor needs 1) a target user(s) and 2) a chokepoint to censor.</p>
+<p>The design handles #1 as it anonymises the target user by using Semaphore commitments and proofs, so a bundler can’t tell from the operation which member is being sponsored. However, it can still see the IP address or API key that submitted it, and the anonymity set is limited to the group’s members.</p>
+<p>For #2, the censorship chokepoint itself is the bundler. We opted for 4337 infrastructure over using a centralised relayer. A 4337 bundler is still a relayer — it sees each operation and can refuse it. The difference is that any bundler that follows <a href="https://eips.ethereum.org/EIPS/eip-7562" target="_blank" rel="noopener noreferrer">ERC-7562</a> will execute the operation, and the paymaster pays for any valid membership proof without discrimination. While the 4337 mempool is <a href="https://docs.erc4337.io/bundlers/censorship-resistance.html#from-training-wheels-to-full-decentralization" target="_blank" rel="noopener noreferrer">not fully operational</a> <a href="https://docs.erc4337.io/bundlers/censorship-resistance.html" target="_blank" rel="noopener noreferrer">and decentralised</a>, the current 4337 ecosystem supports paths for transaction inclusion should a single bundler decide to censor user operations: 1) it is a straightforward config change to switch bundler URLs; 2)  you can host a dedicated bundler; 3) Failing that, anyone can submit the operation to the <a href="https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html" target="_blank" rel="noopener noreferrer">EntryPoint</a> themselves. One tradeoff of directly submitting to the EntryPoint is that the submitting account needs ETH, and operation is fully public, so whoever submits the operation is linked to the fee payment. A beneficiary with no device can’t do that.</p>
+<p>Ethereum is shortly adding a number of EIPs such as Frame Transactions <a href="https://eips.ethereum.org/EIPS/eip-8141" target="_blank" rel="noopener noreferrer">(EIP-8141)</a> to enable censorship resistant privacy protocols. As the EIP is outlined, Frame Transactions will not support our paymaster in the public mempool due to the public mempool’s 100k gas cap on validation. Exploring compatibility is a future research task.</p>
+<h3 id="cost-amortisation-and-governance">Cost amortisation and governance</h3>
+<p>No nullifier is checked, so one proof sponsors its account indefinitely until the group’s Merkle root changes, and for up to an hour after that. Adding or removing any member changes the root. This is a deliberate feature to enable amortisation, since a membership proof costs over 200k gas which may be cost prohibitive to high volume mainnet use-cases. We don’t explicitly use this feature yet. Our client sends each operation from a fresh stealth address, and a proof only works for one address.</p>
+<p>The owner of the paymaster is a single point of control. The owner can remove any member, but can’t tell which member is spamming. Each operation comes from a fresh address, with a proof that can’t be linked back to a member. One limitation of this design is that a user can abuse the paymaster deposit. We cover this under limitations.</p>
+<h3 id="integration-send-a-sponsored-user-operation">Integration: send a sponsored user operation</h3>
+<p><em>The snippet below is pseudo code. Visit our <a href="https://github.com/ethereum/coordination-network/blob/main/apps/docs/docs/guides/integration.mdx" target="_blank" rel="noopener noreferrer">docs</a> for full integration guides.</em></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    fetchPaymasterSemaphoreGroup,</span></span>
+<span class="line"><span style="color:#E1E4E8">    generatePaymasterProof,</span></span>
+<span class="line"><span style="color:#E1E4E8">    Identity</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "@coordination-network/account"</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { derivePaymasterKeypair } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "@coordination-network/identity"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 1. Import dependencies &amp; define Viem clients</span></span>
+<span class="line"><span style="color:#6A737D">// https://viem.sh/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 2. Add a Semaphore member to the paymaster group.</span></span>
+<span class="line"><span style="color:#6A737D">// Pull groupId from paymaster contract</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> ecdhSharedSecret</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> p256.</span><span style="color:#B392F0">getSharedSecret</span><span style="color:#E1E4E8">(aliceDevicePrivateKey)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> paymasterKeypair</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> derivePaymasterKeypair</span><span style="color:#E1E4E8">(ecdhSharedSecret)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> addMemberHash</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> walletClient.</span><span style="color:#B392F0">writeContract</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">    address: paymasterAddress,</span></span>
+<span class="line"><span style="color:#E1E4E8">    abi: paymasterAbi,</span></span>
+<span class="line"><span style="color:#E1E4E8">    functionName: </span><span style="color:#9ECBFF">"addMember"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    args: [groupId, paymasterKeypair.commitment],</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"><span style="color:#F97583">await</span><span style="color:#E1E4E8"> publicClient.</span><span style="color:#B392F0">waitForTransactionReceipt</span><span style="color:#E1E4E8">({ hash: addMemberHash })</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 3. generate paymaster proof</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> paymasterIdentity</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Identity</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">hexToBytes</span><span style="color:#E1E4E8">(paymasterKeypair.seed))</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> paymasterGroup</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> fetchPaymasterSemaphoreGroup</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">    rpcUrl,</span></span>
+<span class="line"><span style="color:#E1E4E8">    semaphoreContract: paymasterAddress,</span></span>
+<span class="line"><span style="color:#E1E4E8">    groupId,</span></span>
+<span class="line"><span style="color:#E1E4E8">    startBlock,</span></span>
+<span class="line"><span style="color:#E1E4E8">    blockScanWindowSize,</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> paymasterData</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> generatePaymasterProof</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">    identity: paymasterIdentity,</span></span>
+<span class="line"><span style="color:#E1E4E8">    group: paymasterGroup,</span></span>
+<span class="line"><span style="color:#E1E4E8">    sender: aliceStealthAddress</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 4. send user operation with paymaster sponsoring and paymaster data</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> userOperationHash</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> bundlerClient.</span><span style="color:#B392F0">sendUserOperation</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">    account: aliceStealthAddress,</span></span>
+<span class="line"><span style="color:#E1E4E8">    calls,</span></span>
+<span class="line"><span style="color:#E1E4E8">    paymaster: paymasterAddress,</span></span>
+<span class="line"><span style="color:#E1E4E8">    paymasterData</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">receipt</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> bundlerClient.</span><span style="color:#B392F0">waitForUserOperationReceipt</span><span style="color:#E1E4E8">({ hash: userOperationHash })</span></span></code></pre>
+<h2 id="limitations-and-next-steps">Limitations and next steps</h2>
+<h3 id="limitations">Limitations</h3>
+<ul>
+<li>In practice we submit through one bundler. The shared 4337 mempool is still limited to whitelisted bundlers.</li>
+<li>Frame Transactions (EIP-8141) won’t support this paymaster using the public mempool as drafted. A frame can indeed verify a ZK proof, but this is not generally feasible via the public mempool. The public mempool caps validation at 100,000 gas and only allows reads of the sender’s storage (<a href="https://eips.ethereum.org/EIPS/eip-8141" target="_blank" rel="noopener noreferrer">EIP-8141</a>, <code>MAX_VERIFY_GAS</code>). Our proof check needs about 181,000 gas for its pairings alone (four pairings at 34,000 each plus 45,000, per <a href="https://eips.ethereum.org/EIPS/eip-1108" target="_blank" rel="noopener noreferrer">EIP-1108</a>). Raising the cap to at least 250k gas has been proposed: <a href="https://ethresear.ch/t/eip-8141-and-minimum-required-validation-budget-for-privacy-applications/25889" target="_blank" rel="noopener noreferrer">EIP-8141 and minimum required validation budget for privacy applications</a>.</li>
+<li><code>MAX_COST_PER_OP</code> caps each operation, not each member. The owner can’t tell which member is spamming, because every operation comes from a fresh address with an unlinkable proof. The main responses are pausing sponsorship by withdrawing the deposit, or rebuilding the group. Reusing addresses for a period would not stop it, because a commitment to remove is still hidden by the Semaphore proof. A cap per member would work: each group member gets a fixed amount of gas (or number of operations), as in <a href="https://github.com/semaphore-paymaster/semaphore-paymaster/blob/main/contracts/src/GasLimitedSemaphorePaymaster.sol" target="_blank" rel="noopener noreferrer"><code>GasLimitedPaymaster</code></a>.</li>
+<li>The contract allows a proof to be reused for the same account, but we don’t use that, so every operation pays for a fresh proof.</li>
+<li>A removed group member can still be sponsored for up to an hour after removal, using a proof against the Merkle root from before they were removed. It is possible to configure how long a superseded root remains valid.</li>
+<li>The EIP-7702 delegation on each stealth account is visible on chain.</li>
+<li>The contracts have had an internal audit, not an external one.</li>
+<li>Tested on Sepolia only, with two network members and no real users.</li>
+</ul>
+<h3 id="next-steps">Next steps</h3>
+<ul>
+<li>Add a per-member sponsorship limit. This could be done in two ways: 1) limiting gas/operation usage per period, like how this <a href="https://github.com/semaphore-paymaster/semaphore-paymaster/blob/main/contracts/src/GasLimitedSemaphorePaymaster.sol" target="_blank" rel="noopener noreferrer">GasLimitedPaymaster</a> works. Or 2) using <a href="https://pse.dev/projects/rln" target="_blank" rel="noopener noreferrer">RLN</a>: Rate-Limiting Nullifier. RLN would allow users to execute a fixed number of transactions per period, and they can be revealed and kicked out if they go over this limit. Both solutions prevent one member draining the entire deposit.</li>
+<li>Research ways to make compatible with Frame Transactions. ZK verification in the public mempool is one known limitation that must be overcome. Others may exist. The existing path of using 4337 infrastructure remains viable.</li>
+<li>Integrate and test amortisation in client (Paymaster supports proof reuse per group member to optimise costs, this is not taken advantage of in consuming code yet)</li>
+</ul>
+<h2 id="talk-to-us-or-try-it-yourself">Talk to us or try it yourself</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">yarn</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> @coordination-network/account@0.2.0</span></span></code></pre>
+<p><strong>Quickstart:</strong> <a href="https://github.com/ethereum/coordination-network/blob/main/apps/docs/docs/guides/integration.mdx" target="_blank" rel="noopener noreferrer"><code>integration.mdx</code></a></p>
+<p><strong>Code repository:</strong> <a href="https://github.com/ethereum/coordination-network" target="_blank" rel="noopener noreferrer">https://github.com/ethereum/coordination-network</a></p>
+<p>Running a coordination programme and want to pilot this? Contact <a href="mailto:epic@ethereum.org">epic@ethereum.org</a></p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>Our SDK: <a href="https://www.npmjs.com/org/coordination-network" target="_blank" rel="noopener noreferrer"><code>@coordination-network</code></a></li>
+<li>Semaphore: <a href="https://docs.semaphore.pse.dev/" target="_blank" rel="noopener noreferrer">Semaphore</a></li>
+<li>Account abstraction: <a href="https://eips.ethereum.org/EIPS/eip-4337" target="_blank" rel="noopener noreferrer">ERC-4337</a></li>
+<li>Delegated EOAs: <a href="https://eips.ethereum.org/EIPS/eip-7702" target="_blank" rel="noopener noreferrer">EIP-7702</a></li>
+<li>Stealth addresses: <a href="https://eips.ethereum.org/EIPS/eip-5564" target="_blank" rel="noopener noreferrer">ERC-5564</a></li>
+<li>Account Abstraction validation rules: <a href="https://eips.ethereum.org/EIPS/eip-7562" target="_blank" rel="noopener noreferrer">ERC-7562</a></li>
+<li>Threat model: <a href="https://github.com/ethereum/coordination-network/blob/main/specs/threat-model-phase-1.md" target="_blank" rel="noopener noreferrer"><code>specs/threat-model-phase-1.md</code></a></li>
+<li>Privacy limits: <a href="https://github.com/ethereum/coordination-network/blob/main/packages/contracts/docs/privacy-disclosure.md" target="_blank" rel="noopener noreferrer">privacy disclosure</a></li>
+<li>Demo run: <a href="https://github.com/ethereum/coordination-network/blob/main/apps/docs/docs/guides/sepolia-demo.mdx" target="_blank" rel="noopener noreferrer">Sepolia demo guide</a></li>
+</ul>
+
+        <div class="pixel-edge" aria-hidden="true" style="--cell:14px" data-mask="linear-gradient(#000 0 0) top / 100% calc(100% - 4 * 14px) no-repeat, linear-gradient(#000 0 0) calc(7 * 14px) calc(100% - 2 * 14px) / calc(100% - 14 * 14px) calc(2 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%202%22%20preserveAspectRatio%3D%22xMinYMax%20slice%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM7%200h1v1h-1zM8%200h1v1h-1zM9%200h1v1h-1zM10%200h1v1h-1zM11%200h1v1h-1zM12%200h1v1h-1zM13%200h1v1h-1zM14%200h1v1h-1zM15%200h1v1h-1zM16%200h1v1h-1zM17%200h1v1h-1zM18%200h1v1h-1zM20%200h1v1h-1zM21%200h1v1h-1zM22%200h1v1h-1zM23%200h1v1h-1zM24%200h1v1h-1zM25%200h1v1h-1zM26%200h1v1h-1zM27%200h1v1h-1zM28%200h1v1h-1zM29%200h1v1h-1zM30%200h1v1h-1zM31%200h1v1h-1zM32%200h1v1h-1zM33%200h1v1h-1zM34%200h1v1h-1zM35%200h1v1h-1zM36%200h1v1h-1zM37%200h1v1h-1zM38%200h1v1h-1zM39%200h1v1h-1zM40%200h1v1h-1zM41%200h1v1h-1zM42%200h1v1h-1zM43%200h1v1h-1zM44%200h1v1h-1zM46%200h1v1h-1zM47%200h1v1h-1zM48%200h1v1h-1zM49%200h1v1h-1zM50%200h1v1h-1zM51%200h1v1h-1zM52%200h1v1h-1zM53%200h1v1h-1zM54%200h1v1h-1zM55%200h1v1h-1zM56%200h1v1h-1zM57%200h1v1h-1zM59%200h1v1h-1zM60%200h1v1h-1zM61%200h1v1h-1zM62%200h1v1h-1zM63%200h1v1h-1zM64%200h1v1h-1zM65%200h1v1h-1zM66%200h1v1h-1zM68%200h1v1h-1zM70%200h1v1h-1zM71%200h1v1h-1zM72%200h1v1h-1zM73%200h1v1h-1zM74%200h1v1h-1zM75%200h1v1h-1zM76%200h1v1h-1zM77%200h1v1h-1zM78%200h1v1h-1zM79%200h1v1h-1zM80%200h1v1h-1zM81%200h1v1h-1zM82%200h1v1h-1zM83%200h1v1h-1zM84%200h1v1h-1zM85%200h1v1h-1zM86%200h1v1h-1zM87%200h1v1h-1zM88%200h1v1h-1zM89%200h1v1h-1zM90%200h1v1h-1zM91%200h1v1h-1zM92%200h1v1h-1zM93%200h1v1h-1zM94%200h1v1h-1zM95%200h1v1h-1zM96%200h1v1h-1zM97%200h1v1h-1zM98%200h1v1h-1zM99%200h1v1h-1zM100%200h1v1h-1zM101%200h1v1h-1zM102%200h1v1h-1zM103%200h1v1h-1zM104%200h1v1h-1zM106%200h1v1h-1zM107%200h1v1h-1zM108%200h1v1h-1zM109%200h1v1h-1zM110%200h1v1h-1zM111%200h1v1h-1zM112%200h1v1h-1zM113%200h1v1h-1zM114%200h1v1h-1zM115%200h1v1h-1zM116%200h1v1h-1zM117%200h1v1h-1zM118%200h1v1h-1zM119%200h1v1h-1zM0%201h1v1h-1zM1%201h1v1h-1zM2%201h1v1h-1zM3%201h1v1h-1zM4%201h1v1h-1zM5%201h1v1h-1zM6%201h1v1h-1zM7%201h1v1h-1zM8%201h1v1h-1zM9%201h1v1h-1zM10%201h1v1h-1zM11%201h1v1h-1zM12%201h1v1h-1zM13%201h1v1h-1zM15%201h1v1h-1zM16%201h1v1h-1zM17%201h1v1h-1zM18%201h1v1h-1zM19%201h1v1h-1zM20%201h1v1h-1zM21%201h1v1h-1zM22%201h1v1h-1zM23%201h1v1h-1zM24%201h1v1h-1zM25%201h1v1h-1zM26%201h1v1h-1zM27%201h1v1h-1zM28%201h1v1h-1zM29%201h1v1h-1zM30%201h1v1h-1zM31%201h1v1h-1zM32%201h1v1h-1zM33%201h1v1h-1zM34%201h1v1h-1zM35%201h1v1h-1zM36%201h1v1h-1zM37%201h1v1h-1zM38%201h1v1h-1zM39%201h1v1h-1zM40%201h1v1h-1zM41%201h1v1h-1zM43%201h1v1h-1zM46%201h1v1h-1zM47%201h1v1h-1zM48%201h1v1h-1zM49%201h1v1h-1zM52%201h1v1h-1zM53%201h1v1h-1zM54%201h1v1h-1zM57%201h1v1h-1zM58%201h1v1h-1zM59%201h1v1h-1zM60%201h1v1h-1zM61%201h1v1h-1zM64%201h1v1h-1zM65%201h1v1h-1zM66%201h1v1h-1zM68%201h1v1h-1zM69%201h1v1h-1zM70%201h1v1h-1zM72%201h1v1h-1zM73%201h1v1h-1zM75%201h1v1h-1zM76%201h1v1h-1zM77%201h1v1h-1zM78%201h1v1h-1zM80%201h1v1h-1zM81%201h1v1h-1zM82%201h1v1h-1zM83%201h1v1h-1zM84%201h1v1h-1zM85%201h1v1h-1zM86%201h1v1h-1zM87%201h1v1h-1zM88%201h1v1h-1zM89%201h1v1h-1zM90%201h1v1h-1zM91%201h1v1h-1zM92%201h1v1h-1zM93%201h1v1h-1zM94%201h1v1h-1zM95%201h1v1h-1zM96%201h1v1h-1zM97%201h1v1h-1zM98%201h1v1h-1zM99%201h1v1h-1zM100%201h1v1h-1zM102%201h1v1h-1zM104%201h1v1h-1zM105%201h1v1h-1zM107%201h1v1h-1zM108%201h1v1h-1zM110%201h1v1h-1zM111%201h1v1h-1zM112%201h1v1h-1zM113%201h1v1h-1zM115%201h1v1h-1zM116%201h1v1h-1zM118%201h1v1h-1zM119%201h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) calc(7 * 14px) 100% / calc(100% - 14 * 14px) calc(2 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%207%204%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM0%201h1v1h-1zM1%201h1v1h-1zM2%201h1v1h-1zM3%201h1v1h-1zM4%201h1v1h-1zM6%201h1v1h-1zM2%202h1v1h-1zM4%202h1v1h-1zM5%202h1v1h-1zM6%202h1v1h-1zM1%203h1v1h-1zM3%203h1v1h-1zM4%203h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) left bottom / calc(7 * 14px) calc(4 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%207%204%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM0%201h1v1h-1zM1%201h1v1h-1zM2%201h1v1h-1zM3%201h1v1h-1zM5%201h1v1h-1zM6%201h1v1h-1zM0%202h1v1h-1zM2%202h1v1h-1zM4%202h1v1h-1zM5%202h1v1h-1zM6%202h1v1h-1zM0%203h1v1h-1zM2%203h1v1h-1zM4%203h1v1h-1zM5%203h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) right bottom / calc(7 * 14px) calc(4 * 14px) no-repeat" data-astro-cid-wvdxwvx6>
+  <svg class="strip" viewBox="0 0 120 2" preserveAspectRatio="xMidYMax slice" data-astro-cid-wvdxwvx6>
+    <rect x="14" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="19" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="42" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="44" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="45" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="45" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="50" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="51" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="55" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="56" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="58" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="62" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="63" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="67" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="67" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="69" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="71" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="74" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="79" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="101" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="103" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="105" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="106" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="109" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="114" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="117" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+  <svg class="corner left" viewBox="0 0 7 4" data-astro-cid-wvdxwvx6>
+    <rect x="0" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="2" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="5" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="6" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="0" y="2" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="1" y="2" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="3" y="2" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="5" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+  <svg class="corner right" viewBox="0 0 7 4" data-astro-cid-wvdxwvx6>
+    <rect x="6" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="3" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="1" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="3" y="2" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="1" y="2" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="4" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+</div>
+
+
+      </article>
+    </div>
+  
+</div>
+
+    </main>
+    <footer class="site-footer" data-astro-cid-4hfmbvjp>
+  <div class="wrap" data-astro-cid-4hfmbvjp>
+    <a class="lockup" href="../../index.html" data-astro-cid-ohkoixbv>
+  <img src="../../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+    <div class="attribution" data-astro-cid-4hfmbvjp>
+      <p data-astro-cid-4hfmbvjp>Informational material only—not legal, regulatory, financial, investment, or procurement advice.</p>
+      <p data-astro-cid-4hfmbvjp>The Ethereum Foundation is one participant in the broader Ethereum ecosystem. It does not operate or control Ethereum.</p>
+    </div>
+    <nav aria-label="Footer" data-astro-cid-4hfmbvjp>
+      <a href="https://ethereum.foundation/" target="_blank" rel="noreferrer" data-astro-cid-4hfmbvjp>Ethereum Foundation</a>
+      <a href="../../contact/index.html" data-astro-cid-4hfmbvjp>Contact</a>
+    </nav>
+  </div>
+</footer>
+  </body>
+</html>

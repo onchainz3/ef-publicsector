@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ethereum in practice: case studies across sectors</title>
+    <meta name="description" content="How governments, UN agencies and partners have used Ethereum for digital identity, funding transparency, public records and humanitarian aid.">
+    <link rel="canonical" href="index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Ethereum for digital public infrastructure">
+    <meta property="og:title" content="Ethereum in practice: case studies across sectors">
+    <meta property="og:description" content="How governments, UN bodies, nonprofits, and other institutions have used Ethereum for digital identity, public records, humanitarian aid, and funding transparency.">
+    <meta property="og:url" content="https://publicsector.ethereum.foundation/case-studies/">
+    <meta property="og:image" content="https://publicsector.ethereum.foundation/og/case-studies.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ethereum in practice: case studies across sectors">
+    <meta name="twitter:description" content="How governments, UN bodies, nonprofits, and other institutions have used Ethereum for digital identity, public records, humanitarian aid, and funding transparency.">
+    <meta name="twitter:image" content="https://publicsector.ethereum.foundation/og/case-studies.jpg">
+    <!-- Browser chrome (and the iPhone status bar) in the page colour; up to 1119px the sticky
+         header sits on top, a frosted panel of 72% --bg-deep over the page, which comes out at #0b2218. -->
+    <meta name="theme-color" content="#0b2218" media="(max-width: 1119px)">
+    <meta name="theme-color" content="#0f2a1e">
+    
+    <link rel="icon" href="../favicon.svg">
+    <link rel="sitemap" href="../sitemap.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@700..800&family=Funnel+Sans:wght@300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../_astro/FieldSection.CZ1fHz-b.css">
+<style>.page-hero[data-astro-cid-tfra22jg]{isolation:isolate;min-height:min(76svh,760px);margin-top:calc(-1 * var(--header-h));padding-left:max(var(--gutter), (100% - var(--wrap-max)) / 2);padding-right:calc(var(--field-edge,38vw) + clamp(20px, 2vw, 32px));border-bottom:1px solid var(--rule);align-items:center;display:grid;position:relative;overflow:hidden}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)) + var(--header-h));border-bottom:0}.page-hero-copy[data-astro-cid-tfra22jg]{z-index:2;padding:calc(var(--header-h) + 48px) 0 72px;justify-items:start;gap:28px;display:grid;position:relative}h1[data-astro-cid-tfra22jg]{letter-spacing:-.02em;max-width:14ch;font-size:clamp(44px,5.4vw,80px);font-weight:800;line-height:1;font-family:'Funnel Display','Funnel Sans',sans-serif}.large[data-astro-cid-tfra22jg] h1[data-astro-cid-tfra22jg]{max-width:none;font-size:clamp(46px,6.4vw,92px);line-height:.98}.page-lead[data-astro-cid-tfra22jg]{max-width:44ch;font-size:clamp(19px,1.6vw,23px);font-weight:300;line-height:1.45}@media (width>=601px){.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:fit-content}}.page-subtitle[data-astro-cid-tfra22jg]{width:0;min-width:100%;color:var(--ink);text-wrap:pretty;margin-top:-8px;font-size:clamp(24px,2.4vw,34px);font-weight:600;line-height:1.2}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg]{width:fit-content}.large[data-astro-cid-tfra22jg] .page-lead[data-astro-cid-tfra22jg]{text-wrap:pretty;width:0;min-width:100%;max-width:none;line-height:1.4}.page-next[data-astro-cid-tfra22jg]{z-index:2;left:max(var(--gutter), (100% - var(--wrap-max)) / 2);width:56px;height:56px;color:var(--muted);place-items:center;margin-left:-14px;transition:color .2s;display:grid;position:absolute;bottom:clamp(24px,4svh,40px)}.page-next[data-astro-cid-tfra22jg]:hover,.page-next[data-astro-cid-tfra22jg]:focus-visible{color:var(--ink)}.page-next[data-astro-cid-tfra22jg] svg[data-astro-cid-tfra22jg]{fill:currentColor;shape-rendering:crispedges;width:28px}h1[data-astro-cid-tfra22jg] .title-follow{color:var(--muted);margin-top:.12em;font-size:.78em;font-weight:300;display:block;font-family:'Funnel Sans','Helvetica Neue',Helvetica,Arial,sans-serif}@media (width>=420px){h1[data-astro-cid-tfra22jg] .title-follow{white-space:nowrap}}@media (width<=960px){.page-hero[data-astro-cid-tfra22jg]{min-height:auto;padding-inline:var(--gutter);margin-top:0}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)))}.page-hero-copy[data-astro-cid-tfra22jg]{text-align:center;justify-items:center;gap:20px;padding:calc(clamp(240px,75vw,360px)/1.25 + 32px) 0 64px}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg],.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:auto}.page-hero-copy[data-astro-cid-tfra22jg]>.button{justify-content:center;justify-self:stretch;width:100%}.page-next[data-astro-cid-tfra22jg]{margin-left:-28px;left:50%}}.page-hero[data-astro-cid-tfra22jg]:has(.page-next) .page-hero-copy[data-astro-cid-tfra22jg]{padding-bottom:120px}
+.case[data-astro-cid-27ofsdhc]{grid-row:span var(--rows,5);grid-template-rows:subgrid;border:1px solid var(--rule);background:var(--bg);row-gap:0;transition:border-color .16s;display:grid;position:relative;overflow:hidden}.case[data-astro-cid-27ofsdhc]:hover,.case[data-astro-cid-27ofsdhc]:has(a:focus-visible){border-color:var(--civic)}.case[data-astro-cid-27ofsdhc]:has(a:focus-visible){outline:2px solid var(--civic);outline-offset:3px}.case-body[data-astro-cid-27ofsdhc]{grid-row:2/-1;grid-template-rows:subgrid;align-content:start;row-gap:16px;padding:clamp(24px,2.4vw,36px);display:grid}h3[data-astro-cid-27ofsdhc]{color:#fff;font-size:24px;font-weight:800;line-height:1.2}h3[data-astro-cid-27ofsdhc] a[data-astro-cid-27ofsdhc]{text-decoration:none}h3[data-astro-cid-27ofsdhc] a[data-astro-cid-27ofsdhc]:after{content:"";position:absolute;inset:0}h3[data-astro-cid-27ofsdhc] a[data-astro-cid-27ofsdhc]:focus-visible{outline:none}.case[data-astro-cid-27ofsdhc]:hover h3[data-astro-cid-27ofsdhc] a[data-astro-cid-27ofsdhc]{color:var(--civic)}.case-logo[data-astro-cid-27ofsdhc]{aspect-ratio:16/10;border-bottom:1px solid var(--rule);background-color:var(--bg-deep);place-items:center;display:grid}.case-cta[data-astro-cid-27ofsdhc]{place-self:end start;margin-top:8px;text-decoration:underline}.case[data-astro-cid-27ofsdhc]:hover .case-cta[data-astro-cid-27ofsdhc]{color:var(--ink)}.case-logo[data-astro-cid-27ofsdhc] img[data-astro-cid-27ofsdhc]{object-fit:contain;filter:brightness(0)invert();width:auto;max-width:80%;height:clamp(56px,5vw,80px)}.place[data-astro-cid-27ofsdhc]{color:var(--ink);letter-spacing:-.01em;text-align:center;padding:0 24px;font-size:clamp(22px,2vw,28px);font-weight:700}.figure[data-astro-cid-27ofsdhc]{border-block:1px solid var(--rule);gap:2px;padding:14px 0;display:grid}.figure[data-astro-cid-27ofsdhc] strong[data-astro-cid-27ofsdhc]{color:var(--civic-mint);letter-spacing:-.02em;font-size:44px;font-weight:700;line-height:1}.figure[data-astro-cid-27ofsdhc] span[data-astro-cid-27ofsdhc]{font-size:15px;font-weight:600;line-height:1.4}.case-body[data-astro-cid-27ofsdhc]>.muted[data-astro-cid-27ofsdhc]{font-size:16px}.meta[data-astro-cid-27ofsdhc]{border-top:1px solid var(--rule);color:var(--muted);align-self:end;padding-top:14px;font-size:13px;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;letter-spacing:-.01em}
+.band-edge[data-astro-cid-mtyrvg7x]{height:calc(var(--cell) * (var(--rows) + 1));pointer-events:none;position:absolute;left:0;right:0}.top[data-astro-cid-mtyrvg7x]{top:calc(var(--cell) * var(--rows) * -1)}.bottom[data-astro-cid-mtyrvg7x]{bottom:calc(var(--cell) * var(--rows) * -1)}svg[data-astro-cid-mtyrvg7x]{width:100%;display:block;position:absolute;left:0}.out[data-astro-cid-mtyrvg7x]{height:calc(var(--cell) * var(--rows));fill:var(--bg-deep)}.bites[data-astro-cid-mtyrvg7x]{height:var(--cell);fill:var(--bg)}.top[data-astro-cid-mtyrvg7x] .out[data-astro-cid-mtyrvg7x]{top:0}.top[data-astro-cid-mtyrvg7x] .bites[data-astro-cid-mtyrvg7x],.bottom[data-astro-cid-mtyrvg7x] .out[data-astro-cid-mtyrvg7x]{bottom:0}.bottom[data-astro-cid-mtyrvg7x] .bites[data-astro-cid-mtyrvg7x]{top:0}
+.cases[data-astro-cid-q7obu3qe]{margin:var(--block-space) 0 0;grid-template-columns:repeat(3,1fr);gap:24px;padding:0;list-style:none;display:grid}.group[data-astro-cid-q7obu3qe]{grid-template-columns:5fr 7fr;gap:16px 72px;margin-top:clamp(48px,6vw,80px);display:grid}.group[data-astro-cid-q7obu3qe]+.group[data-astro-cid-q7obu3qe]{border-top:1px solid var(--rule);margin-top:0;padding-top:40px}.group[data-astro-cid-q7obu3qe] h3[data-astro-cid-q7obu3qe]{font-size:clamp(22px,1.9vw,27px);font-weight:600;line-height:1.2}.group[data-astro-cid-q7obu3qe] ul[data-astro-cid-q7obu3qe]{--hover:color-mix(in srgb, var(--bg-deep), #fff 6%);margin:-21px -12px 40px;padding:0;list-style:none}.group[data-astro-cid-q7obu3qe] a[data-astro-cid-q7obu3qe]{border-block:1px solid #0000;grid-template-columns:1fr auto;gap:24px;margin-bottom:-1px;padding:24px 12px;text-decoration:none;transition:background-color .16s,border-color .16s;display:grid}.group[data-astro-cid-q7obu3qe] li[data-astro-cid-q7obu3qe]+li[data-astro-cid-q7obu3qe] a[data-astro-cid-q7obu3qe]{border-top-color:var(--rule)}.group[data-astro-cid-q7obu3qe] a[data-astro-cid-q7obu3qe]:is(:hover,:focus-visible){border-color:var(--hover);background:var(--hover)}.item-copy[data-astro-cid-q7obu3qe]{gap:6px;display:grid}h4[data-astro-cid-q7obu3qe]{margin:0;font-size:21px;font-weight:700;line-height:1.25}.item-text[data-astro-cid-q7obu3qe]{color:var(--muted);font-size:16px;line-height:1.5}.item-meta[data-astro-cid-q7obu3qe]{color:var(--muted);margin-top:4px;font-size:14px}.arrow[data-astro-cid-q7obu3qe]{color:var(--civic);font-size:22px;line-height:1.2}.group[data-astro-cid-q7obu3qe] a[data-astro-cid-q7obu3qe]:hover h4[data-astro-cid-q7obu3qe]{color:var(--civic)}@media (width<=1100px){.cases[data-astro-cid-q7obu3qe]{grid-template-columns:1fr 1fr}}@media (width<=960px){.cases[data-astro-cid-q7obu3qe],.group[data-astro-cid-q7obu3qe]{grid-template-columns:1fr}}
+</style></head>
+  <body>
+    <a href="index.html#main-content" class="skip-link">Skip to content</a>
+    <header class="site-header" data-astro-cid-sojskbm2>
+  <div class="menu-pixels" aria-hidden="true" data-astro-cid-sojskbm2></div>
+  <a class="lockup" href="../index.html" data-astro-cid-ohkoixbv>
+  <img src="../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+  <button class="menu" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-astro-cid-sojskbm2>
+    <span class="menu-label" data-astro-cid-sojskbm2>Menu</span>
+    <svg class="menu-x" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" data-astro-cid-sojskbm2>
+      <path d="M3 3l10 10M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.8" data-astro-cid-sojskbm2></path>
+    </svg>
+  </button>
+  <nav id="site-nav" aria-label="Main" data-astro-cid-sojskbm2>
+    <ul data-astro-cid-sojskbm2>
+      <li class="group" style="--i:0" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-0" data-astro-cid-sojskbm2>
+                Understand Ethereum
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-0" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../what-is-ethereum/index.html" data-astro-cid-sojskbm2>What is Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../why-ethereum/index.html" data-astro-cid-sojskbm2>Why use Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../evaluating-ethereum/index.html" data-astro-cid-sojskbm2>Evaluating Ethereum</a>
+                  </li>
+              </ul>
+            </li><li style="--i:1" data-astro-cid-sojskbm2>
+              <a href="index.html" data-astro-cid-sojskbm2>Case studies</a>
+            </li><li style="--i:2" data-astro-cid-sojskbm2>
+              <a href="../potential-applications/index.html" data-astro-cid-sojskbm2>Potential applications</a>
+            </li><li class="group" style="--i:3" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-3" data-astro-cid-sojskbm2>
+                Getting started
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-3" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../institutional-engagement/index.html" data-astro-cid-sojskbm2>Institutional engagement</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../technical-foundations/index.html" data-astro-cid-sojskbm2>Technical Foundations</a>
+                  </li>
+              </ul>
+            </li><li style="--i:4" data-astro-cid-sojskbm2>
+              <a href="../resources/index.html" data-astro-cid-sojskbm2>Resources</a>
+            </li>
+      <li style="--i:5" data-astro-cid-sojskbm2><a class="contact" href="../contact/index.html" data-astro-cid-sojskbm2>Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script type="module">var e=document.querySelector(`.site-header`),t=()=>e.classList.toggle(`is-scrolled`,window.scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),new ResizeObserver(()=>{e.classList.contains(`is-open`)||document.documentElement.style.setProperty(`--header-real`,`${e.getBoundingClientRect().height}px`)}).observe(e);var n=[...e.querySelectorAll(`.group`)],r=e.querySelector(`.menu`),i=e=>n.forEach(t=>{t!==e&&(t.querySelector(`button`).setAttribute(`aria-expanded`,`false`),t.querySelector(`ul`).hidden=!0)});n.forEach(e=>{let t=e.querySelector(`button`);t.addEventListener(`click`,()=>{let n=t.getAttribute(`aria-expanded`)!==`true`;i(e),t.setAttribute(`aria-expanded`,String(n)),e.querySelector(`ul`).hidden=!n}),e.addEventListener(`focusout`,t=>{e.contains(t.relatedTarget)||i()})});var a=matchMedia(`(prefers-reduced-motion: reduce)`),o=e.querySelector(`.menu-pixels`),s=()=>{let e=Math.ceil(innerWidth/40),t=Math.ceil(innerHeight/40),n=e+t;o.replaceChildren(...Array.from({length:e*t},(t,r)=>{let i=r%e,a=Math.floor(r/e),o=document.createElement(`span`);return o.style.cssText=`left:${i*40}px;top:${a*40}px;animation-delay:${Math.round((e-1-i+a)/n*300+Math.random()*70)}ms`,o}))},c=0;r.addEventListener(`click`,()=>{let t=r.getAttribute(`aria-expanded`)!==`true`;if(r.setAttribute(`aria-expanded`,String(t)),r.setAttribute(`aria-label`,t?`Close menu`:`Menu`),clearTimeout(c),e.classList.remove(`is-closing`),t){a.matches||s(),e.classList.add(`is-open`),document.documentElement.classList.add(`menu-open`);return}let n=()=>{e.classList.remove(`is-open`,`is-closing`),document.documentElement.classList.remove(`menu-open`)};if(a.matches)return n();e.classList.add(`is-closing`),c=window.setTimeout(n,200)}),document.addEventListener(`pointerdown`,t=>{e.contains(t.target)||i()}),document.addEventListener(`keydown`,t=>{if(t.key!==`Escape`)return;let a=n.find(e=>e.querySelector(`button`).getAttribute(`aria-expanded`)===`true`);a?(i(),a.querySelector(`button`).focus()):e.classList.contains(`is-open`)&&(r.click(),r.focus())});</script>
+    <main id="main-content">
+      
+  <section class="page-hero" aria-labelledby="page-title" data-astro-cid-tfra22jg>
+  <div class="page-hero-copy" data-astro-cid-tfra22jg>
+    
+    <h1 id="page-title" data-astro-cid-tfra22jg>A closer look at Ethereum in use</h1>
+    
+    <p class="page-lead" data-astro-cid-tfra22jg>Projects led by governments, multilateral organizations, and their partners, examining the role Ethereum played, the choices that shaped each system, and what the results can tell us so far.</p>
+    
+  </div>
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+<div class="field-edge" aria-hidden="true" data-src="../civic-arcade.webp" data-focus="0.75" data-from="top" data-stack="960" data-astro-cid-4qlbhge2></div>
+
+
+
+<script type="module" src="../_astro/PixelField.astro_astro_type_script_index_0_lang.CiVv8QY2.js"></script>
+  
+</section>
+
+
+
+<script type="module">for(let e of document.querySelectorAll(`.page-next`))e.addEventListener(`click`,t=>{let n=document.querySelector(e.getAttribute(`href`));if(!n)return;t.preventDefault();let r=!matchMedia(`(prefers-reduced-motion: reduce)`).matches;n.scrollIntoView({behavior:r?`smooth`:`auto`}),history.replaceState(null,``,e.hash)});</script>
+
+  <section aria-labelledby="overview-title" data-astro-cid-q7obu3qe="true" data-astro-cid-cpczvml2="true" class="field-section section">
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+
+
+
+
+
+  
+    <div class="wrap" data-astro-cid-q7obu3qe>
+      <div class="split" data-astro-cid-q7obu3qe>
+        <h2 id="overview-title" class="section-title" data-astro-cid-q7obu3qe>Ethereum in practice, across sectors</h2>
+        <div class="prose" data-astro-cid-q7obu3qe>
+          <p data-astro-cid-q7obu3qe>
+            Explore how governments, UN bodies, nonprofits, and other institutions have used Ethereum for digital
+            identity, public records, humanitarian aid, and funding transparency.
+          </p>
+        </div>
+      </div>
+      <ul class="cases" data-astro-cid-q7obu3qe>
+        <li class="case" id="case-bhutan-national-digital-identity" style="--rows:6" data-astro-cid-27ofsdhc>
+  <div class="case-logo" data-astro-cid-27ofsdhc>
+    <img src="../logos/bhutan-ndi.png" alt="Bhutan NDI" loading="lazy" data-astro-cid-27ofsdhc>
+  </div>
+  <div class="case-body" data-astro-cid-27ofsdhc>
+    <h3 data-astro-cid-27ofsdhc>
+      <a href="bhutan-national-digital-identity/index.html" data-astro-cid-27ofsdhc>Bhutan National Digital Identity</a>
+    </h3>
+    <p class="figure" data-astro-cid-27ofsdhc>
+      <strong data-astro-cid-27ofsdhc>449k+</strong>
+      <span data-astro-cid-27ofsdhc>users successfully onboarded to Bhutan NDI by the end of 2025</span>
+    </p>
+    <p class="muted" data-astro-cid-27ofsdhc>Bhutan&#39;s national digital identity system uses Ethereum to support the verification of digital credentials across public and private services. Individuals control what information they share, while personal data remains outside the blockchain.</p>
+    <p class="meta" data-astro-cid-27ofsdhc>National digital identity · Kingdom of Bhutan</p>
+    
+    <span class="text-link case-cta" aria-hidden="true" data-astro-cid-27ofsdhc>Read the case study</span>
+  </div>
+</li><li class="case" id="case-unicef-cryptofund" style="--rows:6" data-astro-cid-27ofsdhc>
+  <div class="case-logo" data-astro-cid-27ofsdhc>
+    <img src="../logos/unicef.svg" alt="UNICEF" loading="lazy" data-astro-cid-27ofsdhc>
+  </div>
+  <div class="case-body" data-astro-cid-27ofsdhc>
+    <h3 data-astro-cid-27ofsdhc>
+      <a href="unicef-cryptofund/index.html" data-astro-cid-27ofsdhc>UNICEF CryptoFund</a>
+    </h3>
+    <p class="figure" data-astro-cid-27ofsdhc>
+      <strong data-astro-cid-27ofsdhc>$4m+</strong>
+      <span data-astro-cid-27ofsdhc>equivalent invested since 2019, including 2,602 ETH and 5.82 BTC</span>
+    </p>
+    <p class="muted" data-astro-cid-27ofsdhc>UNICEF’s CryptoFund provides funding in cryptocurrency to startups developing open-source technology in emerging economies. Transfers made in ETH are recorded on Ethereum, where they can be independently verified and traced.</p>
+    <p class="meta" data-astro-cid-27ofsdhc>Innovation finance · Global</p>
+    
+    <span class="text-link case-cta" aria-hidden="true" data-astro-cid-27ofsdhc>Read the case study</span>
+  </div>
+</li><li class="case" id="case-itcilo-digital-credentials" style="--rows:6" data-astro-cid-27ofsdhc>
+  <div class="case-logo" data-astro-cid-27ofsdhc>
+    <img src="../logos/itcilo.svg" alt="International Training Centre of the ILO" loading="lazy" data-astro-cid-27ofsdhc>
+  </div>
+  <div class="case-body" data-astro-cid-27ofsdhc>
+    <h3 data-astro-cid-27ofsdhc>
+      <a href="itcilo-digital-credentials/index.html" data-astro-cid-27ofsdhc>ITCILO digital credentials</a>
+    </h3>
+    <p class="figure" data-astro-cid-27ofsdhc>
+      <strong data-astro-cid-27ofsdhc>208k+</strong>
+      <span data-astro-cid-27ofsdhc>blockchain-secured credentials issued by October 2025</span>
+    </p>
+    <p class="muted" data-astro-cid-27ofsdhc>ITCILO issues digital certificates and badges that can be independently verified using Ethereum. Learners can share their credentials with employers and institutions without needing a cryptocurrency wallet or technical knowledge of Ethereum.</p>
+    <p class="meta" data-astro-cid-27ofsdhc>Identity &amp; credentials · Global</p>
+    
+    <span class="text-link case-cta" aria-hidden="true" data-astro-cid-27ofsdhc>Read the case study</span>
+  </div>
+</li><li class="case" id="case-giga-school-connectivity" style="--rows:6" data-astro-cid-27ofsdhc>
+  <div class="case-logo" data-astro-cid-27ofsdhc>
+    <img src="../logos/giga.svg" alt="Giga" loading="lazy" data-astro-cid-27ofsdhc>
+  </div>
+  <div class="case-body" data-astro-cid-27ofsdhc>
+    <h3 data-astro-cid-27ofsdhc>
+      <a href="giga-school-connectivity/index.html" data-astro-cid-27ofsdhc>Giga school connectivity</a>
+    </h3>
+    <p class="figure" data-astro-cid-27ofsdhc>
+      <strong data-astro-cid-27ofsdhc>~$5.6k</strong>
+      <span data-astro-cid-27ofsdhc>in school internet fees funded by Ethereum staking rewards</span>
+    </p>
+    <p class="muted" data-astro-cid-27ofsdhc>Giga, a joint initiative of UNICEF and ITU, worked with the Government of Rwanda to test whether Ethereum staking rewards could provide a recurring source of financing for school connectivity.</p>
+    <p class="meta" data-astro-cid-27ofsdhc>Digital connectivity · Rwanda</p>
+    
+    <span class="text-link case-cta" aria-hidden="true" data-astro-cid-27ofsdhc>Read the case study</span>
+  </div>
+</li><li class="case" id="case-summitshare" style="--rows:6" data-astro-cid-27ofsdhc>
+  <div class="case-logo" data-astro-cid-27ofsdhc>
+    <img src="../logos/summitshare.png" alt="SummitShare" loading="lazy" data-astro-cid-27ofsdhc>
+  </div>
+  <div class="case-body" data-astro-cid-27ofsdhc>
+    <h3 data-astro-cid-27ofsdhc>
+      <a href="summitshare/index.html" data-astro-cid-27ofsdhc>SummitShare</a>
+    </h3>
+    <p class="figure" data-astro-cid-27ofsdhc>
+      <strong data-astro-cid-27ofsdhc>6</strong>
+      <span data-astro-cid-27ofsdhc>artifacts presented in The Leading Ladies of Zambia digital exhibition</span>
+    </p>
+    <p class="muted" data-astro-cid-27ofsdhc>SummitShare connects digital exhibitions of African cultural heritage with community knowledge and funding. Its Zambia pilot tested ticket revenue sharing using Optimism, an Ethereum layer 2 network, before shifting toward open access.</p>
+    <p class="meta" data-astro-cid-27ofsdhc>Cultural heritage · Zambia</p>
+    
+    <span class="text-link case-cta" aria-hidden="true" data-astro-cid-27ofsdhc>Read the case study</span>
+  </div>
+</li><li class="case" id="case-stake2care" style="--rows:6" data-astro-cid-27ofsdhc>
+  <div class="case-logo" data-astro-cid-27ofsdhc>
+    <img src="../logos/msf.svg" alt="Médecins Sans Frontières" loading="lazy" data-astro-cid-27ofsdhc>
+  </div>
+  <div class="case-body" data-astro-cid-27ofsdhc>
+    <h3 data-astro-cid-27ofsdhc>
+      <a href="stake2care/index.html" data-astro-cid-27ofsdhc>Stake2Care</a>
+    </h3>
+    <p class="figure" data-astro-cid-27ofsdhc>
+      <strong data-astro-cid-27ofsdhc>3.44 stETH</strong>
+      <span data-astro-cid-27ofsdhc>staking rewards generated in 2025 for MSF’s emergency fund</span>
+    </p>
+    <p class="muted" data-astro-cid-27ofsdhc>Stake2Care enables supporters to direct Ethereum staking rewards to Médecins Sans Frontières’ emergency fund, offering an additional way to support rapid medical responses to humanitarian crises.</p>
+    <p class="meta" data-astro-cid-27ofsdhc>Impact finance · Global</p>
+    
+    <span class="text-link case-cta" aria-hidden="true" data-astro-cid-27ofsdhc>Read the case study</span>
+  </div>
+</li>
+      </ul>
+    </div>
+  
+</section>
+
+  <section id="more-case-studies" class="section band" aria-labelledby="more-title" data-astro-cid-q7obu3qe>
+    <div class="band-edge top" aria-hidden="true" style="--cell:14px;--rows:3" data-astro-cid-mtyrvg7x>
+  <svg class="out" viewBox="0 0 180 3" preserveAspectRatio="xMidYMax slice" data-astro-cid-mtyrvg7x>
+    <rect x="0" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="2" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="3" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="4" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="6" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="7" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="9" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="9" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="9" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="11" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="11" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="15" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="16" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="18" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="19" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="20" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="22" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="25" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="25" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="27" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="28" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="28" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="30" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="31" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="33" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="39" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="41" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="43" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="46" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="47" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="47" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="48" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="49" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="49" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="49" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="51" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="51" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="52" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="55" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="57" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="57" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="58" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="58" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="60" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="60" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="61" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="61" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="62" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="63" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="63" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="66" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="66" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="68" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="69" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="70" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="70" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="71" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="73" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="77" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="78" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="79" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="80" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="82" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="83" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="86" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="86" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="87" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="87" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="90" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="91" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="94" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="96" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="97" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="99" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="99" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="100" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="101" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="103" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="103" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="104" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="105" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="107" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="109" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="111" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="112" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="112" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="113" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="113" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="115" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="117" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="118" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="123" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="123" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="125" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="125" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="126" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="127" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="127" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="128" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="129" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="131" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="134" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="135" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="136" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="137" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="142" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="143" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="144" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="145" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="148" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="149" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="149" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="149" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="151" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="151" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="154" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="154" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="155" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="160" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="163" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="166" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="166" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="167" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="167" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="168" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="171" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="173" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="173" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="175" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="176" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="177" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="178" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="179" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect>
+  </svg>
+  <svg class="bites" viewBox="0 0 180 1" preserveAspectRatio="xMidYMin slice" data-astro-cid-mtyrvg7x>
+    <rect x="13" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="19" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="61" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="71" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="135" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="153" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect>
+  </svg>
+</div>
+
+    <div class="wrap" data-astro-cid-q7obu3qe>
+      <div class="split" data-astro-cid-q7obu3qe>
+        <h2 id="more-title" class="section-title" data-astro-cid-q7obu3qe>Further case studies</h2>
+        <div class="prose" data-astro-cid-q7obu3qe>
+          <p data-astro-cid-q7obu3qe>
+            Discover more approaches across public services, community funding, and environmental protection, including
+            early experiments and lessons from completed projects.
+          </p>
+        </div>
+      </div>
+      <section class="group" aria-labelledby="identity-and-credentials" data-case-group="identity-and-credentials" data-astro-cid-q7obu3qe>
+            <h3 id="identity-and-credentials" data-astro-cid-q7obu3qe>Identity and credentials</h3>
+            <ul data-astro-cid-q7obu3qe>
+              <li id="case-bonds-digital-identity" data-astro-cid-q7obu3qe>
+                  <a href="bonds-digital-identity/index.html" aria-labelledby="case-bonds-digital-identity-title" data-astro-cid-q7obu3qe>
+                    <div class="item-copy" data-astro-cid-q7obu3qe>
+                      <h4 id="case-bonds-digital-identity-title" data-astro-cid-q7obu3qe>Bonds</h4>
+                      <span class="item-text" data-astro-cid-q7obu3qe>Exploring digital credentials that support user control, selective disclosure, and privacy-preserving verification.</span>
+                      <span class="item-meta" data-astro-cid-q7obu3qe>Digital identity</span>
+                    </div>
+                    <span class="arrow" aria-hidden="true" data-astro-cid-q7obu3qe>→</span>
+                  </a>
+                </li><li id="case-opencerts" data-astro-cid-q7obu3qe>
+                  <a href="opencerts/index.html" aria-labelledby="case-opencerts-title" data-astro-cid-q7obu3qe>
+                    <div class="item-copy" data-astro-cid-q7obu3qe>
+                      <h4 id="case-opencerts-title" data-astro-cid-q7obu3qe>OpenCerts</h4>
+                      <span class="item-text" data-astro-cid-q7obu3qe>A Singapore government initiative that used Ethereum to enable independent verification of educational certificates.</span>
+                      <span class="item-meta" data-astro-cid-q7obu3qe>Educational credentials</span>
+                    </div>
+                    <span class="arrow" aria-hidden="true" data-astro-cid-q7obu3qe>→</span>
+                  </a>
+                </li>
+            </ul>
+          </section><section class="group" aria-labelledby="funding-and-resource-allocation" data-case-group="funding-and-resource-allocation" data-astro-cid-q7obu3qe>
+            <h3 id="funding-and-resource-allocation" data-astro-cid-q7obu3qe>Funding and resource allocation</h3>
+            <ul data-astro-cid-q7obu3qe>
+              <li id="case-kenya-anticipatory-cash-transfers" data-astro-cid-q7obu3qe>
+                  <a href="kenya-anticipatory-cash-transfers/index.html" aria-labelledby="case-kenya-anticipatory-cash-transfers-title" data-astro-cid-q7obu3qe>
+                    <div class="item-copy" data-astro-cid-q7obu3qe>
+                      <h4 id="case-kenya-anticipatory-cash-transfers-title" data-astro-cid-q7obu3qe>Anticipatory cash transfers in Kenya</h4>
+                      <span class="item-text" data-astro-cid-q7obu3qe>Using Ethereum smart contracts to release drought-related cash assistance when predefined vegetation thresholds are met, with recipients receiving local-currency payments through M-Pesa.</span>
+                      <span class="item-meta" data-astro-cid-q7obu3qe>Humanitarian assistance</span>
+                    </div>
+                    <span class="arrow" aria-hidden="true" data-astro-cid-q7obu3qe>→</span>
+                  </a>
+                </li><li id="case-sarafu-network" data-astro-cid-q7obu3qe>
+                  <a href="sarafu-network/index.html" aria-labelledby="case-sarafu-network-title" data-astro-cid-q7obu3qe>
+                    <div class="item-copy" data-astro-cid-q7obu3qe>
+                      <h4 id="case-sarafu-network-title" data-astro-cid-q7obu3qe>Sarafu Network</h4>
+                      <span class="item-text" data-astro-cid-q7obu3qe>A community exchange network using digital vouchers to support local trade in Kenya, built on Celo, which later became an Ethereum layer 2 network.</span>
+                      <span class="item-meta" data-astro-cid-q7obu3qe>Community exchange</span>
+                    </div>
+                    <span class="arrow" aria-hidden="true" data-astro-cid-q7obu3qe>→</span>
+                  </a>
+                </li><li id="case-unicef-gitcoin" data-astro-cid-q7obu3qe>
+                  <a href="unicef-gitcoin/index.html" aria-labelledby="case-unicef-gitcoin-title" data-astro-cid-q7obu3qe>
+                    <div class="item-copy" data-astro-cid-q7obu3qe>
+                      <h4 id="case-unicef-gitcoin-title" data-astro-cid-q7obu3qe>UNICEF × Gitcoin quadratic funding</h4>
+                      <span class="item-text" data-astro-cid-q7obu3qe>A funding round in which community contributions helped determine how matching funds were allocated to digital public goods.</span>
+                      <span class="item-meta" data-astro-cid-q7obu3qe>Public-goods funding</span>
+                    </div>
+                    <span class="arrow" aria-hidden="true" data-astro-cid-q7obu3qe>→</span>
+                  </a>
+                </li>
+            </ul>
+          </section><section class="group" aria-labelledby="transparency-and-traceability" data-case-group="transparency-and-traceability" data-astro-cid-q7obu3qe>
+            <h3 id="transparency-and-traceability" data-astro-cid-q7obu3qe>Transparency and traceability</h3>
+            <ul data-astro-cid-q7obu3qe>
+              <li id="case-enaleia-hub" data-astro-cid-q7obu3qe>
+                  <a href="enaleia-hub/index.html" aria-labelledby="case-enaleia-hub-title" data-astro-cid-q7obu3qe>
+                    <div class="item-copy" data-astro-cid-q7obu3qe>
+                      <h4 id="case-enaleia-hub-title" data-astro-cid-q7obu3qe>Enaleia Hub</h4>
+                      <span class="item-text" data-astro-cid-q7obu3qe>Exploring shared records that support traceability of marine plastic from collection through recycling and manufacturing.</span>
+                      <span class="item-meta" data-astro-cid-q7obu3qe>Environmental provenance</span>
+                    </div>
+                    <span class="arrow" aria-hidden="true" data-astro-cid-q7obu3qe>→</span>
+                  </a>
+                </li><li id="case-nrc-irap-funding-transparency" data-astro-cid-q7obu3qe>
+                  <a href="nrc-irap-funding-transparency/index.html" aria-labelledby="case-nrc-irap-funding-transparency-title" data-astro-cid-q7obu3qe>
+                    <div class="item-copy" data-astro-cid-q7obu3qe>
+                      <h4 id="case-nrc-irap-funding-transparency-title" data-astro-cid-q7obu3qe>Public funding disclosures in Canada</h4>
+                      <span class="item-text" data-astro-cid-q7obu3qe>A completed Canadian government pilot testing whether Ethereum could support timely, independently verifiable public funding disclosures and amendments.</span>
+                      <span class="item-meta" data-astro-cid-q7obu3qe>Public funding transparency</span>
+                    </div>
+                    <span class="arrow" aria-hidden="true" data-astro-cid-q7obu3qe>→</span>
+                  </a>
+                </li><li id="case-us-commerce-economic-data" data-astro-cid-q7obu3qe>
+                  <a href="us-commerce-economic-data/index.html" aria-labelledby="case-us-commerce-economic-data-title" data-astro-cid-q7obu3qe>
+                    <div class="item-copy" data-astro-cid-q7obu3qe>
+                      <h4 id="case-us-commerce-economic-data-title" data-astro-cid-q7obu3qe>Verifiable US economic data</h4>
+                      <span class="item-text" data-astro-cid-q7obu3qe>A US Department of Commerce initiative combining a verifiable reference to an official GDP release with ongoing economic data feeds across Ethereum and other public blockchain networks.</span>
+                      <span class="item-meta" data-astro-cid-q7obu3qe>Public-data verification</span>
+                    </div>
+                    <span class="arrow" aria-hidden="true" data-astro-cid-q7obu3qe>→</span>
+                  </a>
+                </li>
+            </ul>
+          </section><section class="group" aria-labelledby="culture-and-community" data-case-group="culture-and-community" data-astro-cid-q7obu3qe>
+            <h3 id="culture-and-community" data-astro-cid-q7obu3qe>Culture and community</h3>
+            <ul data-astro-cid-q7obu3qe>
+              <li id="case-metahistory-museum" data-astro-cid-q7obu3qe>
+                  <a href="metahistory-museum/index.html" aria-labelledby="case-metahistory-museum-title" data-astro-cid-q7obu3qe>
+                    <div class="item-copy" data-astro-cid-q7obu3qe>
+                      <h4 id="case-metahistory-museum-title" data-astro-cid-q7obu3qe>MetaHistory NFT Museum</h4>
+                      <span class="item-text" data-astro-cid-q7obu3qe>Digital artworks issued on Ethereum that pair reporting on the war in Ukraine with artists’ interpretations, while raising funds for Ukraine and cultural recovery.</span>
+                      <span class="item-meta" data-astro-cid-q7obu3qe>Cultural heritage</span>
+                    </div>
+                    <span class="arrow" aria-hidden="true" data-astro-cid-q7obu3qe>→</span>
+                  </a>
+                </li><li id="case-nishikigoi-nft" data-astro-cid-q7obu3qe>
+                  <a href="nishikigoi-nft/index.html" aria-labelledby="case-nishikigoi-nft-title" data-astro-cid-q7obu3qe>
+                    <div class="item-copy" data-astro-cid-q7obu3qe>
+                      <h4 id="case-nishikigoi-nft-title" data-astro-cid-q7obu3qe>Nishikigoi NFT</h4>
+                      <span class="item-text" data-astro-cid-q7obu3qe>Digital community membership on Ethereum connecting supporters around the world with Yamakoshi, a rural community in Japan, and supporting participation in local projects.</span>
+                      <span class="item-meta" data-astro-cid-q7obu3qe>Community participation</span>
+                    </div>
+                    <span class="arrow" aria-hidden="true" data-astro-cid-q7obu3qe>→</span>
+                  </a>
+                </li><li id="case-un-crypto-stamp" data-astro-cid-q7obu3qe>
+                  <a href="un-crypto-stamp/index.html" aria-labelledby="case-un-crypto-stamp-title" data-astro-cid-q7obu3qe>
+                    <div class="item-copy" data-astro-cid-q7obu3qe>
+                      <h4 id="case-un-crypto-stamp-title" data-astro-cid-q7obu3qe>UN Crypto Stamp</h4>
+                      <span class="item-text" data-astro-cid-q7obu3qe>United Nations postage stamps paired with digital collectibles issued on Ethereum, with ownership recorded publicly on the network.</span>
+                      <span class="item-meta" data-astro-cid-q7obu3qe>Digital collectibles</span>
+                    </div>
+                    <span class="arrow" aria-hidden="true" data-astro-cid-q7obu3qe>→</span>
+                  </a>
+                </li>
+            </ul>
+          </section>
+    </div>
+  </section>
+
+    </main>
+    <footer class="site-footer" data-astro-cid-4hfmbvjp>
+  <div class="wrap" data-astro-cid-4hfmbvjp>
+    <a class="lockup" href="../index.html" data-astro-cid-ohkoixbv>
+  <img src="../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+    <div class="attribution" data-astro-cid-4hfmbvjp>
+      <p data-astro-cid-4hfmbvjp>Informational material only—not legal, regulatory, financial, investment, or procurement advice.</p>
+      <p data-astro-cid-4hfmbvjp>The Ethereum Foundation is one participant in the broader Ethereum ecosystem. It does not operate or control Ethereum.</p>
+    </div>
+    <nav aria-label="Footer" data-astro-cid-4hfmbvjp>
+      <a href="https://ethereum.foundation/" target="_blank" rel="noreferrer" data-astro-cid-4hfmbvjp>Ethereum Foundation</a>
+      <a href="../contact/index.html" data-astro-cid-4hfmbvjp>Contact</a>
+    </nav>
+  </div>
+</footer>
+  </body>
+</html>

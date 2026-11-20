@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Evaluating Ethereum: practical considerations and comparisons</title>
+    <meta name="description" content="Compare Ethereum with other public and private blockchains on resilience, governance, access, independent verification and institutional authority.">
+    <link rel="canonical" href="index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Ethereum for digital public infrastructure">
+    <meta property="og:title" content="Evaluating Ethereum: practical considerations and comparisons">
+    <meta property="og:description" content="A practical overview of privacy, costs, environmental impact, and institutional control when using Ethereum, alongside comparisons with other public and private blockchains.">
+    <meta property="og:url" content="https://publicsector.ethereum.foundation/evaluating-ethereum/">
+    <meta property="og:image" content="https://publicsector.ethereum.foundation/og/evaluating-ethereum.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Evaluating Ethereum: practical considerations and comparisons">
+    <meta name="twitter:description" content="A practical overview of privacy, costs, environmental impact, and institutional control when using Ethereum, alongside comparisons with other public and private blockchains.">
+    <meta name="twitter:image" content="https://publicsector.ethereum.foundation/og/evaluating-ethereum.jpg">
+    <!-- Browser chrome (and the iPhone status bar) in the page colour; up to 1119px the sticky
+         header sits on top, a frosted panel of 72% --bg-deep over the page, which comes out at #0b2218. -->
+    <meta name="theme-color" content="#0b2218" media="(max-width: 1119px)">
+    <meta name="theme-color" content="#0f2a1e">
+    
+    <link rel="icon" href="../favicon.svg">
+    <link rel="sitemap" href="../sitemap.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@700..800&family=Funnel+Sans:wght@300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../_astro/FieldSection.CZ1fHz-b.css">
+<style>.page-hero[data-astro-cid-tfra22jg]{isolation:isolate;min-height:min(76svh,760px);margin-top:calc(-1 * var(--header-h));padding-left:max(var(--gutter), (100% - var(--wrap-max)) / 2);padding-right:calc(var(--field-edge,38vw) + clamp(20px, 2vw, 32px));border-bottom:1px solid var(--rule);align-items:center;display:grid;position:relative;overflow:hidden}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)) + var(--header-h));border-bottom:0}.page-hero-copy[data-astro-cid-tfra22jg]{z-index:2;padding:calc(var(--header-h) + 48px) 0 72px;justify-items:start;gap:28px;display:grid;position:relative}h1[data-astro-cid-tfra22jg]{letter-spacing:-.02em;max-width:14ch;font-size:clamp(44px,5.4vw,80px);font-weight:800;line-height:1;font-family:'Funnel Display','Funnel Sans',sans-serif}.large[data-astro-cid-tfra22jg] h1[data-astro-cid-tfra22jg]{max-width:none;font-size:clamp(46px,6.4vw,92px);line-height:.98}.page-lead[data-astro-cid-tfra22jg]{max-width:44ch;font-size:clamp(19px,1.6vw,23px);font-weight:300;line-height:1.45}@media (width>=601px){.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:fit-content}}.page-subtitle[data-astro-cid-tfra22jg]{width:0;min-width:100%;color:var(--ink);text-wrap:pretty;margin-top:-8px;font-size:clamp(24px,2.4vw,34px);font-weight:600;line-height:1.2}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg]{width:fit-content}.large[data-astro-cid-tfra22jg] .page-lead[data-astro-cid-tfra22jg]{text-wrap:pretty;width:0;min-width:100%;max-width:none;line-height:1.4}.page-next[data-astro-cid-tfra22jg]{z-index:2;left:max(var(--gutter), (100% - var(--wrap-max)) / 2);width:56px;height:56px;color:var(--muted);place-items:center;margin-left:-14px;transition:color .2s;display:grid;position:absolute;bottom:clamp(24px,4svh,40px)}.page-next[data-astro-cid-tfra22jg]:hover,.page-next[data-astro-cid-tfra22jg]:focus-visible{color:var(--ink)}.page-next[data-astro-cid-tfra22jg] svg[data-astro-cid-tfra22jg]{fill:currentColor;shape-rendering:crispedges;width:28px}h1[data-astro-cid-tfra22jg] .title-follow{color:var(--muted);margin-top:.12em;font-size:.78em;font-weight:300;display:block;font-family:'Funnel Sans','Helvetica Neue',Helvetica,Arial,sans-serif}@media (width>=420px){h1[data-astro-cid-tfra22jg] .title-follow{white-space:nowrap}}@media (width<=960px){.page-hero[data-astro-cid-tfra22jg]{min-height:auto;padding-inline:var(--gutter);margin-top:0}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)))}.page-hero-copy[data-astro-cid-tfra22jg]{text-align:center;justify-items:center;gap:20px;padding:calc(clamp(240px,75vw,360px)/1.25 + 32px) 0 64px}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg],.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:auto}.page-hero-copy[data-astro-cid-tfra22jg]>.button{justify-content:center;justify-self:stretch;width:100%}.page-next[data-astro-cid-tfra22jg]{margin-left:-28px;left:50%}}.page-hero[data-astro-cid-tfra22jg]:has(.page-next) .page-hero-copy[data-astro-cid-tfra22jg]{padding-bottom:120px}
+.comparison-scene[data-astro-cid-umneprz5] .x1{fill:var(--civic-red)}.comparison-scene[data-astro-cid-umneprz5] .x2{fill:#b54a36}.comparison-scene[data-astro-cid-umneprz5] .x3{fill:#8f3a2a}.comparison[data-astro-cid-mepd2tdq]{--row-gap:clamp(24px, 3vw, 32px);gap:var(--row-gap);margin-top:var(--block-space);display:grid}article[data-astro-cid-mepd2tdq]{grid-template-columns:4fr 5fr 5fr;gap:16px;display:grid}article[data-astro-cid-mepd2tdq]+article[data-astro-cid-mepd2tdq]{padding-top:var(--row-gap);border-top:1px solid var(--rule)}.quality[data-astro-cid-mepd2tdq]{align-content:start;gap:8px;padding:0 24px 0 0;display:grid}.quality-scene[data-astro-cid-mepd2tdq]{height:64px;margin-bottom:12px;display:flex}.quality-scene[data-astro-cid-mepd2tdq] svg{width:auto;max-width:100%;height:100%}h3[data-astro-cid-mepd2tdq]{letter-spacing:-.01em;font-size:clamp(24px,2vw,30px);font-weight:700;line-height:1.15}.quality[data-astro-cid-mepd2tdq] p[data-astro-cid-mepd2tdq]{color:var(--muted);font-size:19px;line-height:1.4}.comparison[data-astro-cid-mepd2tdq]{--ground:var(--bg)}.band .comparison[data-astro-cid-mepd2tdq]{--ground:var(--bg-deep)}.model[data-astro-cid-mepd2tdq]{border:1px dashed var(--rule);background:var(--ground);align-content:start;gap:10px;padding:clamp(20px,2vw,28px);display:grid}.model[data-astro-cid-mepd2tdq] ul[data-astro-cid-mepd2tdq]{gap:10px;margin:0;padding:0;list-style:none;display:grid}.model[data-astro-cid-mepd2tdq] li[data-astro-cid-mepd2tdq]{color:var(--muted);padding-left:18px;font-size:16px;position:relative}.model[data-astro-cid-mepd2tdq] li[data-astro-cid-mepd2tdq]:before{content:"";background:currentColor;width:6px;height:6px;position:absolute;top:.6em;left:0}.model[data-astro-cid-mepd2tdq] strong[data-astro-cid-mepd2tdq]{color:var(--ink);font-weight:600}h4[data-astro-cid-mepd2tdq]{margin:0;font-size:20px;font-weight:800;line-height:1.25;position:relative}.ethereum[data-astro-cid-mepd2tdq]{background:color-mix(in srgb, var(--ground), #fff 4%);border-color:#0000}.comparison[data-astro-cid-mepd2tdq]:not(.band *) .ethereum[data-astro-cid-mepd2tdq]{background:var(--bg-deep)}@media (width<=960px){article[data-astro-cid-mepd2tdq]{grid-template-columns:1fr}.quality[data-astro-cid-mepd2tdq]{padding:0 0 4px}}.practice[data-astro-cid-st3hiyea]{grid-template-columns:5fr 7fr;align-items:start;gap:40px 72px;display:grid}.practice-head[data-astro-cid-st3hiyea]{position:sticky;top:32px}.questions[data-astro-cid-st3hiyea]{border-bottom:1px solid var(--rule)}details[data-astro-cid-st3hiyea]+details[data-astro-cid-st3hiyea]{border-top:1px solid var(--rule)}summary[data-astro-cid-st3hiyea]{cursor:pointer;grid-template-columns:1fr auto;align-items:start;gap:24px;padding:24px 0;font-size:clamp(20px,1.6vw,23px);font-weight:600;line-height:1.3;list-style:none;display:grid}summary[data-astro-cid-st3hiyea]::-webkit-details-marker{display:none}summary[data-astro-cid-st3hiyea]:after{content:"";border:2px solid var(--civic);width:14px;height:14px;margin-top:6px;transition:background-color .16s}details[data-astro-cid-st3hiyea][open] summary[data-astro-cid-st3hiyea]:after{background:var(--civic)}summary[data-astro-cid-st3hiyea]:hover{color:var(--civic)}details[data-astro-cid-st3hiyea] .prose[data-astro-cid-st3hiyea]{padding:0 0 32px}.report[data-astro-cid-st3hiyea]{max-width:70ch;color:var(--muted);margin-top:40px;font-size:16px}.report[data-astro-cid-st3hiyea] a[data-astro-cid-st3hiyea]{color:var(--ink);text-underline-offset:3px}@media (width<=960px){.practice[data-astro-cid-st3hiyea]{grid-template-columns:1fr}.practice-head[data-astro-cid-st3hiyea]{position:static}}
+.iso{width:100%;height:auto;display:block;overflow:visible}.iso polygon{stroke:var(--bg-deep);stroke-width:1px;stroke-linejoin:miter;vector-effect:non-scaling-stroke}.iso .k1{fill:#163a29}.iso .k2{fill:#12301f}.iso .k3{fill:var(--bg)}.iso .l1{fill:var(--plot-2)}.iso .l2{fill:var(--plot-1)}.iso .l3{fill:#163a29}.iso .p1{fill:var(--park)}.iso .p2{fill:var(--plot-3)}.iso .p3{fill:var(--plot-2)}.iso .a1{fill:var(--civic)}.iso .a2{fill:#c98f22}.iso .a3{fill:#9f7019}.iso .s1{fill:#a77a24}.iso .s2{fill:#7d5b1b}.iso .s3{fill:#5f4515}.iso .r1{fill:var(--ink)}.iso .r2{fill:#b9c6b6}.iso .r3{fill:#8d9c8c}.iso .screen{fill:#12301f}.iso .tick{fill:none;stroke:var(--civic-ink);stroke-width:1.6px;stroke-linecap:square;stroke-linejoin:miter;vector-effect:non-scaling-stroke}.iso .wire{fill:none;stroke:var(--park);stroke-width:1px;vector-effect:non-scaling-stroke}.iso .wire-lit{fill:none;stroke:var(--civic);stroke-width:1.5px;vector-effect:non-scaling-stroke}
+.band-edge[data-astro-cid-mtyrvg7x]{height:calc(var(--cell) * (var(--rows) + 1));pointer-events:none;position:absolute;left:0;right:0}.top[data-astro-cid-mtyrvg7x]{top:calc(var(--cell) * var(--rows) * -1)}.bottom[data-astro-cid-mtyrvg7x]{bottom:calc(var(--cell) * var(--rows) * -1)}svg[data-astro-cid-mtyrvg7x]{width:100%;display:block;position:absolute;left:0}.out[data-astro-cid-mtyrvg7x]{height:calc(var(--cell) * var(--rows));fill:var(--bg-deep)}.bites[data-astro-cid-mtyrvg7x]{height:var(--cell);fill:var(--bg)}.top[data-astro-cid-mtyrvg7x] .out[data-astro-cid-mtyrvg7x]{top:0}.top[data-astro-cid-mtyrvg7x] .bites[data-astro-cid-mtyrvg7x],.bottom[data-astro-cid-mtyrvg7x] .out[data-astro-cid-mtyrvg7x]{bottom:0}.bottom[data-astro-cid-mtyrvg7x] .bites[data-astro-cid-mtyrvg7x]{top:0}
+</style></head>
+  <body>
+    <a href="index.html#main-content" class="skip-link">Skip to content</a>
+    <header class="site-header" data-astro-cid-sojskbm2>
+  <div class="menu-pixels" aria-hidden="true" data-astro-cid-sojskbm2></div>
+  <a class="lockup" href="../index.html" data-astro-cid-ohkoixbv>
+  <img src="../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+  <button class="menu" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-astro-cid-sojskbm2>
+    <span class="menu-label" data-astro-cid-sojskbm2>Menu</span>
+    <svg class="menu-x" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" data-astro-cid-sojskbm2>
+      <path d="M3 3l10 10M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.8" data-astro-cid-sojskbm2></path>
+    </svg>
+  </button>
+  <nav id="site-nav" aria-label="Main" data-astro-cid-sojskbm2>
+    <ul data-astro-cid-sojskbm2>
+      <li class="group" style="--i:0" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-0" data-astro-cid-sojskbm2>
+                Understand Ethereum
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-0" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../what-is-ethereum/index.html" data-astro-cid-sojskbm2>What is Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../why-ethereum/index.html" data-astro-cid-sojskbm2>Why use Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="index.html" data-astro-cid-sojskbm2>Evaluating Ethereum</a>
+                  </li>
+              </ul>
+            </li><li style="--i:1" data-astro-cid-sojskbm2>
+              <a href="../case-studies/index.html" data-astro-cid-sojskbm2>Case studies</a>
+            </li><li style="--i:2" data-astro-cid-sojskbm2>
+              <a href="../potential-applications/index.html" data-astro-cid-sojskbm2>Potential applications</a>
+            </li><li class="group" style="--i:3" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-3" data-astro-cid-sojskbm2>
+                Getting started
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-3" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../institutional-engagement/index.html" data-astro-cid-sojskbm2>Institutional engagement</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../technical-foundations/index.html" data-astro-cid-sojskbm2>Technical Foundations</a>
+                  </li>
+              </ul>
+            </li><li style="--i:4" data-astro-cid-sojskbm2>
+              <a href="../resources/index.html" data-astro-cid-sojskbm2>Resources</a>
+            </li>
+      <li style="--i:5" data-astro-cid-sojskbm2><a class="contact" href="../contact/index.html" data-astro-cid-sojskbm2>Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script type="module">var e=document.querySelector(`.site-header`),t=()=>e.classList.toggle(`is-scrolled`,window.scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),new ResizeObserver(()=>{e.classList.contains(`is-open`)||document.documentElement.style.setProperty(`--header-real`,`${e.getBoundingClientRect().height}px`)}).observe(e);var n=[...e.querySelectorAll(`.group`)],r=e.querySelector(`.menu`),i=e=>n.forEach(t=>{t!==e&&(t.querySelector(`button`).setAttribute(`aria-expanded`,`false`),t.querySelector(`ul`).hidden=!0)});n.forEach(e=>{let t=e.querySelector(`button`);t.addEventListener(`click`,()=>{let n=t.getAttribute(`aria-expanded`)!==`true`;i(e),t.setAttribute(`aria-expanded`,String(n)),e.querySelector(`ul`).hidden=!n}),e.addEventListener(`focusout`,t=>{e.contains(t.relatedTarget)||i()})});var a=matchMedia(`(prefers-reduced-motion: reduce)`),o=e.querySelector(`.menu-pixels`),s=()=>{let e=Math.ceil(innerWidth/40),t=Math.ceil(innerHeight/40),n=e+t;o.replaceChildren(...Array.from({length:e*t},(t,r)=>{let i=r%e,a=Math.floor(r/e),o=document.createElement(`span`);return o.style.cssText=`left:${i*40}px;top:${a*40}px;animation-delay:${Math.round((e-1-i+a)/n*300+Math.random()*70)}ms`,o}))},c=0;r.addEventListener(`click`,()=>{let t=r.getAttribute(`aria-expanded`)!==`true`;if(r.setAttribute(`aria-expanded`,String(t)),r.setAttribute(`aria-label`,t?`Close menu`:`Menu`),clearTimeout(c),e.classList.remove(`is-closing`),t){a.matches||s(),e.classList.add(`is-open`),document.documentElement.classList.add(`menu-open`);return}let n=()=>{e.classList.remove(`is-open`,`is-closing`),document.documentElement.classList.remove(`menu-open`)};if(a.matches)return n();e.classList.add(`is-closing`),c=window.setTimeout(n,200)}),document.addEventListener(`pointerdown`,t=>{e.contains(t.target)||i()}),document.addEventListener(`keydown`,t=>{if(t.key!==`Escape`)return;let a=n.find(e=>e.querySelector(`button`).getAttribute(`aria-expanded`)===`true`);a?(i(),a.querySelector(`button`).focus()):e.classList.contains(`is-open`)&&(r.click(),r.focus())});</script>
+    <main id="main-content">
+      
+  <section class="page-hero" aria-labelledby="page-title" data-astro-cid-tfra22jg>
+  <div class="page-hero-copy" data-astro-cid-tfra22jg>
+    
+    <h1 id="page-title" data-astro-cid-tfra22jg>Evaluating Ethereum</h1>
+    
+    <p class="page-lead" data-astro-cid-tfra22jg>Understand what using Ethereum can mean in practice for institutions, how it differs from other infrastructure models, and the trade-offs those differences create.</p>
+    
+  </div>
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+<div class="field-edge" aria-hidden="true" data-src="../twin-roads.webp" data-focus="1" data-from="top" data-stack="960" data-astro-cid-4qlbhge2></div>
+
+
+
+<script type="module" src="../_astro/PixelField.astro_astro_type_script_index_0_lang.CiVv8QY2.js"></script>
+  
+</section>
+
+
+
+<script type="module">for(let e of document.querySelectorAll(`.page-next`))e.addEventListener(`click`,t=>{let n=document.querySelector(e.getAttribute(`href`));if(!n)return;t.preventDefault();let r=!matchMedia(`(prefers-reduced-motion: reduce)`).matches;n.scrollIntoView({behavior:r?`smooth`:`auto`}),history.replaceState(null,``,e.hash)});</script>
+
+  <section id="ethereum-in-practice" aria-labelledby="practice-title" data-astro-cid-st3hiyea="true" data-astro-cid-cpczvml2="true" class="field-section section">
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+
+
+
+
+
+  
+    <div class="wrap practice" data-astro-cid-st3hiyea>
+      <div class="practice-head" data-astro-cid-st3hiyea>
+        <h2 id="practice-title" class="section-title" data-astro-cid-st3hiyea>What using Ethereum means in practice</h2>
+        <p class="muted section-intro" data-astro-cid-st3hiyea>
+          Ethereum can complement existing digital infrastructure rather than replace it. Institutions can use it
+          selectively alongside current systems while retaining authority over their policies, data, and service
+          delivery.
+        </p>
+      </div>
+      <div class="questions" data-astro-cid-st3hiyea>
+        <details data-astro-cid-st3hiyea>
+          <summary id="practice-public-information" data-astro-cid-st3hiyea>
+            <span data-astro-cid-st3hiyea>Can institutions use Ethereum while keeping sensitive information confidential?</span>
+          </summary>
+          <div class="prose" data-astro-cid-st3hiyea>
+            <p data-astro-cid-st3hiyea>
+              Yes. Confidential or sensitive data does not need to be stored on Ethereum. They can remain in existing
+              systems, while only the information needed for verification or coordination is recorded on the network.
+              Privacy-preserving methods can also allow specific facts to be verified without revealing the underlying
+              data, further limiting what needs to be disclosed.
+            </p>
+          </div>
+        </details>
+        <details data-astro-cid-st3hiyea>
+          <summary id="practice-system-costs" data-astro-cid-st3hiyea>
+            <span data-astro-cid-st3hiyea>What are the cost implications of using Ethereum in digital public infrastructure?</span>
+          </summary>
+          <div class="prose" data-astro-cid-st3hiyea>
+            <p data-astro-cid-st3hiyea>
+              The costs depend on what Ethereum is complementing or replacing. A conventional database managed by a
+              single institution may have lower direct technical costs, but also places responsibility for access,
+              security, and continuity with that operator. When multiple institutions need to coordinate, maintaining
+              integrations and reconciling records can add further costs. Ethereum can reduce some of these coordination
+              costs by providing shared infrastructure maintained by a distributed network.
+            </p>
+            <p data-astro-cid-st3hiyea>
+              Recording or updating information on Ethereum requires a transaction, which incurs a network fee. However,
+              reading existing records does not incur transaction fees. Systems can therefore be designed to minimize
+              updates while supporting frequent checks without paying transaction fees each time.
+            </p>
+            <p data-astro-cid-st3hiyea>
+              <a href="../case-studies/bhutan-national-digital-identity/index.html" data-astro-cid-st3hiyea>Bhutan's
+              National Digital Identity (NDI)</a> system illustrates this approach. According to an
+              <a href="https://genevaresearchlab.org/media/404/download/Bhutan%20NDI%20Case%20Study_VF.pdf?v=1&inline=1" target="_blank" rel="noopener noreferrer" data-astro-cid-st3hiyea>October 2026 report</a>
+              by the Geneva Research Lab for Digital Impact, the system relies primarily on reading existing records,
+              with minimal updates written to Ethereum. New credential issuers and credential types are recorded on
+              the network, while most credential verification happens without incurring transaction fees.
+            </p>
+            <p data-astro-cid-st3hiyea>
+              For transactions that do incur fees, a <a href="https://www.mdpi.com/2674-1032/5/3/81" target="_blank" rel="noopener noreferrer" data-astro-cid-st3hiyea>2026 study</a>
+              by researchers at Rutgers University found median transaction fees of approximately US$0.012 on
+              Ethereum's network in the first quarter of 2026, alongside a benchmark of US$0.0015 across three layer
+              2 networks, which are systems built on Ethereum that can process transactions at lower cost. Actual
+              fees vary by activity and network.
+            </p>
+            <p data-astro-cid-st3hiyea>
+              Institutions should therefore assess the full lifecycle costs, including development, integration,
+              maintenance, resilience, and dependence on individual service providers.
+            </p>
+          </div>
+        </details>
+        <details data-astro-cid-st3hiyea>
+          <summary id="practice-environmental-implications" data-astro-cid-st3hiyea>
+            <span data-astro-cid-st3hiyea>What are the environmental implications of using Ethereum?</span>
+          </summary>
+          <div class="prose" data-astro-cid-st3hiyea>
+            <p data-astro-cid-st3hiyea>
+              Ethereum previously relied on proof-of-work, a consensus system that used energy-intensive mining to agree
+              on network updates.
+            </p>
+            <p data-astro-cid-st3hiyea>
+              In 2022, Ethereum transitioned to a new consensus system, proof-of-stake. This reduced the network's
+              estimated electricity consumption by approximately 99.95%. A
+              <a href="https://www.jbs.cam.ac.uk/faculty-research/centres/alternative-finance/publications/ethereum-after-the-merge-a-change-in-power/" target="_blank" rel="noopener noreferrer" data-astro-cid-st3hiyea>2026 study</a>
+              by the Cambridge Centre for Alternative Finance estimates Ethereum's annual electricity consumption
+              at 7.87 GWh, roughly equivalent to the combined annual electricity consumption of 2,900 average UK
+              households.
+            </p>
+            <p data-astro-cid-st3hiyea>
+              Despite its relatively low electricity requirements, Ethereum processed over 524 million transactions in
+              2025, with additional activity on networks built on Ethereum. Electricity consumption does not increase in
+              direct proportion to transaction volume.
+            </p>
+          </div>
+        </details>
+        <details data-astro-cid-st3hiyea>
+          <summary id="practice-institutional-control" data-astro-cid-st3hiyea>
+            <span data-astro-cid-st3hiyea>Does using Ethereum mean giving up institutional control?</span>
+          </summary>
+          <div class="prose" data-astro-cid-st3hiyea>
+            <p data-astro-cid-st3hiyea>
+              No. Using Ethereum does not require institutions to relinquish authority over policy, eligibility
+              requirements, compliance, access controls, or operational decisions. Ethereum can provide shared
+              infrastructure for coordination and verification while institutions continue to set the policies,
+              requirements, and operational arrangements for their own services.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  
+</section>
+
+  <section id="public-blockchains" class="section band" aria-labelledby="public-title" data-astro-cid-st3hiyea>
+    <div class="band-edge top" aria-hidden="true" style="--cell:14px;--rows:3" data-astro-cid-mtyrvg7x>
+  <svg class="out" viewBox="0 0 180 3" preserveAspectRatio="xMidYMax slice" data-astro-cid-mtyrvg7x>
+    <rect x="0" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="1" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="2" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="2" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="3" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="4" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="5" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="9" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="10" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="12" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="12" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="14" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="15" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="16" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="17" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="21" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="22" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="23" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="23" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="23" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="25" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="25" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="26" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="27" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="27" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="29" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="30" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="34" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="38" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="39" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="40" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="41" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="44" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="45" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="45" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="45" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="48" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="49" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="50" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="51" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="52" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="52" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="54" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="54" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="55" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="60" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="60" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="61" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="61" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="63" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="63" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="65" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="67" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="68" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="70" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="74" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="75" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="77" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="78" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="79" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="84" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="86" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="87" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="88" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="88" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="89" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="89" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="91" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="91" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="95" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="96" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="97" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="98" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="99" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="100" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="100" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="100" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="102" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="102" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="103" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="104" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="105" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="106" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="107" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="108" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="110" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="110" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="110" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="111" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="114" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="116" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="117" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="118" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="119" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="120" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="123" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="124" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="126" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="127" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="129" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="130" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="131" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="137" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="137" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="138" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="139" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="139" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="140" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="147" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="148" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="148" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="149" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="151" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="151" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="152" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="157" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="157" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="159" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="163" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="165" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="167" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="170" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="170" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="172" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="172" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="173" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="177" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="178" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect>
+  </svg>
+  <svg class="bites" viewBox="0 0 180 1" preserveAspectRatio="xMidYMin slice" data-astro-cid-mtyrvg7x>
+    <rect x="1" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="98" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="130" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="133" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="161" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="167" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="175" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect>
+  </svg>
+</div>
+<div class="band-edge bottom" aria-hidden="true" style="--cell:14px;--rows:3" data-astro-cid-mtyrvg7x>
+  <svg class="out" viewBox="0 0 180 3" preserveAspectRatio="xMidYMin slice" data-astro-cid-mtyrvg7x>
+    <rect x="0" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="2" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="3" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="3" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="4" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="4" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="7" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="8" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="10" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="11" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="11" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="12" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="14" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="15" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="15" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="16" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="23" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="23" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="26" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="29" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="29" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="29" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="30" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="31" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="31" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="34" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="34" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="35" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="36" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="36" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="36" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="38" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="39" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="40" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="41" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="42" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="43" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="44" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="45" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="47" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="50" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="53" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="58" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="59" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="61" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="61" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="62" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="64" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="65" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="67" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="69" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="70" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="71" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="72" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="72" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="73" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="73" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="74" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="75" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="79" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="80" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="80" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="81" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="82" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="88" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="89" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="90" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="93" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="93" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="95" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="95" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="96" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="96" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="98" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="98" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="99" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="99" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="101" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="101" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="102" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="102" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="104" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="107" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="110" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="111" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="114" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="115" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="117" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="118" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="119" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="122" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="123" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="123" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="124" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="126" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="127" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="128" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="130" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="131" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="133" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="134" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="136" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="137" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="138" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="138" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="139" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="140" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="143" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="144" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="144" y="1" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="147" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="148" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="149" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="150" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="152" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="154" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="157" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="158" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="162" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="163" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="163" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="164" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="167" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="167" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="168" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="170" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="173" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="175" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="176" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="177" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="177" y="2" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="178" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect>
+  </svg>
+  <svg class="bites" viewBox="0 0 180 1" preserveAspectRatio="xMidYMax slice" data-astro-cid-mtyrvg7x>
+    <rect x="49" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="83" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="86" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="100" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="103" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="109" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="124" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="126" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="132" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="138" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="146" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="155" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="157" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="158" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="160" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="169" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="173" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect>
+  </svg>
+</div>
+    <div class="wrap" data-astro-cid-st3hiyea>
+      <div class="split" data-astro-cid-st3hiyea>
+        <h2 id="public-title" class="section-title" data-astro-cid-st3hiyea>How Ethereum compares with other public blockchains</h2>
+        <div class="prose" data-astro-cid-st3hiyea>
+          <p data-astro-cid-st3hiyea>
+            Public blockchains are not all designed and governed in the same way. These differences can have important
+            implications for institutions. The comparisons below examine how Ethereum’s approach differs from other public
+            blockchains.
+          </p>
+        </div>
+      </div>
+      <div class="comparison" data-astro-cid-mepd2tdq>
+  <article id="resilience" aria-labelledby="resilience-title" data-astro-cid-mepd2tdq>
+        <div class="quality" data-astro-cid-mepd2tdq>
+          <span class="quality-scene" data-astro-cid-mepd2tdq>
+            <svg class="iso comparison-scene" viewBox="-45.6 -15.0 160.4 107.0" aria-hidden="true" data-astro-cid-umneprz5><polygon points="-41.57,24 69.28,88 69.28,83 -41.57,19" class="k2"/><polygon points="110.85,64 69.28,88 69.28,83 110.85,59" class="k3"/><polygon points="0,-5 110.85,59 69.28,83 -41.57,19" class="k1"/><polygon points="-32.91,19 0,38 0,34 -32.91,15" class="l2"/><polygon points="32.91,19 0,38 0,34 32.91,15" class="l3"/><polygon points="0,-4 32.91,15 0,34 -32.91,15" class="l1"/><polygon points="1.73,39 34.64,58 34.64,52 1.73,33" class="l2"/><polygon points="67.55,39 34.64,58 34.64,52 67.55,33" class="l3"/><polygon points="34.64,14 67.55,33 34.64,52 1.73,33" class="l1"/><polygon points="36.37,59 69.28,78 69.28,74 36.37,55" class="l2"/><polygon points="102.19,59 69.28,78 69.28,74 102.19,55" class="l3"/><polygon points="69.28,36 102.19,55 69.28,74 36.37,55" class="l1"/><polygon points="-19.05,13 1.73,25 1.73,11 -19.05,-1" class="p2"/><polygon points="19.05,15 1.73,25 1.73,11 19.05,1" class="p3"/><polygon points="-1.73,-11 19.05,1 1.73,11 -19.05,-1" class="p1"/><polygon points="-6.93,0 0,4 0,0 -6.93,-4" class="a2"/><polygon points="6.93,0 0,4 0,0 6.93,-4" class="a3"/><polygon points="0,-8 6.93,-4 0,0 -6.93,-4" class="a1"/><polygon points="19.05,33 34.64,42 34.64,16 19.05,7" class="p2"/><polygon points="50.23,33 34.64,42 34.64,16 50.23,7" class="p3"/><polygon points="34.64,-2 50.23,7 34.64,16 19.05,7" class="p1"/><polygon points="24.25,7 34.64,13 34.64,6 24.25,0" class="x2"/><polygon points="45.03,7 34.64,13 34.64,6 45.03,0" class="x3"/><polygon points="34.64,-6 45.03,0 34.64,6 24.25,0" class="x1"/><polygon points="47.63,53.5 70.15,66.5 70.15,54.5 47.63,41.5" class="p2"/><polygon points="90.93,54.5 70.15,66.5 70.15,54.5 90.93,42.5" class="p3"/><polygon points="68.42,29.5 90.93,42.5 70.15,54.5 47.63,41.5" class="p1"/><polygon points="62.35,42 69.28,46 69.28,42 62.35,38" class="a2"/><polygon points="76.21,42 69.28,46 69.28,42 76.21,38" class="a3"/><polygon points="69.28,34 76.21,38 69.28,42 62.35,38" class="a1"/></svg>
+          </span>
+          <h3 id="resilience-title" data-astro-cid-mepd2tdq>Resilience</h3>
+          <p data-astro-cid-mepd2tdq>How widely can a software failure spread?</p>
+        </div>
+        <div class="model ethereum" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Ethereum</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq>Supported by <strong data-astro-cid-mepd2tdq>multiple independently developed software implementations</strong> that are written in different programming languages and follow the same network rules</li><li data-astro-cid-mepd2tdq>This diversity reduces reliance on a single codebase and the risk of widespread disruption from a defect in one implementation</li>
+          </ul>
+        </div>
+        <div class="model" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Other public blockchains</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq>Some rely more heavily on <strong data-astro-cid-mepd2tdq>one dominant software implementation</strong> or closely related versions</li><li data-astro-cid-mepd2tdq>A shared defect could affect a larger part of the network</li>
+          </ul>
+        </div>
+      </article><article id="distributed-control" aria-labelledby="distributed-control-title" data-astro-cid-mepd2tdq>
+        <div class="quality" data-astro-cid-mepd2tdq>
+          <span class="quality-scene" data-astro-cid-mepd2tdq>
+            <svg class="iso comparison-scene" viewBox="-80.2 -21.2 160.4 113.2" aria-hidden="true" data-astro-cid-umneprz5><polygon points="-76.21,44 0,88 0,83 -76.21,39" class="k2"/><polygon points="76.21,44 0,88 0,83 76.21,39" class="k3"/><polygon points="0,-5 76.21,39 0,83 -76.21,39" class="k1"/><polygon points="-32.91,19 0,38 0,34 -32.91,15" class="l2"/><polygon points="32.91,19 0,38 0,34 32.91,15" class="l3"/><polygon points="0,-4 32.91,15 0,34 -32.91,15" class="l1"/><polygon points="1.73,39 34.64,58 34.64,52 1.73,33" class="l2"/><polygon points="67.55,39 34.64,58 34.64,52 67.55,33" class="l3"/><polygon points="34.64,14 67.55,33 34.64,52 1.73,33" class="l1"/><polygon points="-67.55,39 -34.64,58 -34.64,52 -67.55,33" class="l2"/><polygon points="-1.73,39 -34.64,58 -34.64,52 -1.73,33" class="l3"/><polygon points="-34.64,14 -1.73,33 -34.64,52 -67.55,33" class="l1"/><polygon points="-32.91,59 0,78 0,74 -32.91,55" class="l2"/><polygon points="32.91,59 0,78 0,74 32.91,55" class="l3"/><polygon points="0,36 32.91,55 0,74 -32.91,55" class="l1"/><polyline points="5.67,-10.98 40.31,7.02" class="wire"/><polyline points="5.67,-10.98 -28.97,7.02" class="wire"/><polyline points="40.31,7.02 5.67,29.02" class="wire"/><polyline points="-28.97,7.02 5.67,29.02" class="wire"/><polygon points="0.61,8.85 9.61,14.05 9.61,12.75 0.61,7.55" class="p2"/><polygon points="15.24,10.8 9.61,14.05 9.61,12.75 15.24,9.5" class="p3"/><polygon points="6.24,4.3 15.24,9.5 9.61,12.75 0.61,7.55" class="p1"/><polygon points="6.24,8.2 8.49,9.5 8.49,3 6.24,1.7" class="p2"/><polygon points="10.74,8.2 8.49,9.5 8.49,3 10.74,1.7" class="p3"/><polygon points="8.49,0.4 10.74,1.7 8.49,3 6.24,1.7" class="p1"/><polygon points="-5.02,0.4 12.99,10.8 12.99,-4.8 -5.02,-15.2" class="p2"/><polygon points="16.37,8.85 12.99,10.8 12.99,-4.8 16.37,-6.75" class="p3"/><polygon points="-1.65,-17.15 16.37,-6.75 12.99,-4.8 -5.02,-15.2" class="p1"/><polygon points="-3.33,-0.58 11.3,7.88 11.3,-3.82 -3.33,-12.28" class="screen"/><polygon points="-3.33,-0.58 11.3,7.88 11.3,-3.82 -3.33,-12.28" class="a1"/><polyline points="0.61,-4.41 3.2,0.34 7.92,-3.3" class="tick"/><polygon points="-11.78,12.1 3.98,21.2 3.98,19.9 -11.78,10.8" class="p2"/><polygon points="9.61,17.95 3.98,21.2 3.98,19.9 9.61,16.65" class="p3"/><polygon points="-6.15,7.55 9.61,16.65 3.98,19.9 -11.78,10.8" class="p1"/><polygon points="35.25,26.85 44.25,32.05 44.25,30.75 35.25,25.55" class="p2"/><polygon points="49.88,28.8 44.25,32.05 44.25,30.75 49.88,27.5" class="p3"/><polygon points="40.88,22.3 49.88,27.5 44.25,30.75 35.25,25.55" class="p1"/><polygon points="40.88,26.2 43.13,27.5 43.13,21 40.88,19.7" class="p2"/><polygon points="45.38,26.2 43.13,27.5 43.13,21 45.38,19.7" class="p3"/><polygon points="43.13,18.4 45.38,19.7 43.13,21 40.88,19.7" class="p1"/><polygon points="29.62,18.4 47.63,28.8 47.63,13.2 29.62,2.8" class="p2"/><polygon points="51.01,26.85 47.63,28.8 47.63,13.2 51.01,11.25" class="p3"/><polygon points="33,0.85 51.01,11.25 47.63,13.2 29.62,2.8" class="p1"/><polygon points="31.31,17.42 45.94,25.87 45.94,14.17 31.31,5.72" class="screen"/><polygon points="31.31,17.42 45.94,25.87 45.94,14.17 31.31,5.72" class="a1"/><polyline points="35.25,13.59 37.84,18.34 42.57,14.7" class="tick"/><polygon points="22.86,30.1 38.62,39.2 38.62,37.9 22.86,28.8" class="p2"/><polygon points="44.25,35.95 38.62,39.2 38.62,37.9 44.25,34.65" class="p3"/><polygon points="28.49,25.55 44.25,34.65 38.62,37.9 22.86,28.8" class="p1"/><polygon points="-34.03,26.85 -25.03,32.05 -25.03,30.75 -34.03,25.55" class="p2"/><polygon points="-19.4,28.8 -25.03,32.05 -25.03,30.75 -19.4,27.5" class="p3"/><polygon points="-28.41,22.3 -19.4,27.5 -25.03,30.75 -34.03,25.55" class="p1"/><polygon points="-28.41,26.2 -26.15,27.5 -26.15,21 -28.41,19.7" class="p2"/><polygon points="-23.9,26.2 -26.15,27.5 -26.15,21 -23.9,19.7" class="p3"/><polygon points="-26.15,18.4 -23.9,19.7 -26.15,21 -28.41,19.7" class="p1"/><polygon points="-39.66,18.4 -21.65,28.8 -21.65,13.2 -39.66,2.8" class="p2"/><polygon points="-18.27,26.85 -21.65,28.8 -21.65,13.2 -18.27,11.25" class="p3"/><polygon points="-36.29,0.85 -18.27,11.25 -21.65,13.2 -39.66,2.8" class="p1"/><polygon points="-37.98,17.42 -23.34,25.88 -23.34,14.18 -37.98,5.72" class="screen"/><polygon points="-37.98,17.42 -23.34,25.88 -23.34,14.18 -37.98,5.72" class="a1"/><polyline points="-34.03,13.59 -31.45,18.33 -26.72,14.7" class="tick"/><polygon points="-46.42,30.1 -30.66,39.2 -30.66,37.9 -46.42,28.8" class="p2"/><polygon points="-25.03,35.95 -30.66,39.2 -30.66,37.9 -25.03,34.65" class="p3"/><polygon points="-40.79,25.55 -25.03,34.65 -30.66,37.9 -46.42,28.8" class="p1"/><polygon points="0.61,48.85 9.61,54.05 9.61,52.75 0.61,47.55" class="p2"/><polygon points="15.24,50.8 9.61,54.05 9.61,52.75 15.24,49.5" class="p3"/><polygon points="6.24,44.3 15.24,49.5 9.61,52.75 0.61,47.55" class="p1"/><polygon points="6.24,48.2 8.49,49.5 8.49,43 6.24,41.7" class="p2"/><polygon points="10.74,48.2 8.49,49.5 8.49,43 10.74,41.7" class="p3"/><polygon points="8.49,40.4 10.74,41.7 8.49,43 6.24,41.7" class="p1"/><polygon points="-5.02,40.4 12.99,50.8 12.99,35.2 -5.02,24.8" class="p2"/><polygon points="16.37,48.85 12.99,50.8 12.99,35.2 16.37,33.25" class="p3"/><polygon points="-1.65,22.85 16.37,33.25 12.99,35.2 -5.02,24.8" class="p1"/><polygon points="-3.33,39.42 11.3,47.87 11.3,36.17 -3.33,27.72" class="screen"/><polygon points="-3.33,39.42 11.3,47.87 11.3,36.17 -3.33,27.72" class="a1"/><polyline points="0.61,35.59 3.2,40.33 7.92,36.7" class="tick"/><polygon points="-11.78,52.1 3.98,61.2 3.98,59.9 -11.78,50.8" class="p2"/><polygon points="9.61,57.95 3.98,61.2 3.98,59.9 9.61,56.65" class="p3"/><polygon points="-6.15,47.55 9.61,56.65 3.98,59.9 -11.78,50.8" class="p1"/></svg>
+          </span>
+          <h3 id="distributed-control-title" data-astro-cid-mepd2tdq>Distributed control</h3>
+          <p data-astro-cid-mepd2tdq>Who can participate in the network’s ongoing operation?</p>
+        </div>
+        <div class="model ethereum" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Ethereum</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq>Participation <strong data-astro-cid-mepd2tdq>does not require approval from a central authority</strong></li><li data-astro-cid-mepd2tdq>Anyone meeting the publicly documented technical and economic requirements can help operate the network and verify transactions</li>
+          </ul>
+        </div>
+        <div class="model" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Other public blockchains</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq>Some assign responsibility for verifying transactions to <strong data-astro-cid-mepd2tdq>a predefined, elected, or otherwise limited group</strong></li><li data-astro-cid-mepd2tdq>Coordination may be more direct, but this concentrates operational responsibility and influence among fewer participants</li>
+          </ul>
+        </div>
+      </article><article id="neutral-infrastructure" aria-labelledby="neutral-infrastructure-title" data-astro-cid-mepd2tdq>
+        <div class="quality" data-astro-cid-mepd2tdq>
+          <span class="quality-scene" data-astro-cid-mepd2tdq>
+            <svg class="iso comparison-scene" viewBox="-45.6 -21.2 160.4 113.2" aria-hidden="true" data-astro-cid-umneprz5><polygon points="-41.57,24 69.28,88 69.28,83 -41.57,19" class="k2"/><polygon points="110.85,64 69.28,88 69.28,83 110.85,59" class="k3"/><polygon points="0,-5 110.85,59 69.28,83 -41.57,19" class="k1"/><polygon points="-32.91,19 0,38 0,34 -32.91,15" class="l2"/><polygon points="32.91,19 0,38 0,34 32.91,15" class="l3"/><polygon points="0,-4 32.91,15 0,34 -32.91,15" class="l1"/><polygon points="1.73,39 34.64,58 34.64,52 1.73,33" class="l2"/><polygon points="67.55,39 34.64,58 34.64,52 67.55,33" class="l3"/><polygon points="34.64,14 67.55,33 34.64,52 1.73,33" class="l1"/><polygon points="36.37,59 69.28,78 69.28,74 36.37,55" class="l2"/><polygon points="102.19,59 69.28,78 69.28,74 102.19,55" class="l3"/><polygon points="69.28,36 102.19,55 69.28,74 36.37,55" class="l1"/><polyline points="5.67,-10.98 34.64,19" class="wire"/><polyline points="74.95,29.02 34.64,19" class="wire"/><polygon points="0.61,8.85 9.61,14.05 9.61,12.75 0.61,7.55" class="p2"/><polygon points="15.24,10.8 9.61,14.05 9.61,12.75 15.24,9.5" class="p3"/><polygon points="6.24,4.3 15.24,9.5 9.61,12.75 0.61,7.55" class="p1"/><polygon points="6.24,8.2 8.49,9.5 8.49,3 6.24,1.7" class="p2"/><polygon points="10.74,8.2 8.49,9.5 8.49,3 10.74,1.7" class="p3"/><polygon points="8.49,0.4 10.74,1.7 8.49,3 6.24,1.7" class="p1"/><polygon points="-5.02,0.4 12.99,10.8 12.99,-4.8 -5.02,-15.2" class="p2"/><polygon points="16.37,8.85 12.99,10.8 12.99,-4.8 16.37,-6.75" class="p3"/><polygon points="-1.65,-17.15 16.37,-6.75 12.99,-4.8 -5.02,-15.2" class="p1"/><polygon points="-3.33,-0.58 11.3,7.88 11.3,-3.82 -3.33,-12.28" class="screen"/><polygon points="-3.33,-0.58 11.3,7.88 11.3,-3.82 -3.33,-12.28" class="a1"/><polyline points="0.61,-4.41 3.2,0.34 7.92,-3.3" class="tick"/><polygon points="-11.78,12.1 3.98,21.2 3.98,19.9 -11.78,10.8" class="p2"/><polygon points="9.61,17.95 3.98,21.2 3.98,19.9 9.61,16.65" class="p3"/><polygon points="-6.15,7.55 9.61,16.65 3.98,19.9 -11.78,10.8" class="p1"/><polygon points="20.78,33 34.64,41 34.64,31 20.78,23" class="p2"/><polygon points="48.5,33 34.64,41 34.64,31 48.5,23" class="p3"/><polygon points="34.64,15 48.5,23 34.64,31 20.78,23" class="p1"/><polygon points="27.71,23 34.64,27 34.64,23 27.71,19" class="a2"/><polygon points="41.57,23 34.64,27 34.64,23 41.57,19" class="a3"/><polygon points="34.64,15 41.57,19 34.64,23 27.71,19" class="a1"/><polygon points="69.89,48.85 78.89,54.05 78.89,52.75 69.89,47.55" class="p2"/><polygon points="84.52,50.8 78.89,54.05 78.89,52.75 84.52,49.5" class="p3"/><polygon points="75.52,44.3 84.52,49.5 78.89,52.75 69.89,47.55" class="p1"/><polygon points="75.52,48.2 77.77,49.5 77.77,43 75.52,41.7" class="p2"/><polygon points="80.02,48.2 77.77,49.5 77.77,43 80.02,41.7" class="p3"/><polygon points="77.77,40.4 80.02,41.7 77.77,43 75.52,41.7" class="p1"/><polygon points="64.26,40.4 82.27,50.8 82.27,35.2 64.26,24.8" class="p2"/><polygon points="85.65,48.85 82.27,50.8 82.27,35.2 85.65,33.25" class="p3"/><polygon points="67.64,22.85 85.65,33.25 82.27,35.2 64.26,24.8" class="p1"/><polygon points="65.95,39.42 80.58,47.87 80.58,36.17 65.95,27.72" class="screen"/><polygon points="65.95,39.42 80.58,47.87 80.58,36.17 65.95,27.72" class="a1"/><polyline points="69.89,35.59 72.48,40.33 77.21,36.7" class="tick"/><polygon points="57.5,52.1 73.27,61.2 73.27,59.9 57.5,50.8" class="p2"/><polygon points="78.89,57.95 73.27,61.2 73.27,59.9 78.89,56.65" class="p3"/><polygon points="63.13,47.55 78.89,56.65 73.27,59.9 57.5,50.8" class="p1"/></svg>
+          </span>
+          <h3 id="neutral-infrastructure-title" data-astro-cid-mepd2tdq>Governance</h3>
+          <p data-astro-cid-mepd2tdq>Who has the authority to change the rules?</p>
+        </div>
+        <div class="model ethereum" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Ethereum</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq><strong data-astro-cid-mepd2tdq>No single organization can impose changes</strong></li><li data-astro-cid-mepd2tdq>Changes to network rules can be proposed, reviewed, and debated through an open community process</li>
+          </ul>
+        </div>
+        <div class="model" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Other public blockchains</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq>Some give a foundation, committee, or other defined group <strong data-astro-cid-mepd2tdq>more direct authority over network changes</strong></li><li data-astro-cid-mepd2tdq>Decisions may be faster or more coordinated, but this creates greater dependence on that governing body</li>
+          </ul>
+        </div>
+      </article>
+</div>
+      <p class="report" id="openzeppelin-reference" data-astro-cid-st3hiyea>
+        For a broader technical assessment of blockchain networks, see OpenZeppelin’s
+        <a href="https://v2ethereumpublicinterest.vercel.app/docs/openzeppelin-technical-risk-assessment.pdf" target="_blank" rel="noopener noreferrer" aria-describedby="report-new-tab" data-astro-cid-st3hiyea>Technical Risk Assessment on Blockchain Networks (2026)</a><span class="sr-only" id="report-new-tab" data-astro-cid-st3hiyea> PDF, opens in a new tab.</span>
+      </p>
+    </div>
+  </section>
+
+  <section id="permissioned-blockchains" aria-labelledby="permissioned-title" data-astro-cid-st3hiyea="true" data-astro-cid-cpczvml2="true" class="field-section section">
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+
+
+
+
+
+  
+    <div class="wrap" data-astro-cid-st3hiyea>
+      <div class="split" data-astro-cid-st3hiyea>
+        <h2 id="permissioned-title" class="section-title" data-astro-cid-st3hiyea>How Ethereum compares with private blockchains</h2>
+        <div class="prose" data-astro-cid-st3hiyea>
+          <p data-astro-cid-st3hiyea>
+            Comparing Ethereum with private blockchains involves more than assessing technical capabilities. The
+            arrangements underlying shared infrastructure can also have important implications for institutional autonomy
+            and long-term continuity.
+          </p>
+        </div>
+      </div>
+      <div class="comparison" data-astro-cid-mepd2tdq>
+  <article id="open-participation" aria-labelledby="open-participation-title" data-astro-cid-mepd2tdq>
+        <div class="quality" data-astro-cid-mepd2tdq>
+          <span class="quality-scene" data-astro-cid-mepd2tdq>
+            <svg class="iso comparison-scene" viewBox="-45.6 -21.2 160.4 113.2" aria-hidden="true" data-astro-cid-umneprz5><polygon points="-41.57,24 69.28,88 69.28,83 -41.57,19" class="k2"/><polygon points="110.85,64 69.28,88 69.28,83 110.85,59" class="k3"/><polygon points="0,-5 110.85,59 69.28,83 -41.57,19" class="k1"/><polygon points="-32.91,19 0,38 0,34 -32.91,15" class="l2"/><polygon points="32.91,19 0,38 0,34 32.91,15" class="l3"/><polygon points="0,-4 32.91,15 0,34 -32.91,15" class="l1"/><polygon points="1.73,39 34.64,58 34.64,52 1.73,33" class="l2"/><polygon points="67.55,39 34.64,58 34.64,52 67.55,33" class="l3"/><polygon points="34.64,14 67.55,33 34.64,52 1.73,33" class="l1"/><polygon points="36.37,59 69.28,78 69.28,74 36.37,55" class="l2"/><polygon points="102.19,59 69.28,78 69.28,74 102.19,55" class="l3"/><polygon points="69.28,36 102.19,55 69.28,74 36.37,55" class="l1"/><polyline points="5.67,-10.98 40.31,7.02" class="wire"/><polygon points="0.61,8.85 9.61,14.05 9.61,12.75 0.61,7.55" class="p2"/><polygon points="15.24,10.8 9.61,14.05 9.61,12.75 15.24,9.5" class="p3"/><polygon points="6.24,4.3 15.24,9.5 9.61,12.75 0.61,7.55" class="p1"/><polygon points="6.24,8.2 8.49,9.5 8.49,3 6.24,1.7" class="p2"/><polygon points="10.74,8.2 8.49,9.5 8.49,3 10.74,1.7" class="p3"/><polygon points="8.49,0.4 10.74,1.7 8.49,3 6.24,1.7" class="p1"/><polygon points="-5.02,0.4 12.99,10.8 12.99,-4.8 -5.02,-15.2" class="p2"/><polygon points="16.37,8.85 12.99,10.8 12.99,-4.8 16.37,-6.75" class="p3"/><polygon points="-1.65,-17.15 16.37,-6.75 12.99,-4.8 -5.02,-15.2" class="p1"/><polygon points="-3.33,-0.58 11.3,7.88 11.3,-3.82 -3.33,-12.28" class="screen"/><polygon points="-3.33,-0.58 11.3,7.88 11.3,-3.82 -3.33,-12.28" class="a1"/><polyline points="0.61,-4.41 3.2,0.34 7.92,-3.3" class="tick"/><polygon points="-11.78,12.1 3.98,21.2 3.98,19.9 -11.78,10.8" class="p2"/><polygon points="9.61,17.95 3.98,21.2 3.98,19.9 9.61,16.65" class="p3"/><polygon points="-6.15,7.55 9.61,16.65 3.98,19.9 -11.78,10.8" class="p1"/><polygon points="35.25,26.85 44.25,32.05 44.25,30.75 35.25,25.55" class="p2"/><polygon points="49.88,28.8 44.25,32.05 44.25,30.75 49.88,27.5" class="p3"/><polygon points="40.88,22.3 49.88,27.5 44.25,30.75 35.25,25.55" class="p1"/><polygon points="40.88,26.2 43.13,27.5 43.13,21 40.88,19.7" class="p2"/><polygon points="45.38,26.2 43.13,27.5 43.13,21 45.38,19.7" class="p3"/><polygon points="43.13,18.4 45.38,19.7 43.13,21 40.88,19.7" class="p1"/><polygon points="29.62,18.4 47.63,28.8 47.63,13.2 29.62,2.8" class="p2"/><polygon points="51.01,26.85 47.63,28.8 47.63,13.2 51.01,11.25" class="p3"/><polygon points="33,0.85 51.01,11.25 47.63,13.2 29.62,2.8" class="p1"/><polygon points="31.31,17.42 45.94,25.87 45.94,14.17 31.31,5.72" class="screen"/><polygon points="31.31,17.42 45.94,25.87 45.94,14.17 31.31,5.72" class="a1"/><polyline points="35.25,13.59 37.84,18.34 42.57,14.7" class="tick"/><polygon points="22.86,30.1 38.62,39.2 38.62,37.9 22.86,28.8" class="p2"/><polygon points="44.25,35.95 38.62,39.2 38.62,37.9 44.25,34.65" class="p3"/><polygon points="28.49,25.55 44.25,34.65 38.62,37.9 22.86,28.8" class="p1"/><polyline points="40.31,7.02 74.95,15.02" class="wire-lit"/><polygon points="69.89,34.85 78.89,40.05 78.89,38.75 69.89,33.55" class="p2"/><polygon points="84.52,36.8 78.89,40.05 78.89,38.75 84.52,35.5" class="p3"/><polygon points="75.52,30.3 84.52,35.5 78.89,38.75 69.89,33.55" class="p1"/><polygon points="75.52,34.2 77.77,35.5 77.77,29 75.52,27.7" class="p2"/><polygon points="80.02,34.2 77.77,35.5 77.77,29 80.02,27.7" class="p3"/><polygon points="77.77,26.4 80.02,27.7 77.77,29 75.52,27.7" class="p1"/><polygon points="64.26,26.4 82.27,36.8 82.27,21.2 64.26,10.8" class="p2"/><polygon points="85.65,34.85 82.27,36.8 82.27,21.2 85.65,19.25" class="p3"/><polygon points="67.64,8.85 85.65,19.25 82.27,21.2 64.26,10.8" class="p1"/><polygon points="65.95,25.42 80.58,33.87 80.58,22.17 65.95,13.72" class="screen"/><polygon points="65.95,25.42 80.58,33.87 80.58,22.17 65.95,13.72" class="a1"/><polyline points="69.89,21.59 72.48,26.33 77.21,22.7" class="tick"/><polygon points="57.5,38.1 73.27,47.2 73.27,45.9 57.5,36.8" class="p2"/><polygon points="78.89,43.95 73.27,47.2 73.27,45.9 78.89,42.65" class="p3"/><polygon points="63.13,33.55 78.89,42.65 73.27,45.9 57.5,36.8" class="p1"/></svg>
+          </span>
+          <h3 id="open-participation-title" data-astro-cid-mepd2tdq>Network operation</h3>
+          <p data-astro-cid-mepd2tdq>Who can take part in operating the network?</p>
+        </div>
+        <div class="model ethereum" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Ethereum</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq>Participation <strong data-astro-cid-mepd2tdq>does not require approval from a central authority</strong></li><li data-astro-cid-mepd2tdq>Anyone meeting the publicly documented technical and economic requirements can help operate the network and verify transactions</li>
+          </ul>
+        </div>
+        <div class="model" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Private blockchains</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq>Network operation is <strong data-astro-cid-mepd2tdq>limited to organizations or individuals approved</strong> under the governance arrangements</li><li data-astro-cid-mepd2tdq>Continued participation depends on those responsible for granting and maintaining access</li>
+          </ul>
+        </div>
+      </article><article id="independent-verification" aria-labelledby="independent-verification-title" data-astro-cid-mepd2tdq>
+        <div class="quality" data-astro-cid-mepd2tdq>
+          <span class="quality-scene" data-astro-cid-mepd2tdq>
+            <svg class="iso comparison-scene" viewBox="-45.6 -21.2 125.8 93.2" aria-hidden="true" data-astro-cid-umneprz5><polygon points="-41.57,24 34.64,68 34.64,63 -41.57,19" class="k2"/><polygon points="76.21,44 34.64,68 34.64,63 76.21,39" class="k3"/><polygon points="0,-5 76.21,39 34.64,63 -41.57,19" class="k1"/><polygon points="-32.91,19 0,38 0,34 -32.91,15" class="l2"/><polygon points="32.91,19 0,38 0,34 32.91,15" class="l3"/><polygon points="0,-4 32.91,15 0,34 -32.91,15" class="l1"/><polygon points="1.73,39 34.64,58 34.64,52 1.73,33" class="l2"/><polygon points="67.55,39 34.64,58 34.64,52 67.55,33" class="l3"/><polygon points="34.64,14 67.55,33 34.64,52 1.73,33" class="l1"/><polyline points="5.67,-10.98 34.64,15" class="wire-lit"/><polygon points="0.61,8.85 9.61,14.05 9.61,12.75 0.61,7.55" class="p2"/><polygon points="15.24,10.8 9.61,14.05 9.61,12.75 15.24,9.5" class="p3"/><polygon points="6.24,4.3 15.24,9.5 9.61,12.75 0.61,7.55" class="p1"/><polygon points="6.24,8.2 8.49,9.5 8.49,3 6.24,1.7" class="p2"/><polygon points="10.74,8.2 8.49,9.5 8.49,3 10.74,1.7" class="p3"/><polygon points="8.49,0.4 10.74,1.7 8.49,3 6.24,1.7" class="p1"/><polygon points="-5.02,0.4 12.99,10.8 12.99,-4.8 -5.02,-15.2" class="p2"/><polygon points="16.37,8.85 12.99,10.8 12.99,-4.8 16.37,-6.75" class="p3"/><polygon points="-1.65,-17.15 16.37,-6.75 12.99,-4.8 -5.02,-15.2" class="p1"/><polygon points="-3.33,-0.58 11.3,7.88 11.3,-3.82 -3.33,-12.28" class="screen"/><polygon points="-3.33,-0.58 11.3,7.88 11.3,-3.82 -3.33,-12.28" class="a1"/><polyline points="0.61,-4.41 3.2,0.34 7.92,-3.3" class="tick"/><polygon points="-11.78,12.1 3.98,21.2 3.98,19.9 -11.78,10.8" class="p2"/><polygon points="9.61,17.95 3.98,21.2 3.98,19.9 9.61,16.65" class="p3"/><polygon points="-6.15,7.55 9.61,16.65 3.98,19.9 -11.78,10.8" class="p1"/><polygon points="20.78,33 34.64,41 34.64,35 20.78,27" class="p2"/><polygon points="48.5,33 34.64,41 34.64,35 48.5,27" class="p3"/><polygon points="34.64,19 48.5,27 34.64,35 20.78,27" class="p1"/><polygon points="20.78,27 34.64,35 34.64,29 20.78,21" class="p2"/><polygon points="48.5,27 34.64,35 34.64,29 48.5,21" class="p3"/><polygon points="34.64,13 48.5,21 34.64,29 20.78,21" class="p1"/><polygon points="20.78,21 34.64,29 34.64,23 20.78,15" class="a2"/><polygon points="48.5,21 34.64,29 34.64,23 48.5,15" class="a3"/><polygon points="34.64,7 48.5,15 34.64,23 20.78,15" class="a1"/></svg>
+          </span>
+          <h3 id="independent-verification-title" data-astro-cid-mepd2tdq>Independent verification</h3>
+          <p data-astro-cid-mepd2tdq>Who can independently verify the shared record?</p>
+        </div>
+        <div class="model ethereum" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Ethereum</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq>Public record can be independently verified <strong data-astro-cid-mepd2tdq>without relying on a single institution or provider</strong></li><li data-astro-cid-mepd2tdq>Institutions can run their own software to check that transactions and changes to the shared record follow the network’s rules</li>
+          </ul>
+        </div>
+        <div class="model" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Private blockchains</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq>Verification may be <strong data-astro-cid-mepd2tdq>limited to approved participants</strong> or depend on infrastructure operated by a consortium</li><li data-astro-cid-mepd2tdq>Independent verification depends on the network’s governance, access arrangements, and continued availability</li>
+          </ul>
+        </div>
+      </article><article id="institutional-authority" aria-labelledby="institutional-authority-title" data-astro-cid-mepd2tdq>
+        <div class="quality" data-astro-cid-mepd2tdq>
+          <span class="quality-scene" data-astro-cid-mepd2tdq>
+            <svg class="iso comparison-scene" viewBox="-45.6 -30.0 125.8 102.0" aria-hidden="true" data-astro-cid-umneprz5><polygon points="-41.57,24 34.64,68 34.64,63 -41.57,19" class="k2"/><polygon points="76.21,44 34.64,68 34.64,63 76.21,39" class="k3"/><polygon points="0,-5 76.21,39 34.64,63 -41.57,19" class="k1"/><polygon points="-32.91,19 0,38 0,32 -32.91,13" class="l2"/><polygon points="32.91,19 0,38 0,32 32.91,13" class="l3"/><polygon points="0,-6 32.91,13 0,32 -32.91,13" class="l1"/><polygon points="1.73,39 34.64,58 34.64,54 1.73,35" class="l2"/><polygon points="67.55,39 34.64,58 34.64,54 67.55,35" class="l3"/><polygon points="34.64,16 67.55,35 34.64,54 1.73,35" class="l1"/><polygon points="-20.78,14 -1.73,25 -1.73,3 -20.78,-8" class="p2"/><polygon points="20.78,12 -1.73,25 -1.73,3 20.78,-10" class="p3"/><polygon points="1.73,-21 20.78,-10 -1.73,3 -20.78,-8" class="p1"/><polygon points="-24.25,-8 -1.73,5 -1.73,2 -24.25,-11" class="p2"/><polygon points="24.25,-10 -1.73,5 -1.73,2 24.25,-13" class="p3"/><polygon points="1.73,-26 24.25,-13 -1.73,2 -24.25,-11" class="p1"/><polyline points="9.53,4.5 25.11,14.5" class="wire"/><polygon points="18.19,31.5 28.58,37.5 28.58,26.5 18.19,20.5" class="p2"/><polygon points="38.97,31.5 28.58,37.5 28.58,26.5 38.97,20.5" class="p3"/><polygon points="28.58,14.5 38.97,20.5 28.58,26.5 18.19,20.5" class="p1"/><polygon points="32.04,31.5 35.51,33.5 35.51,30.5 32.04,28.5" class="p2"/><polygon points="38.97,31.5 35.51,33.5 35.51,30.5 38.97,28.5" class="p3"/><polygon points="35.51,26.5 38.97,28.5 35.51,30.5 32.04,28.5" class="p1"/><polygon points="32.04,39.5 42.44,45.5 42.44,34.5 32.04,28.5" class="a2"/><polygon points="52.83,39.5 42.44,45.5 42.44,34.5 52.83,28.5" class="a3"/><polygon points="42.44,22.5 52.83,28.5 42.44,34.5 32.04,28.5" class="a1"/></svg>
+          </span>
+          <h3 id="institutional-authority-title" data-astro-cid-mepd2tdq>Distribution of authority</h3>
+          <p data-astro-cid-mepd2tdq>Who controls the network and how it is used?</p>
+        </div>
+        <div class="model ethereum" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Ethereum</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq>The network is operated by independent participants, <strong data-astro-cid-mepd2tdq>without any single institution controlling its shared rules</strong></li><li data-astro-cid-mepd2tdq>Institutions retain authority over their own policies, access requirements, and operational decisions when building systems on Ethereum</li>
+          </ul>
+        </div>
+        <div class="model" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Private blockchains</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq><strong data-astro-cid-mepd2tdq>Designated operators or a governing body have authority</strong> over participation and network changes</li><li data-astro-cid-mepd2tdq>Continued access and operation depend on the governance arrangements and cooperation of those responsible for the network</li>
+          </ul>
+        </div>
+      </article><article id="operating-costs-and-continuity" aria-labelledby="operating-costs-and-continuity-title" data-astro-cid-mepd2tdq>
+        <div class="quality" data-astro-cid-mepd2tdq>
+          <span class="quality-scene" data-astro-cid-mepd2tdq>
+            <svg class="iso comparison-scene" viewBox="-80.2 -9.0 195.1 121.0" aria-hidden="true" data-astro-cid-umneprz5><polygon points="-76.21,44 34.64,108 34.64,103 -76.21,39" class="k2"/><polygon points="110.85,64 34.64,108 34.64,103 110.85,59" class="k3"/><polygon points="0,-5 110.85,59 34.64,103 -76.21,39" class="k1"/><polygon points="-32.91,19 69.28,78 69.28,74 -32.91,15" class="l2"/><polygon points="102.19,59 69.28,78 69.28,74 102.19,55" class="l3"/><polygon points="0,-4 102.19,55 69.28,74 -32.91,15" class="l1"/><polygon points="-12.99,13.5 -2.6,19.5 -2.6,8.5 -12.99,2.5" class="p2"/><polygon points="7.79,13.5 -2.6,19.5 -2.6,8.5 7.79,2.5" class="p3"/><polygon points="-2.6,-3.5 7.79,2.5 -2.6,8.5 -12.99,2.5" class="p1"/><polygon points="0.87,13.5 12.99,20.5 12.99,17.5 0.87,10.5" class="p2"/><polygon points="16.45,18.5 12.99,20.5 12.99,17.5 16.45,15.5" class="p3"/><polygon points="4.33,8.5 16.45,15.5 12.99,17.5 0.87,10.5" class="p1"/><polygon points="9.53,26.5 19.92,32.5 19.92,21.5 9.53,15.5" class="p2"/><polygon points="30.31,26.5 19.92,32.5 19.92,21.5 30.31,15.5" class="p3"/><polygon points="19.92,9.5 30.31,15.5 19.92,21.5 9.53,15.5" class="p1"/><polygon points="23.38,26.5 35.51,33.5 35.51,30.5 23.38,23.5" class="p2"/><polygon points="38.97,31.5 35.51,33.5 35.51,30.5 38.97,28.5" class="p3"/><polygon points="26.85,21.5 38.97,28.5 35.51,30.5 23.38,23.5" class="p1"/><polygon points="32.04,39.5 42.44,45.5 42.44,34.5 32.04,28.5" class="p2"/><polygon points="52.83,39.5 42.44,45.5 42.44,34.5 52.83,28.5" class="p3"/><polygon points="42.44,22.5 52.83,28.5 42.44,34.5 32.04,28.5" class="p1"/><polygon points="45.9,39.5 58.02,46.5 58.02,43.5 45.9,36.5" class="p2"/><polygon points="61.49,44.5 58.02,46.5 58.02,43.5 61.49,41.5" class="p3"/><polygon points="49.36,34.5 61.49,41.5 58.02,43.5 45.9,36.5" class="p1"/><polygon points="54.56,52.5 64.95,58.5 64.95,47.5 54.56,41.5" class="a2"/><polygon points="75.34,52.5 64.95,58.5 64.95,47.5 75.34,41.5" class="a3"/><polygon points="64.95,35.5 75.34,41.5 64.95,47.5 54.56,41.5" class="a1"/><polygon points="-32.91,59 0,78 0,72 -32.91,53" class="l2"/><polygon points="32.91,59 0,78 0,72 32.91,53" class="l3"/><polygon points="0,34 32.91,53 0,72 -32.91,53" class="l1"/><polyline points="5.67,27.02 37.24,21.5" class="wire"/><polygon points="0.61,46.85 9.61,52.05 9.61,50.75 0.61,45.55" class="p2"/><polygon points="15.24,48.8 9.61,52.05 9.61,50.75 15.24,47.5" class="p3"/><polygon points="6.24,42.3 15.24,47.5 9.61,50.75 0.61,45.55" class="p1"/><polygon points="6.24,46.2 8.49,47.5 8.49,41 6.24,39.7" class="p2"/><polygon points="10.74,46.2 8.49,47.5 8.49,41 10.74,39.7" class="p3"/><polygon points="8.49,38.4 10.74,39.7 8.49,41 6.24,39.7" class="p1"/><polygon points="-5.02,38.4 12.99,48.8 12.99,33.2 -5.02,22.8" class="p2"/><polygon points="16.37,46.85 12.99,48.8 12.99,33.2 16.37,31.25" class="p3"/><polygon points="-1.65,20.85 16.37,31.25 12.99,33.2 -5.02,22.8" class="p1"/><polygon points="-3.33,37.42 11.3,45.87 11.3,34.17 -3.33,25.72" class="screen"/><polygon points="-3.33,37.42 11.3,45.87 11.3,34.17 -3.33,25.72" class="a1"/><polyline points="0.61,33.59 3.2,38.33 7.92,34.7" class="tick"/><polygon points="-11.78,50.1 3.98,59.2 3.98,57.9 -11.78,48.8" class="p2"/><polygon points="9.61,55.95 3.98,59.2 3.98,57.9 9.61,54.65" class="p3"/><polygon points="-6.15,45.55 9.61,54.65 3.98,57.9 -11.78,48.8" class="p1"/></svg>
+          </span>
+          <h3 id="operating-costs-and-continuity-title" data-astro-cid-mepd2tdq>Operating costs and continuity</h3>
+          <p data-astro-cid-mepd2tdq>What is required to keep the network operating over time?</p>
+        </div>
+        <div class="model ethereum" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Ethereum</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq>The network is maintained by independent participants, allowing institutions to use shared infrastructure <strong data-astro-cid-mepd2tdq>without establishing and maintaining a separate blockchain network</strong></li><li data-astro-cid-mepd2tdq>Main costs typically arise from developing and operating applications and supporting infrastructure</li>
+          </ul>
+        </div>
+        <div class="model" data-astro-cid-mepd2tdq>
+          <h4 data-astro-cid-mepd2tdq>Private blockchains</h4>
+          <ul data-astro-cid-mepd2tdq>
+            <li data-astro-cid-mepd2tdq><strong data-astro-cid-mepd2tdq>Ongoing investment is required for infrastructure, security, maintenance, and operations</strong></li><li data-astro-cid-mepd2tdq>Without sustained financial support, institutions may need to assume operating responsibilities or migrate their systems and records</li>
+          </ul>
+        </div>
+      </article>
+</div>
+    </div>
+  
+</section>
+
+    </main>
+    <footer class="site-footer" data-astro-cid-4hfmbvjp>
+  <div class="wrap" data-astro-cid-4hfmbvjp>
+    <a class="lockup" href="../index.html" data-astro-cid-ohkoixbv>
+  <img src="../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+    <div class="attribution" data-astro-cid-4hfmbvjp>
+      <p data-astro-cid-4hfmbvjp>Informational material only—not legal, regulatory, financial, investment, or procurement advice.</p>
+      <p data-astro-cid-4hfmbvjp>The Ethereum Foundation is one participant in the broader Ethereum ecosystem. It does not operate or control Ethereum.</p>
+    </div>
+    <nav aria-label="Footer" data-astro-cid-4hfmbvjp>
+      <a href="https://ethereum.foundation/" target="_blank" rel="noreferrer" data-astro-cid-4hfmbvjp>Ethereum Foundation</a>
+      <a href="../contact/index.html" data-astro-cid-4hfmbvjp>Contact</a>
+    </nav>
+  </div>
+</footer>
+  </body>
+</html>

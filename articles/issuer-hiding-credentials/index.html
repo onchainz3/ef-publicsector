@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Private Credential Verification with Issuer Hiding and Revocation</title>
+    <meta name="description" content="Two registries on Ethereum that let a zero-knowledge proof show a credential's issuer is approved and the credential is not revoked, without naming the issuer.">
+    <link rel="canonical" href="index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Ethereum for digital public infrastructure">
+    <meta property="og:title" content="Private Credential Verification with Issuer Hiding and Revocation">
+    <meta property="og:description" content="Two registries on Ethereum that let a zero-knowledge proof show a credential's issuer is approved and the credential is not revoked, without naming the issuer.">
+    <meta property="og:url" content="https://publicsector.ethereum.foundation/articles/issuer-hiding-credentials/">
+    <meta property="og:image" content="https://publicsector.ethereum.foundation/og/default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Private Credential Verification with Issuer Hiding and Revocation">
+    <meta name="twitter:description" content="Two registries on Ethereum that let a zero-knowledge proof show a credential's issuer is approved and the credential is not revoked, without naming the issuer.">
+    <meta name="twitter:image" content="https://publicsector.ethereum.foundation/og/default.jpg">
+    <!-- Browser chrome (and the iPhone status bar) in the page colour; up to 1119px the sticky
+         header sits on top, a frosted panel of 72% --bg-deep over the page, which comes out at #0b2218. -->
+    <meta name="theme-color" content="#0b2218" media="(max-width: 1119px)">
+    <meta name="theme-color" content="#0f2a1e">
+    
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="sitemap" href="../../sitemap.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@700..800&family=Funnel+Sans:wght@300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../_astro/FieldSection.CZ1fHz-b.css">
+<style>.page-hero[data-astro-cid-tfra22jg]{isolation:isolate;min-height:min(76svh,760px);margin-top:calc(-1 * var(--header-h));padding-left:max(var(--gutter), (100% - var(--wrap-max)) / 2);padding-right:calc(var(--field-edge,38vw) + clamp(20px, 2vw, 32px));border-bottom:1px solid var(--rule);align-items:center;display:grid;position:relative;overflow:hidden}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)) + var(--header-h));border-bottom:0}.page-hero-copy[data-astro-cid-tfra22jg]{z-index:2;padding:calc(var(--header-h) + 48px) 0 72px;justify-items:start;gap:28px;display:grid;position:relative}h1[data-astro-cid-tfra22jg]{letter-spacing:-.02em;max-width:14ch;font-size:clamp(44px,5.4vw,80px);font-weight:800;line-height:1;font-family:'Funnel Display','Funnel Sans',sans-serif}.large[data-astro-cid-tfra22jg] h1[data-astro-cid-tfra22jg]{max-width:none;font-size:clamp(46px,6.4vw,92px);line-height:.98}.page-lead[data-astro-cid-tfra22jg]{max-width:44ch;font-size:clamp(19px,1.6vw,23px);font-weight:300;line-height:1.45}@media (width>=601px){.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:fit-content}}.page-subtitle[data-astro-cid-tfra22jg]{width:0;min-width:100%;color:var(--ink);text-wrap:pretty;margin-top:-8px;font-size:clamp(24px,2.4vw,34px);font-weight:600;line-height:1.2}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg]{width:fit-content}.large[data-astro-cid-tfra22jg] .page-lead[data-astro-cid-tfra22jg]{text-wrap:pretty;width:0;min-width:100%;max-width:none;line-height:1.4}.page-next[data-astro-cid-tfra22jg]{z-index:2;left:max(var(--gutter), (100% - var(--wrap-max)) / 2);width:56px;height:56px;color:var(--muted);place-items:center;margin-left:-14px;transition:color .2s;display:grid;position:absolute;bottom:clamp(24px,4svh,40px)}.page-next[data-astro-cid-tfra22jg]:hover,.page-next[data-astro-cid-tfra22jg]:focus-visible{color:var(--ink)}.page-next[data-astro-cid-tfra22jg] svg[data-astro-cid-tfra22jg]{fill:currentColor;shape-rendering:crispedges;width:28px}h1[data-astro-cid-tfra22jg] .title-follow{color:var(--muted);margin-top:.12em;font-size:.78em;font-weight:300;display:block;font-family:'Funnel Sans','Helvetica Neue',Helvetica,Arial,sans-serif}@media (width>=420px){h1[data-astro-cid-tfra22jg] .title-follow{white-space:nowrap}}@media (width<=960px){.page-hero[data-astro-cid-tfra22jg]{min-height:auto;padding-inline:var(--gutter);margin-top:0}.page-hero[data-astro-cid-tfra22jg].fold{min-height:calc(100svh - var(--header-real,var(--header-h)))}.page-hero-copy[data-astro-cid-tfra22jg]{text-align:center;justify-items:center;gap:20px;padding:calc(clamp(240px,75vw,360px)/1.25 + 32px) 0 64px}.large[data-astro-cid-tfra22jg] .page-hero-copy[data-astro-cid-tfra22jg],.page-hero-copy[data-astro-cid-tfra22jg]:has(.page-subtitle){width:auto}.page-hero-copy[data-astro-cid-tfra22jg]>.button{justify-content:center;justify-self:stretch;width:100%}.page-next[data-astro-cid-tfra22jg]{margin-left:-28px;left:50%}}.page-hero[data-astro-cid-tfra22jg]:has(.page-next) .page-hero-copy[data-astro-cid-tfra22jg]{padding-bottom:120px}
+.pixel-edge[data-astro-cid-wvdxwvx6][hidden]{display:none}.pixel-edge[data-astro-cid-wvdxwvx6]{height:calc(var(--cell) * 4);pointer-events:none;position:absolute;inset:auto 0 0}svg[data-astro-cid-wvdxwvx6]{fill:var(--bg);display:block;position:absolute;bottom:0}.strip[data-astro-cid-wvdxwvx6]{width:100%;height:calc(var(--cell) * 2);left:0}.corner[data-astro-cid-wvdxwvx6]{width:calc(var(--cell) * 7);height:calc(var(--cell) * 4)}.left[data-astro-cid-wvdxwvx6]{left:0}.right[data-astro-cid-wvdxwvx6]{right:0}
+.byline[data-astro-cid-57z6rh23]{color:var(--muted);flex-wrap:wrap;gap:4px 16px;font-size:15px;display:flex}.article-layout[data-astro-cid-57z6rh23]{grid-template-columns:3fr 9fr;align-items:start;gap:48px 72px;display:grid}.article[data-astro-cid-57z6rh23]{grid-column:2;min-width:0}.contents[data-astro-cid-57z6rh23]{position:sticky;top:32px}.contents[data-astro-cid-57z6rh23] ol[data-astro-cid-57z6rh23]{border-bottom:1px solid var(--rule);margin:0;padding:0;list-style:none}.contents[data-astro-cid-57z6rh23] li[data-astro-cid-57z6rh23]+li[data-astro-cid-57z6rh23]{border-top:1px solid var(--rule)}.contents[data-astro-cid-57z6rh23] a[data-astro-cid-57z6rh23]{color:var(--muted);padding:12px 0 10px;font-size:16px;font-weight:600;text-decoration:none;display:block}.contents[data-astro-cid-57z6rh23] a[data-astro-cid-57z6rh23]:hover{color:var(--civic)}.article[data-astro-cid-57z6rh23]{--pad:clamp(24px, 4vw, 56px);padding:var(--pad) var(--pad) calc(var(--pad) + 56px);background:var(--bg-deep);grid-template-columns:minmax(0,1fr);gap:20px;display:grid;position:relative}.article[data-astro-cid-57z6rh23]>:not(.pixel-edge){max-width:68ch}.article[data-astro-cid-57z6rh23] h2{letter-spacing:-.01em;margin-top:clamp(24px,3vw,40px);scroll-margin-top:32px;font-size:clamp(26px,2.4vw,34px);font-weight:600;line-height:1.15}.article[data-astro-cid-57z6rh23] h2:first-child{margin-top:0}.article[data-astro-cid-57z6rh23] h3{margin-top:12px;font-size:21px;font-weight:700;line-height:1.25}.article[data-astro-cid-57z6rh23] :is(p,li){color:var(--muted)}.article[data-astro-cid-57z6rh23] strong{color:var(--ink)}.article[data-astro-cid-57z6rh23] a{overflow-wrap:anywhere;color:var(--ink);text-underline-offset:4px}.article[data-astro-cid-57z6rh23] a:hover{color:var(--civic)}.article[data-astro-cid-57z6rh23] :is(ul,ol){gap:8px;margin:0;padding-left:1.3em;display:grid}.article[data-astro-cid-57z6rh23] blockquote{margin:8px 0;padding-left:24px}.article[data-astro-cid-57z6rh23] blockquote p{color:var(--ink);font-size:20px}.article[data-astro-cid-57z6rh23] img{max-width:100%;height:auto}.article[data-astro-cid-57z6rh23] hr{border:0;border-top:1px solid var(--rule);width:100%;margin:16px 0}.article[data-astro-cid-57z6rh23] code{font-size:.9em}.article[data-astro-cid-57z6rh23] pre{background:var(--bg);padding:16px;font-size:15px;overflow-x:auto}.article[data-astro-cid-57z6rh23] table{border-collapse:collapse;max-width:100%;font-size:16px;display:block;overflow-x:auto}.article[data-astro-cid-57z6rh23] :is(th,td){border-bottom:1px solid var(--rule);text-align:left;padding:10px 16px 8px 0}@media (width<=960px){.byline[data-astro-cid-57z6rh23]{justify-content:center}.article-layout[data-astro-cid-57z6rh23]{grid-template-columns:1fr}.article[data-astro-cid-57z6rh23]{grid-column:auto}.contents[data-astro-cid-57z6rh23]{position:static}}
+</style></head>
+  <body>
+    <a href="index.html#main-content" class="skip-link">Skip to content</a>
+    <header class="site-header" data-astro-cid-sojskbm2>
+  <div class="menu-pixels" aria-hidden="true" data-astro-cid-sojskbm2></div>
+  <a class="lockup" href="../../index.html" data-astro-cid-ohkoixbv>
+  <img src="../../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+  <button class="menu" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-astro-cid-sojskbm2>
+    <span class="menu-label" data-astro-cid-sojskbm2>Menu</span>
+    <svg class="menu-x" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" data-astro-cid-sojskbm2>
+      <path d="M3 3l10 10M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.8" data-astro-cid-sojskbm2></path>
+    </svg>
+  </button>
+  <nav id="site-nav" aria-label="Main" data-astro-cid-sojskbm2>
+    <ul data-astro-cid-sojskbm2>
+      <li class="group" style="--i:0" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-0" data-astro-cid-sojskbm2>
+                Understand Ethereum
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-0" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../../what-is-ethereum/index.html" data-astro-cid-sojskbm2>What is Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../why-ethereum/index.html" data-astro-cid-sojskbm2>Why use Ethereum?</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../evaluating-ethereum/index.html" data-astro-cid-sojskbm2>Evaluating Ethereum</a>
+                  </li>
+              </ul>
+            </li><li style="--i:1" data-astro-cid-sojskbm2>
+              <a href="../../case-studies/index.html" data-astro-cid-sojskbm2>Case studies</a>
+            </li><li style="--i:2" data-astro-cid-sojskbm2>
+              <a href="../../potential-applications/index.html" data-astro-cid-sojskbm2>Potential applications</a>
+            </li><li class="group" style="--i:3" data-astro-cid-sojskbm2>
+              <button aria-expanded="false" aria-controls="nav-group-3" data-astro-cid-sojskbm2>
+                Getting started
+                <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" data-astro-cid-sojskbm2>
+                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sojskbm2></path>
+                </svg>
+              </button>
+              <ul id="nav-group-3" hidden data-astro-cid-sojskbm2>
+                <li data-astro-cid-sojskbm2>
+                    <a href="../../institutional-engagement/index.html" data-astro-cid-sojskbm2>Institutional engagement</a>
+                  </li><li data-astro-cid-sojskbm2>
+                    <a href="../../technical-foundations/index.html" data-astro-cid-sojskbm2>Technical Foundations</a>
+                  </li>
+              </ul>
+            </li><li style="--i:4" data-astro-cid-sojskbm2>
+              <a href="../../resources/index.html" data-astro-cid-sojskbm2>Resources</a>
+            </li>
+      <li style="--i:5" data-astro-cid-sojskbm2><a class="contact" href="../../contact/index.html" data-astro-cid-sojskbm2>Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script type="module">var e=document.querySelector(`.site-header`),t=()=>e.classList.toggle(`is-scrolled`,window.scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),new ResizeObserver(()=>{e.classList.contains(`is-open`)||document.documentElement.style.setProperty(`--header-real`,`${e.getBoundingClientRect().height}px`)}).observe(e);var n=[...e.querySelectorAll(`.group`)],r=e.querySelector(`.menu`),i=e=>n.forEach(t=>{t!==e&&(t.querySelector(`button`).setAttribute(`aria-expanded`,`false`),t.querySelector(`ul`).hidden=!0)});n.forEach(e=>{let t=e.querySelector(`button`);t.addEventListener(`click`,()=>{let n=t.getAttribute(`aria-expanded`)!==`true`;i(e),t.setAttribute(`aria-expanded`,String(n)),e.querySelector(`ul`).hidden=!n}),e.addEventListener(`focusout`,t=>{e.contains(t.relatedTarget)||i()})});var a=matchMedia(`(prefers-reduced-motion: reduce)`),o=e.querySelector(`.menu-pixels`),s=()=>{let e=Math.ceil(innerWidth/40),t=Math.ceil(innerHeight/40),n=e+t;o.replaceChildren(...Array.from({length:e*t},(t,r)=>{let i=r%e,a=Math.floor(r/e),o=document.createElement(`span`);return o.style.cssText=`left:${i*40}px;top:${a*40}px;animation-delay:${Math.round((e-1-i+a)/n*300+Math.random()*70)}ms`,o}))},c=0;r.addEventListener(`click`,()=>{let t=r.getAttribute(`aria-expanded`)!==`true`;if(r.setAttribute(`aria-expanded`,String(t)),r.setAttribute(`aria-label`,t?`Close menu`:`Menu`),clearTimeout(c),e.classList.remove(`is-closing`),t){a.matches||s(),e.classList.add(`is-open`),document.documentElement.classList.add(`menu-open`);return}let n=()=>{e.classList.remove(`is-open`,`is-closing`),document.documentElement.classList.remove(`menu-open`)};if(a.matches)return n();e.classList.add(`is-closing`),c=window.setTimeout(n,200)}),document.addEventListener(`pointerdown`,t=>{e.contains(t.target)||i()}),document.addEventListener(`keydown`,t=>{if(t.key!==`Escape`)return;let a=n.find(e=>e.querySelector(`button`).getAttribute(`aria-expanded`)===`true`);a?(i(),a.querySelector(`button`).focus()):e.classList.contains(`is-open`)&&(r.click(),r.focus())});</script>
+    <main id="main-content">
+      
+  <section class="page-hero" aria-labelledby="page-title" data-astro-cid-tfra22jg>
+  <div class="page-hero-copy" data-astro-cid-tfra22jg>
+    <a class="back" href="../../resources/index.html#articles" data-astro-cid-57z6rh23><span aria-hidden="true" data-astro-cid-57z6rh23>←</span> All articles</a>
+    <h1 id="page-title" data-astro-cid-tfra22jg>Private Credential Verification with Issuer Hiding and Revocation</h1>
+    
+    <p class="page-lead" data-astro-cid-tfra22jg>Two registries on Ethereum that let a zero-knowledge proof show a credential&#39;s issuer is approved and the credential is not revoked, without naming the issuer.</p>
+    
+    
+    <p class="byline" data-astro-cid-57z6rh23>
+      <time datetime="2026-11-03" data-astro-cid-57z6rh23>3 November 2026</time>
+      <span data-astro-cid-57z6rh23>Vivian Plasencia and Vikas Rushi · Technical Foundations</span>
+    </p>
+  
+  </div>
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+<div class="field-edge" aria-hidden="true" data-src="../../library-loggia.webp" data-focus="0.65" data-from="top" data-stack="960" data-astro-cid-4qlbhge2></div>
+
+
+
+<script type="module" src="../../_astro/PixelField.astro_astro_type_script_index_0_lang.CiVv8QY2.js"></script>
+  
+</section>
+
+
+
+<script type="module">for(let e of document.querySelectorAll(`.page-next`))e.addEventListener(`click`,t=>{let n=document.querySelector(e.getAttribute(`href`));if(!n)return;t.preventDefault();let r=!matchMedia(`(prefers-reduced-motion: reduce)`).matches;n.scrollIntoView({behavior:r?`smooth`:`auto`}),history.replaceState(null,``,e.hash)});</script>
+
+  <script type="module">for(let e of document.querySelectorAll(`.pixel-edge`)){let t=e.parentElement;t.style.mask=e.dataset.mask,t.style.webkitMask=e.dataset.mask,e.hidden=!0}</script><div data-astro-cid-57z6rh23="true" data-astro-cid-cpczvml2="true" class="field-section section">
+  <div class="pixel-field" aria-hidden="true" data-astro-cid-4qlbhge2><canvas data-astro-cid-4qlbhge2></canvas></div>
+
+
+
+
+
+  
+    <div class="wrap article-layout" data-astro-cid-57z6rh23>
+      <nav class="contents" aria-label="On this page" data-astro-cid-57z6rh23>
+            <ol data-astro-cid-57z6rh23>
+              <li data-astro-cid-57z6rh23>
+                  <a href="index.html#summary" data-astro-cid-57z6rh23>Summary</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#the-problem" data-astro-cid-57z6rh23>The problem</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#why-it-matters" data-astro-cid-57z6rh23>Why it matters</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#what-we-built" data-astro-cid-57z6rh23>What we built</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#how-it-is-different" data-astro-cid-57z6rh23>How it is different</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#what-an-adopter-gets" data-astro-cid-57z6rh23>What an adopter gets</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#use-cases" data-astro-cid-57z6rh23>Use cases</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#limitations-and-next-steps" data-astro-cid-57z6rh23>Limitations and next steps</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#try-it-talk-to-us" data-astro-cid-57z6rh23>Try it, talk to us</a>
+                </li><li data-astro-cid-57z6rh23>
+                  <a href="index.html#sources" data-astro-cid-57z6rh23>Sources</a>
+                </li>
+            </ol>
+          </nav>
+      <article class="article" data-astro-cid-57z6rh23>
+        <p>This post was kindly reviewed by <a href="https://github.com/moven0831" target="_blank" rel="noopener noreferrer">Moven</a>, <a href="https://x.com/0xZoey" target="_blank" rel="noopener noreferrer">Zoey</a>, Nam, and <a href="https://github.com/JohnGuilding" target="_blank" rel="noopener noreferrer">John Guilding</a>.</p>
+<p>The article is part of a series on decentralised identity and private payments for humanitarian assistance on Ethereum. Read the overview: <a href="../decentralized-identity-and-private-payments/index.html">Decentralized Identity and Private Payments on Ethereum</a>.</p>
+<h2 id="summary">Summary</h2>
+<p>When one organisation approves a person and another checks that approval, the check often reveals more than what is required: the verifier learns who issued the credential, and a revocation lookup can tell the issuer where the credential is used. We built two registries on Ethereum that address both for zero-knowledge credentials. An approved-issuer set lets a proof show that its issuer is in the set without revealing it, and one shared revocation registry lets the same proof show that the credential is absent from the revoked list. Verification runs off chain and costs no gas. We built both for a humanitarian aid pilot, and ran them on testnet with two network members.</p>
+<h2 id="the-problem">The problem</h2>
+<p>The pilot we built for is an aid distribution coordination network. Several organisations approve beneficiaries for their own programmes, and a service run by one organisation may need to know whether another has approved a person. In the pilot’s prior setup, organisations confirmed eligibility by exchanging beneficiary records with each other, and verifiers queried a list held by one operator.</p>
+<p>A verifying service needs five pieces of information:</p>
+<ol>
+<li>The approval came from an organisation the network trusts</li>
+<li>It covers the programme and country the service runs</li>
+<li>It is within its validity period</li>
+<li>It has not been revoked</li>
+<li>The person presenting it controls the keys bound to the credential</li>
+</ol>
+<p>The service does not need the person’s record, and if it accepts approval from any organisation in a trusted group, it does not need the name of the approving organisation either.</p>
+<p><img src="issuer-hiding-overview.png" alt="Any approved issuer can issue the credential. The service that checks it asks only whether it is valid."></p>
+<p><em>Any approved issuer can issue the credential. The service that checks it asks only whether it is valid.</em></p>
+<p>Signed credentials remove the record exchange, because the person carries the approval and presents it. Two leaks remain in common designs. To check a signature, the verifier needs the issuer’s public key, so every presentation reveals the issuer. To check revocation, the verifier either asks the issuer, which can tell the issuer where and when the credential is used, or reads a status entry that the credential points to. That entry is the same in every presentation, so verifiers can link presentations by it.</p>
+<p>A zero-knowledge proof can hide the credential, but the proof still has to be checked against a list of trusted issuers and a list of revoked credentials. If each issuer keeps its own lists, the list a verifier checks names the issuer again.</p>
+<p>When someone uses a credential to access a service, the verifier needs to know that it came from a trusted organisation and hasn’t been revoked. But verifying those facts shouldn’t require revealing which organisation issued it or notifying the issuer each time it’s used.</p>
+<p>For example, a person might need to prove they’re eligible to attend an event or access a service. The verifier only needs to know that an approved organisation issued a valid credential, not which one.</p>
+<p>This led us to a question: <strong>How can someone prove that an approved organisation issued their unrevoked credential, without revealing the issuer or allowing the issuer to learn where it’s used?</strong></p>
+<h2 id="why-it-matters">Why it matters</h2>
+<p>The same problem appears wherever multiple organisations approve people independently and need to accept each other’s approvals. The project’s <a href="https://github.com/ethereum/coordination-network/blob/main/apps/docs/docs/use-cases.mdx" target="_blank" rel="noopener noreferrer">use-case notes</a> walk through assistance programmes run by several agencies, professional licensing across regulators, and concessions granted by several assessment bodies. For example in the licensing use case, a regulator’s identity can itself reveal a person’s profession.</p>
+<p>Revocation adds a second layer of complexity. Credentials may expire when programmes close or circumstances change. A verifier that cannot check withdrawal privately either accepts credentials that may have lapsed or requires communication with the issuer, which reveals to the issuer where the credential is used.</p>
+<p>In the pilot’s prior setup, each record exchange copied a person’s data to a secondary organisation, and the operator holding the list saw every eligibility check.</p>
+<h2 id="what-we-built">What we built</h2>
+<p>We built two registries and the circuit checks that consume them. The approved-issuer set holds the signing keys of approved issuers, and the revocation registry holds commitments of revoked credentials. Inside one zero-knowledge proof, a holder shows that its credential’s issuer key is in the first and that its revocation commitment is absent from the second. Network governance decides who may issue, and each issuer decides whom to approve and what to revoke. The registries depend on Ethereum for shared state, ZK-Kit’s Noir Merkle libraries for the in-circuit checks, and Semaphore for anonymous write authorisation.</p>
+<p><img src="credential-flow.png" alt="Sequence diagram: the issuing organization sends a fresh challenge, the holder’s phone returns key-control signatures and commitments, the organization issues a signed credential. Later a verifier requests an eligibility proof with a fresh challenge, the phone returns a zero-knowledge proof, and the verifier checks it against accepted registry roots."></p>
+<p>Issuance writes nothing on chain. A verifier reads two roots and never contacts the issuer.</p>
+<p>The approved-issuer set is a LeanIMT, an incremental Merkle tree, whose leaves are Poseidon hashes of issuers’ Baby Jubjub public keys. <a href="https://github.com/ethereum/coordination-network/blob/main/packages/contracts/src/ApprovedIssuerSet.sol" target="_blank" rel="noopener noreferrer">ApprovedIssuerSet.sol</a> holds it on chain. Each member can publish up to eight keys from its own auth address, and governance can retire any of them, which turns its leaf to zero. A holder reads every leaf and builds its membership witness locally, so it never asks which leaf is its issuer’s. In the circuit, the key that verifies the credential’s EdDSA signature is the key hashed into the Merkle path, and only the resulting root is public.</p>
+<p>The revocation registry is a LeanIMT+, a Merkle tree from PSE that supports non-membership proofs. At issuance, the holder’s phone generates a 32-byte secret <code>r</code> and sends the issuer a commitment to it, with the matching public key and a signature proving ownership. The issuer signs the commitment into the credential and records it. Revoking means publishing that commitment to the tree. At presentation, the holder proves that the commitment is absent from the tree and that it holds the key behind it. The issuer never holds <code>r</code>, so it cannot produce that proof for the holder.</p>
+<p><img src="credential-issuance.png" alt="Issuance: the phone proves control of its keys, including the revocation key, and stores the signed credential."></p>
+<p><em>Issuance: the phone proves control of its keys, including the revocation key, and stores the signed credential.</em></p>
+<p>The network keeps a single revocation registry shared by all issuers, because a per-issuer registry would name the issuer as soon as a verifier chose which one to query. <a href="https://github.com/ethereum/coordination-network/blob/main/packages/contracts/src/CredentialRevocationRegistry.sol" target="_blank" rel="noopener noreferrer">CredentialRevocationRegistry</a> therefore checks a root with no registry argument. Each write carries an anonymous Semaphore proof that an approved member sent it. Sent from a fresh address through a bundler that several members share, a revocation shows on chain that a member acted, without showing which one.</p>
+<p>Both contracts accept the current root and any root superseded within a window each deployment sets, one hour by default, so a proof built just before an update still verifies. The credential SDK returns both roots unchecked, and the verifier must check them on chain before accepting a presentation, as the <a href="https://github.com/ethereum/coordination-network/blob/main/apps/issuer-service/src/routes/verify.ts" target="_blank" rel="noopener noreferrer">reference verifier</a> does. On chain sit issuer keys, each linked to the member that published it, plus revoked commitments and roots. Credentials, secrets and proofs stay off chain. Admitting a new member needs a majority of current members through the governance Safe.</p>
+<p><img src="credential-presentation.png" alt="Presentation: the verifier sends a request with a fresh challenge, then checks the returned proof against the roots it accepts on chain."></p>
+<p><em>Presentation: the verifier sends a request with a fresh challenge, then checks the returned proof against the roots it accepts on chain.</em></p>
+<h3 id="integration-examples">Integration examples</h3>
+<p>The following examples demonstrate issuer membership, private revocation, and on-chain root verification.</p>
+<p>Install the dependencies:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> @coordination-network/credential</span><span style="color:#9ECBFF"> @coordination-network/issuer-set</span><span style="color:#9ECBFF"> @coordination-network/revocation-registry</span><span style="color:#9ECBFF"> viem</span></span></code></pre>
+<p>Save each example as an <code>.mts</code> file and run it with <code>npx tsx &lt;filename&gt;</code>.</p>
+<h4 id="issuer-membership">Issuer membership</h4>
+<p>Generate a membership witness proving that an issuer belongs to an approved set. The witness stays with the holder, while only the root is public.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { LocalCredentialSigner } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "@coordination-network/credential"</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { ApprovedIssuerSet } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "@coordination-network/issuer-set"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Demo issuer signing keys</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> keys</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#79B8FF"> Promise</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">all</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">  [</span><span style="color:#9ECBFF">"issuer-a"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"issuer-b"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"issuer-c"</span><span style="color:#E1E4E8">].</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#FFAB70">secret</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=&gt;</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> LocalCredentialSigner</span><span style="color:#E1E4E8">(secret).</span><span style="color:#B392F0">getPublicKey</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">  )</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> issuers</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ApprovedIssuerSet</span><span style="color:#E1E4E8">(keys)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> witness</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> issuers.</span><span style="color:#B392F0">generateProof</span><span style="color:#E1E4E8">(keys[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">])</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Issuer in set:"</span><span style="color:#E1E4E8">, issuers.</span><span style="color:#B392F0">verifyProof</span><span style="color:#E1E4E8">(witness)) </span><span style="color:#6A737D">// true</span></span></code></pre>
+<h4 id="private-revocation">Private revocation</h4>
+<p>Generate a non-revocation witness showing that the holder’s commitment is absent from the revocation registry.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  deriveRevocationCommitment,</span></span>
+<span class="line"><span style="color:#E1E4E8">  generateRevocationSecret,</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "@coordination-network/credential"</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { RevocationRegistry } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "@coordination-network/revocation-registry"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> holderCommitment</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> deriveRevocationCommitment</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#B392F0">  generateRevocationSecret</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> registry</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> RevocationRegistry</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Revoke a different commitment</span></span>
+<span class="line"><span style="color:#E1E4E8">registry.</span><span style="color:#B392F0">revoke</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#B392F0">  deriveRevocationCommitment</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">generateRevocationSecret</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> witness</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> registry.</span><span style="color:#B392F0">generateProof</span><span style="color:#E1E4E8">(holderCommitment)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">  "Not revoked:"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  witness.proofType </span><span style="color:#F97583">===</span><span style="color:#79B8FF"> 1</span><span style="color:#F97583"> &amp;&amp;</span><span style="color:#E1E4E8"> registry.</span><span style="color:#B392F0">verifyProof</span><span style="color:#E1E4E8">(witness)</span></span>
+<span class="line"><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// true</span></span></code></pre>
+<h4 id="on-chain-root-verification">On-chain root verification</h4>
+<p>Reconstruct each tree from its public leaves on-chain and check whether the deployed contract accepts the resulting root. The example below uses the issuer set.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { ApprovedIssuerSet } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "@coordination-network/issuer-set"</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { createPublicClient, http, parseAbi } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "viem"</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { sepolia } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "viem/chains"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> client</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> createPublicClient</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  chain: sepolia,</span></span>
+<span class="line"><span style="color:#E1E4E8">  transport: </span><span style="color:#B392F0">http</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://ethereum-sepolia-rpc.publicnode.com"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> address</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "0x52b86Cacd9bA551C6bEDdc9D488681E4F952D873"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> abi</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> parseAbi</span><span style="color:#E1E4E8">([</span></span>
+<span class="line"><span style="color:#9ECBFF">  "function getLeafCount() view returns (uint256)"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">  "function getLeaves(uint256 start, uint256 end) view returns (uint256[])"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">  "function isValidIssuerSetRoot(uint256 root) view returns (bool)"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">])</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> issuers</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> ApprovedIssuerSet.</span><span style="color:#B392F0">fromContract</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#B392F0">  getLeafCount</span><span style="color:#E1E4E8">: () </span><span style="color:#F97583">=&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">    client.</span><span style="color:#B392F0">readContract</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">      address,</span></span>
+<span class="line"><span style="color:#E1E4E8">      abi,</span></span>
+<span class="line"><span style="color:#E1E4E8">      functionName: </span><span style="color:#9ECBFF">"getLeafCount"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    }),</span></span>
+<span class="line"><span style="color:#B392F0">  getLeaves</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">start</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">end</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#F97583">    ...</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">await</span><span style="color:#E1E4E8"> client.</span><span style="color:#B392F0">readContract</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">      address,</span></span>
+<span class="line"><span style="color:#E1E4E8">      abi,</span></span>
+<span class="line"><span style="color:#E1E4E8">      functionName: </span><span style="color:#9ECBFF">"getLeaves"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      args: [</span><span style="color:#B392F0">BigInt</span><span style="color:#E1E4E8">(start), </span><span style="color:#B392F0">BigInt</span><span style="color:#E1E4E8">(end)],</span></span>
+<span class="line"><span style="color:#E1E4E8">    })),</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> accepted</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> client.</span><span style="color:#B392F0">readContract</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  address,</span></span>
+<span class="line"><span style="color:#E1E4E8">  abi,</span></span>
+<span class="line"><span style="color:#E1E4E8">  functionName: </span><span style="color:#9ECBFF">"isValidIssuerSetRoot"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  args: [issuers.root],</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Live root accepted:"</span><span style="color:#E1E4E8">, accepted) </span><span style="color:#6A737D">// true</span></span></code></pre>
+<ul>
+<li>The revocation root follows the same flow: rebuild the tree with <code>RevocationRegistry.fromLeaves</code> from <code>@coordination-network/revocation-registry</code> TypeScript package and check the root with <code>isValidRoot</code> on the <code>CredentialRevocationRegistry</code> contract.</li>
+</ul>
+<h2 id="how-it-is-different">How it is different</h2>
+<p>Two choices set this design apart from per-issuer lists: issuers are proven to be in one shared set, and all revocations share one tree, so neither check names the issuer.</p>
+<p>The revocation flow adapts PSE’s design for non-membership revocation. Members of this team co-authored <a href="https://eprint.iacr.org/2026/251" target="_blank" rel="noopener noreferrer">OpenAC</a>, an anonymous-credential design in which a holder proves facts about a credential without revealing it.</p>
+<h2 id="what-an-adopter-gets">What an adopter gets</h2>
+<p>The packages provide issuer hiding and private revocation, with the core components ready to integrate.</p>
+<p><strong>What’s included:</strong></p>
+<ul>
+<li><strong>TypeScript packages</strong> to build issuer and revocation trees and generate their witnesses.</li>
+<li><strong>Solidity contracts</strong> to maintain authoritative roots on-chain.</li>
+<li><strong>Noir circuit examples</strong> showing how both witnesses are consumed in a single proof using ZK-Kit’s Noir libraries.</li>
+<li><strong>Cross-language tests</strong> checking that TypeScript and Solidity produce matching roots for both trees, and that issuer-set constants match the circuit.</li>
+</ul>
+<p><strong>What adopters control:</strong></p>
+<ul>
+<li>Who can issue credentials and revoke them.</li>
+<li>Registry access rules and root validity windows. Any contract can create its own registry through the shared Revocation service.</li>
+<li>The issuer-set package, which can be used independently of the on-chain contracts.</li>
+</ul>
+<p><strong>What adopters need to consider:</strong></p>
+<ul>
+<li><strong>Toolchain:</strong> Pin the Noir and Barretenberg versions and distribute the circuit artifact to verifiers.</li>
+<li><strong>Infrastructure:</strong> Provide a trusted RPC endpoint and gas for issuer key publication and revocations.</li>
+<li><strong>Key management:</strong> Issuers must securely manage Baby Jubjub EdDSA keys, which commodity KMS and HSM products do not currently support natively.</li>
+<li><strong>Network dependency:</strong> The approved-issuer set contract checks authorization against the network’s member registry. Deployments outside the network must replace this check.</li>
+</ul>
+<h2 id="use-cases">Use cases</h2>
+<h3 id="demonstrated">Demonstrated</h3>
+<p>In the <a href="https://github.com/ethereum/coordination-network/blob/main/apps/docs/docs/guides/sepolia-demo.mdx" target="_blank" rel="noopener noreferrer">Sepolia demo</a>, two network members ran the reference apps on one Android phone. In the guide’s steps, one member issues a credential and the other checks eligibility. After a revocation, the wallet reports the credential revoked and the next check returns not eligible. The proof never names the issuer, though with two members a verifier that is one of them can infer the other. The recorded run differs: the issuing member runs the first check, and the check after revocation is not recorded. The <a href="https://sepolia.etherscan.io/address/0xF9ebA2A12b5157944129DD333768Fcc045F6e8B6" target="_blank" rel="noopener noreferrer">revocation registry</a> used in that run holds one revoked commitment on testnet. Locally, <code>yarn stack --check</code> plays onboarding, issuing, proving and revoking against three member servers. These were testnet and local runs, with no real users.</p>
+<p><img src="wallet-consent-screen.png" alt="The wallet’s consent screen in the recorded demo, listing what the verifying member learns and what stays hidden. In this run the credential came from the verifying member itself."></p>
+<p><em>The wallet’s consent screen in the recorded demo, listing what the verifying member learns and what stays hidden. In this run the credential came from the verifying member itself.</em></p>
+<p><img src="demo-revocation.png" alt="Revoking from the demo dashboard (left). The wallet then shows the credential as revoked (right)."></p>
+<p><em>Revoking from the demo dashboard (left). The wallet then shows the credential as revoked (right).</em></p>
+<h3 id="candidate-uses-not-yet-tested">Candidate uses, not yet tested</h3>
+<p>Each use case presents a condition which requires several issuers in an approved set.</p>
+<ul>
+<li>Aid eligibility across organisations. A service point should be able to accept another agency’s approval without learning which agency gave it, if the agencies agree shared programme and country values.</li>
+<li>Professional licensing across regulators. An employer should learn that a person holds a current licence of the class it asked about, without learning which regulator issued it, if the regulators agree licence-class values.</li>
+<li>Concessions across assessment bodies. A transport operator should learn that a person is entitled to a concession class without learning which body assessed them.</li>
+</ul>
+<h2 id="limitations-and-next-steps">Limitations and next steps</h2>
+<h3 id="limitations">Limitations</h3>
+<ul>
+<li><strong>Scope of testing.</strong> The system has been exercised end to end on Sepolia with two network members, one holder and one Android phone, and on a local chain with three member servers. It has not yet run with production users.</li>
+<li><strong>Mobile performance.</strong> Proof generation works on tested Android phones with as little as 4 GB RAM, though performance varies by device. See the <a href="https://github.com/ethereum/coordination-network/tree/6c27308d71ca2a4e2475cab8c432895e8ff44cff/packages/noir-prover-native/android-bench/results#per-phone" target="_blank" rel="noopener noreferrer">benchmarks</a>.</li>
+<li><strong>Audit status.</strong> The contracts and circuit have been internally reviewed and tested, but not yet externally audited. The circuit includes a local fix to the upstream EdDSA verifier, which adds a constraint missing at the version used.</li>
+<li><strong>Issuer anonymity depends on the deployment.</strong> The proof hides which issuer signed, but anonymity depends on how many issuers plausibly serve the requested programme and country. The verifier’s own knowledge also matters, and several keys may belong to one organisation. A proof against an older root may narrow the candidates.</li>
+<li><strong>Revocation propagation.</strong> To keep proofs stable while the tree changes, the registry accepts recently superseded roots for one hour. A revoked credential can still verify against such a root until that window closes.</li>
+<li><strong>Concurrent revocation writes.</strong> Each revocation references its position in the sorted tree. If another write lands first, that reference can go stale and the transaction must be resubmitted.</li>
+<li><strong>Shared revocation authority.</strong> Revocations are written anonymously, so the registry cannot tell which member revoked a credential. Any approved member can therefore reverse a revocation. We chose this so that a mistaken revocation can always be corrected.</li>
+<li><strong>Tree capacity.</strong> The circuit supports trees of depth 20, roughly one million leaf slots per tree. All issuers share the revocation tree’s capacity.</li>
+<li><strong>Trusted infrastructure.</strong> Verifiers rely on the RPC endpoint they read roots from and on the circuit artifact they were given, as with any system that reads chain state.</li>
+</ul>
+<h3 id="next-steps">Next steps</h3>
+<ul>
+<li>Publish periodic tree snapshots, which the revocation-registry package can already export and import, so holders can sync without replaying every revocation.</li>
+<li>Explore epoch-based revocation trees, so proving cost and the depth cap apply to recent revocations only.</li>
+<li>Evaluate proving backends other than Barretenberg UltraHonk.</li>
+</ul>
+<h2 id="try-it-talk-to-us">Try it, talk to us</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> @coordination-network/issuer-set</span><span style="color:#9ECBFF"> @coordination-network/revocation-registry</span><span style="color:#9ECBFF"> @coordination-network/credential</span><span style="color:#9ECBFF"> @coordination-network/contracts</span><span style="color:#9ECBFF"> viem</span></span></code></pre>
+<p>Quickstart: <a href="https://github.com/ethereum/coordination-network/blob/main/apps/docs/docs/guides/integration.mdx" target="_blank" rel="noopener noreferrer">integration.mdx</a></p>
+<p>Code repository: <a href="https://github.com/ethereum/coordination-network" target="_blank" rel="noopener noreferrer">github.com/ethereum/coordination-network</a></p>
+<p>Running a coordination programme and want to pilot this? Contact <a href="mailto:epic@ethereum.org">epic@ethereum.org</a></p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>Credential body, issuance, verification and the approved-issuer root: <a href="https://github.com/ethereum/coordination-network/blob/main/specs/03-vc-issuance.md" target="_blank" rel="noopener noreferrer">specs/03-vc-issuance.md</a></li>
+<li>Revocation secret, commitment, root history and privacy properties: <a href="https://github.com/ethereum/coordination-network/blob/main/specs/04-revocation.md" target="_blank" rel="noopener noreferrer">specs/04-revocation.md</a></li>
+<li>Guarantees, accepted threats, unmeasured proving cost and issuer key custody: <a href="https://github.com/ethereum/coordination-network/blob/main/specs/threat-model-phase-1.md" target="_blank" rel="noopener noreferrer">specs/threat-model-phase-1.md</a></li>
+<li>Circuit constraints, patched EdDSA verifier and pinned toolchain: <a href="https://github.com/ethereum/coordination-network/blob/main/packages/circuits/README.md" target="_blank" rel="noopener noreferrer">packages/circuits/README.md</a></li>
+<li>ZK-Kit Noir dependencies and depth-20 caps: <a href="https://github.com/ethereum/coordination-network/blob/main/packages/circuits/Nargo.toml" target="_blank" rel="noopener noreferrer">Nargo.toml</a> and <a href="https://github.com/ethereum/coordination-network/blob/main/packages/circuits/src/main.nr" target="_blank" rel="noopener noreferrer">main.nr</a></li>
+<li>Key publication, eight-key cap, retirement and root window: <a href="https://github.com/ethereum/coordination-network/blob/main/packages/contracts/src/ApprovedIssuerSet.sol" target="_blank" rel="noopener noreferrer">ApprovedIssuerSet.sol</a></li>
+<li>One shared revocation registry, anonymous member writes and majority admission: <a href="https://github.com/ethereum/coordination-network/blob/main/packages/contracts/src/README.md" target="_blank" rel="noopener noreferrer">contracts README</a> and <a href="https://github.com/ethereum/coordination-network/blob/main/packages/contracts/src/CredentialRevocationRegistry.sol" target="_blank" rel="noopener noreferrer">CredentialRevocationRegistry.sol</a></li>
+<li>Revocation service, registry creation and root history: <a href="https://github.com/ethereum/coordination-network/blob/main/packages/contracts/src/revocation/README.md" target="_blank" rel="noopener noreferrer">revocation contracts README</a></li>
+<li>TypeScript trees, witnesses and cross-language tests: <a href="https://github.com/ethereum/coordination-network/tree/main/packages/issuer-set" target="_blank" rel="noopener noreferrer">issuer-set</a> and <a href="https://github.com/ethereum/coordination-network/tree/main/packages/revocation-registry" target="_blank" rel="noopener noreferrer">revocation-registry</a></li>
+<li>Roots returned unchecked, and the earlier SD-JWT prototype: <a href="https://github.com/ethereum/coordination-network/blob/main/packages/credential/README.md" target="_blank" rel="noopener noreferrer">credential README</a></li>
+<li>Reference verification sequence: <a href="https://github.com/ethereum/coordination-network/blob/main/apps/issuer-service/src/routes/verify.ts" target="_blank" rel="noopener noreferrer">verify.ts</a></li>
+<li>Demo steps and recorded run: <a href="https://github.com/ethereum/coordination-network/blob/main/apps/docs/docs/guides/sepolia-demo.mdx" target="_blank" rel="noopener noreferrer">Sepolia demo guide</a>. Contracts from that run: <a href="https://sepolia.etherscan.io/address/0x501e825d3B17d193ea27a9Fa4C708D4A437F1Ead" target="_blank" rel="noopener noreferrer">ApprovedIssuerSet</a> and <a href="https://sepolia.etherscan.io/address/0xF9ebA2A12b5157944129DD333768Fcc045F6e8B6" target="_blank" rel="noopener noreferrer">CredentialRevocationRegistry</a></li>
+<li>Local stack check: <a href="https://github.com/ethereum/coordination-network/blob/main/apps/docs/docs/guides/integration.mdx" target="_blank" rel="noopener noreferrer">integration.mdx</a></li>
+<li>Use-case notes: <a href="https://github.com/ethereum/coordination-network/blob/main/apps/docs/docs/use-cases.mdx" target="_blank" rel="noopener noreferrer">use-cases.mdx</a></li>
+<li>Licence and packages: <a href="https://github.com/ethereum/coordination-network/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">LICENSE</a> and <a href="https://www.npmjs.com/org/coordination-network" target="_blank" rel="noopener noreferrer">@coordination-network on npm</a></li>
+<li>OpenAC: <a href="https://eprint.iacr.org/2026/251" target="_blank" rel="noopener noreferrer">Eagen et al., Cryptology ePrint 2026/251</a></li>
+<li>LeanIMT: <a href="https://zkkit.org/leanimt-paper.pdf" target="_blank" rel="noopener noreferrer">LeanIMT paper</a>. LeanIMT+: <a href="https://pse.dev/blog/lean-imt-plus-efficient-merkle-tree-for-membership-and-non-membership-proofs" target="_blank" rel="noopener noreferrer">PSE blog</a></li>
+<li>Revocation approaches: <a href="https://pse.dev/blog/revocation-in-zkid-merkle-tree-based-approaches" target="_blank" rel="noopener noreferrer">Revocation in zkID</a> and <a href="https://pse.dev/blog/privacy-preserving-revocation-for-verifiable-credentials-using-zero-knowledge-non-membership-proofs" target="_blank" rel="noopener noreferrer">privacy-preserving revocation with non-membership proofs</a></li>
+<li>Semaphore: <a href="https://docs.semaphore.pse.dev/" target="_blank" rel="noopener noreferrer">docs.semaphore.pse.dev</a>. ZK-Kit Noir libraries: <a href="https://github.com/zk-kit/zk-kit.noir" target="_blank" rel="noopener noreferrer">zk-kit.noir</a></li>
+</ul>
+
+        <div class="pixel-edge" aria-hidden="true" style="--cell:14px" data-mask="linear-gradient(#000 0 0) top / 100% calc(100% - 4 * 14px) no-repeat, linear-gradient(#000 0 0) calc(7 * 14px) calc(100% - 2 * 14px) / calc(100% - 14 * 14px) calc(2 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%202%22%20preserveAspectRatio%3D%22xMinYMax%20slice%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM7%200h1v1h-1zM8%200h1v1h-1zM9%200h1v1h-1zM10%200h1v1h-1zM13%200h1v1h-1zM14%200h1v1h-1zM15%200h1v1h-1zM16%200h1v1h-1zM17%200h1v1h-1zM18%200h1v1h-1zM19%200h1v1h-1zM20%200h1v1h-1zM22%200h1v1h-1zM23%200h1v1h-1zM24%200h1v1h-1zM25%200h1v1h-1zM26%200h1v1h-1zM27%200h1v1h-1zM28%200h1v1h-1zM30%200h1v1h-1zM31%200h1v1h-1zM32%200h1v1h-1zM33%200h1v1h-1zM34%200h1v1h-1zM35%200h1v1h-1zM36%200h1v1h-1zM37%200h1v1h-1zM38%200h1v1h-1zM39%200h1v1h-1zM40%200h1v1h-1zM41%200h1v1h-1zM42%200h1v1h-1zM44%200h1v1h-1zM45%200h1v1h-1zM46%200h1v1h-1zM47%200h1v1h-1zM48%200h1v1h-1zM49%200h1v1h-1zM50%200h1v1h-1zM51%200h1v1h-1zM53%200h1v1h-1zM54%200h1v1h-1zM55%200h1v1h-1zM56%200h1v1h-1zM57%200h1v1h-1zM58%200h1v1h-1zM59%200h1v1h-1zM60%200h1v1h-1zM61%200h1v1h-1zM62%200h1v1h-1zM64%200h1v1h-1zM65%200h1v1h-1zM66%200h1v1h-1zM67%200h1v1h-1zM68%200h1v1h-1zM69%200h1v1h-1zM70%200h1v1h-1zM71%200h1v1h-1zM72%200h1v1h-1zM73%200h1v1h-1zM74%200h1v1h-1zM75%200h1v1h-1zM76%200h1v1h-1zM77%200h1v1h-1zM78%200h1v1h-1zM79%200h1v1h-1zM80%200h1v1h-1zM81%200h1v1h-1zM82%200h1v1h-1zM83%200h1v1h-1zM85%200h1v1h-1zM86%200h1v1h-1zM87%200h1v1h-1zM88%200h1v1h-1zM89%200h1v1h-1zM90%200h1v1h-1zM91%200h1v1h-1zM92%200h1v1h-1zM93%200h1v1h-1zM94%200h1v1h-1zM95%200h1v1h-1zM96%200h1v1h-1zM97%200h1v1h-1zM98%200h1v1h-1zM99%200h1v1h-1zM100%200h1v1h-1zM101%200h1v1h-1zM102%200h1v1h-1zM103%200h1v1h-1zM104%200h1v1h-1zM105%200h1v1h-1zM106%200h1v1h-1zM107%200h1v1h-1zM108%200h1v1h-1zM109%200h1v1h-1zM110%200h1v1h-1zM111%200h1v1h-1zM112%200h1v1h-1zM113%200h1v1h-1zM114%200h1v1h-1zM115%200h1v1h-1zM116%200h1v1h-1zM117%200h1v1h-1zM118%200h1v1h-1zM119%200h1v1h-1zM1%201h1v1h-1zM3%201h1v1h-1zM5%201h1v1h-1zM6%201h1v1h-1zM7%201h1v1h-1zM8%201h1v1h-1zM9%201h1v1h-1zM10%201h1v1h-1zM11%201h1v1h-1zM13%201h1v1h-1zM14%201h1v1h-1zM15%201h1v1h-1zM16%201h1v1h-1zM18%201h1v1h-1zM20%201h1v1h-1zM22%201h1v1h-1zM23%201h1v1h-1zM24%201h1v1h-1zM25%201h1v1h-1zM26%201h1v1h-1zM28%201h1v1h-1zM29%201h1v1h-1zM30%201h1v1h-1zM31%201h1v1h-1zM32%201h1v1h-1zM34%201h1v1h-1zM35%201h1v1h-1zM37%201h1v1h-1zM38%201h1v1h-1zM42%201h1v1h-1zM43%201h1v1h-1zM44%201h1v1h-1zM45%201h1v1h-1zM47%201h1v1h-1zM50%201h1v1h-1zM52%201h1v1h-1zM53%201h1v1h-1zM54%201h1v1h-1zM55%201h1v1h-1zM57%201h1v1h-1zM58%201h1v1h-1zM60%201h1v1h-1zM61%201h1v1h-1zM62%201h1v1h-1zM63%201h1v1h-1zM64%201h1v1h-1zM66%201h1v1h-1zM67%201h1v1h-1zM68%201h1v1h-1zM71%201h1v1h-1zM72%201h1v1h-1zM73%201h1v1h-1zM74%201h1v1h-1zM75%201h1v1h-1zM77%201h1v1h-1zM79%201h1v1h-1zM80%201h1v1h-1zM81%201h1v1h-1zM82%201h1v1h-1zM83%201h1v1h-1zM84%201h1v1h-1zM86%201h1v1h-1zM88%201h1v1h-1zM90%201h1v1h-1zM91%201h1v1h-1zM93%201h1v1h-1zM94%201h1v1h-1zM98%201h1v1h-1zM99%201h1v1h-1zM100%201h1v1h-1zM102%201h1v1h-1zM104%201h1v1h-1zM105%201h1v1h-1zM107%201h1v1h-1zM109%201h1v1h-1zM110%201h1v1h-1zM112%201h1v1h-1zM113%201h1v1h-1zM114%201h1v1h-1zM115%201h1v1h-1zM116%201h1v1h-1zM117%201h1v1h-1zM118%201h1v1h-1zM119%201h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) calc(7 * 14px) 100% / calc(100% - 14 * 14px) calc(2 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%207%204%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM1%201h1v1h-1zM2%201h1v1h-1zM3%201h1v1h-1zM4%201h1v1h-1zM5%201h1v1h-1zM6%201h1v1h-1zM0%202h1v1h-1zM1%202h1v1h-1zM2%202h1v1h-1zM3%202h1v1h-1zM5%202h1v1h-1zM6%202h1v1h-1zM0%203h1v1h-1zM4%203h1v1h-1zM6%203h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) left bottom / calc(7 * 14px) calc(4 * 14px) no-repeat, url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%207%204%22%3E%3Cpath%20d%3D%22M0%200h1v1h-1zM1%200h1v1h-1zM2%200h1v1h-1zM3%200h1v1h-1zM4%200h1v1h-1zM5%200h1v1h-1zM6%200h1v1h-1zM0%201h1v1h-1zM1%201h1v1h-1zM2%201h1v1h-1zM3%201h1v1h-1zM5%201h1v1h-1zM6%201h1v1h-1zM0%202h1v1h-1zM1%202h1v1h-1zM2%202h1v1h-1zM3%202h1v1h-1zM4%202h1v1h-1zM6%202h1v1h-1zM0%203h1v1h-1zM1%203h1v1h-1zM4%203h1v1h-1zM6%203h1v1h-1z%22%2F%3E%3C%2Fsvg%3E&quot;) right bottom / calc(7 * 14px) calc(4 * 14px) no-repeat" data-astro-cid-wvdxwvx6>
+  <svg class="strip" viewBox="0 0 120 2" preserveAspectRatio="xMidYMax slice" data-astro-cid-wvdxwvx6>
+    <rect x="0" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="2" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="4" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="11" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="12" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="12" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="17" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="19" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="21" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="21" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="27" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="29" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="33" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="36" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="39" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="40" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="41" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="43" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="46" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="48" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="49" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="51" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="52" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="56" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="59" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="63" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="65" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="69" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="70" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="76" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="78" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="84" y="0" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="85" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="87" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="89" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="92" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="95" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="96" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="97" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="101" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="103" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="106" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="108" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="111" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+  <svg class="corner left" viewBox="0 0 7 4" data-astro-cid-wvdxwvx6>
+    <rect x="1" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="2" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="3" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="5" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="4" y="2" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="0" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+  <svg class="corner right" viewBox="0 0 7 4" data-astro-cid-wvdxwvx6>
+    <rect x="5" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="3" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="2" y="3" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="5" y="2" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect><rect x="4" y="1" width="1.01" height="1.01" data-astro-cid-wvdxwvx6></rect>
+  </svg>
+</div>
+
+
+      </article>
+    </div>
+  
+</div>
+
+    </main>
+    <footer class="site-footer" data-astro-cid-4hfmbvjp>
+  <div class="wrap" data-astro-cid-4hfmbvjp>
+    <a class="lockup" href="../../index.html" data-astro-cid-ohkoixbv>
+  <img src="../../logo-white.svg" alt="Ethereum Foundation public sector home" width="404" height="74" data-astro-cid-ohkoixbv>
+</a>
+    <div class="attribution" data-astro-cid-4hfmbvjp>
+      <p data-astro-cid-4hfmbvjp>Informational material only—not legal, regulatory, financial, investment, or procurement advice.</p>
+      <p data-astro-cid-4hfmbvjp>The Ethereum Foundation is one participant in the broader Ethereum ecosystem. It does not operate or control Ethereum.</p>
+    </div>
+    <nav aria-label="Footer" data-astro-cid-4hfmbvjp>
+      <a href="https://ethereum.foundation/" target="_blank" rel="noreferrer" data-astro-cid-4hfmbvjp>Ethereum Foundation</a>
+      <a href="../../contact/index.html" data-astro-cid-4hfmbvjp>Contact</a>
+    </nav>
+  </div>
+</footer>
+  </body>
+</html>
