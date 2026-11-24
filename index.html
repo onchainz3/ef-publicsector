@@ -102,7 +102,7 @@
 <script type="module">var e=document.querySelector(`.site-header`),t=()=>e.classList.toggle(`is-scrolled`,window.scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),new ResizeObserver(()=>{e.classList.contains(`is-open`)||document.documentElement.style.setProperty(`--header-real`,`${e.getBoundingClientRect().height}px`)}).observe(e);var n=[...e.querySelectorAll(`.group`)],r=e.querySelector(`.menu`),i=e=>n.forEach(t=>{t!==e&&(t.querySelector(`button`).setAttribute(`aria-expanded`,`false`),t.querySelector(`ul`).hidden=!0)});n.forEach(e=>{let t=e.querySelector(`button`);t.addEventListener(`click`,()=>{let n=t.getAttribute(`aria-expanded`)!==`true`;i(e),t.setAttribute(`aria-expanded`,String(n)),e.querySelector(`ul`).hidden=!n}),e.addEventListener(`focusout`,t=>{e.contains(t.relatedTarget)||i()})});var a=matchMedia(`(prefers-reduced-motion: reduce)`),o=e.querySelector(`.menu-pixels`),s=()=>{let e=Math.ceil(innerWidth/40),t=Math.ceil(innerHeight/40),n=e+t;o.replaceChildren(...Array.from({length:e*t},(t,r)=>{let i=r%e,a=Math.floor(r/e),o=document.createElement(`span`);return o.style.cssText=`left:${i*40}px;top:${a*40}px;animation-delay:${Math.round((e-1-i+a)/n*300+Math.random()*70)}ms`,o}))},c=0;r.addEventListener(`click`,()=>{let t=r.getAttribute(`aria-expanded`)!==`true`;if(r.setAttribute(`aria-expanded`,String(t)),r.setAttribute(`aria-label`,t?`Close menu`:`Menu`),clearTimeout(c),e.classList.remove(`is-closing`),t){a.matches||s(),e.classList.add(`is-open`),document.documentElement.classList.add(`menu-open`);return}let n=()=>{e.classList.remove(`is-open`,`is-closing`),document.documentElement.classList.remove(`menu-open`)};if(a.matches)return n();e.classList.add(`is-closing`),c=window.setTimeout(n,200)}),document.addEventListener(`pointerdown`,t=>{e.contains(t.target)||i()}),document.addEventListener(`keydown`,t=>{if(t.key!==`Escape`)return;let a=n.find(e=>e.querySelector(`button`).getAttribute(`aria-expanded`)===`true`);a?(i(),a.querySelector(`button`).focus()):e.classList.contains(`is-open`)&&(r.click(),r.focus())});</script>
     <main id="main-content">
       
-  <section class="page-hero fold large" aria-labelledby="home-title" data-astro-cid-tfra22jg data-active="1">
+  <section class="page-hero fold large" aria-labelledby="home-title" data-astro-cid-tfra22jg data-active="2">
   <div class="page-hero-copy" data-astro-cid-tfra22jg>
 
     <h1 id="home-title" data-astro-cid-tfra22jg>Digital public<br data-astro-cid-lcdefpme> infrastructure <span class="title-follow" data-astro-cid-lcdefpme>Sovereign by design</span></h1>
@@ -110,9 +110,9 @@
     <p class="page-lead" data-astro-cid-tfra22jg>Explore how institutions can use Ethereum to support their work and the people they serve</p>
 
     <div class="variant-switch hero-variant-switch" data-astro-cid-lcdefpme data-stage-selector=".page-hero">
-      <button class="variant-switch-btn" type="button" data-variant="1" aria-pressed="true">Option 01</button>
-      <button class="variant-switch-btn" type="button" data-variant="3" aria-pressed="false">Option 02</button>
-      <button class="variant-switch-btn" type="button" data-variant="2" aria-pressed="false">Option 03</button>
+      <button class="variant-switch-btn" type="button" data-variant="2" aria-pressed="true">Option 01</button>
+      <button class="variant-switch-btn" type="button" data-variant="1" aria-pressed="false">Option 02</button>
+      <button class="variant-switch-btn" type="button" data-variant="3" aria-pressed="false">Option 03</button>
       <span class="variant-switch-thumb" aria-hidden="true"></span>
     </div>
 
@@ -934,7 +934,7 @@ for (const el of document.querySelectorAll('.benefits-band .band-edge.top')) {
           <div class="features-grid" data-astro-cid-lcdefpme>
           <article class="feature" data-astro-cid-lcdefpme>
             <a class="feature-media" href="articles/decentralized-identity-and-private-payments/index.html" tabindex="-1" aria-hidden="true" data-astro-cid-lcdefpme>
-              <img src="library-loggia.webp" alt="" loading="lazy" style="object-position: 15.000000000000002% 50%" data-astro-cid-lcdefpme>
+              <img src="mediterranean-community-market.webp" alt="" loading="lazy" style="object-position: 85% 50%" data-astro-cid-lcdefpme>
             </a>
             <div class="feature-copy" data-astro-cid-lcdefpme>
               <p class="feature-meta" data-astro-cid-lcdefpme>3 November 2026 · Technical Foundations</p>
@@ -944,7 +944,7 @@ for (const el of document.querySelectorAll('.benefits-band .band-edge.top')) {
           </article>
           <article class="feature" data-astro-cid-lcdefpme>
             <a class="feature-media" href="articles/issuer-hiding-credentials/index.html" tabindex="-1" aria-hidden="true" data-astro-cid-lcdefpme>
-              <img src="record-houses.webp" alt="" loading="lazy" style="object-position: 50% 40%" data-astro-cid-lcdefpme>
+              <img src="modern-campus-garden.webp" alt="" loading="lazy" style="object-position: 65% 40%" data-astro-cid-lcdefpme>
             </a>
             <div class="feature-copy" data-astro-cid-lcdefpme>
               <p class="feature-meta" data-astro-cid-lcdefpme>3 November 2026 · Technical Foundations</p>
