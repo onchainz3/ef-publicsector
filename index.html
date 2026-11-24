@@ -156,6 +156,63 @@ h1[data-astro-cid-tfra22jg] .title-follow{color:#fff}
 .hero-reveal-v3{cursor:default}
 .hero-variant-switch{margin-top:4px}
 @media (width<=960px){.hero-reveal-v2{width:100%}}
+:root{--section-space:clamp(96px, 12vw, 173px)}
+.basics[data-astro-cid-lcdefpme]{--basics-pad:clamp(106px, 13.2vw, 192px);padding:var(--basics-pad) 0 0}
+.neutral[data-astro-cid-lcdefpme]{padding:clamp(29px,6vw,86px) 0 clamp(115px,13.2vw,192px)}
+.benefits-band[data-astro-cid-lcdefpme]{padding:clamp(77px,9.6vw,134px) 0}
+.stories[data-astro-cid-lcdefpme]{padding:clamp(106px,13.2vw,192px) 0}
+section[data-astro-cid-lcdefpme][aria-labelledby="articles-title"]{padding-top:clamp(77px,9.6vw,134px)}
+@media (prefers-reduced-motion:no-preference){
+.benefits-band .band-edge.top[data-astro-cid-mtyrvg7x] rect{transform-box:fill-box;transform-origin:50%;transition:transform .6s cubic-bezier(.2,.7,.2,1),opacity .5s ease;transition-delay:var(--sd,0s)}
+.benefits-band .band-edge.top[data-astro-cid-mtyrvg7x].band-settle-pre rect{transition:none;opacity:0;transform:scale(.3)}
+.benefits-band .band-edge.top rect:nth-child(12n+1){--sd:.04s}
+.benefits-band .band-edge.top rect:nth-child(12n+2){--sd:.22s}
+.benefits-band .band-edge.top rect:nth-child(12n+3){--sd:.1s}
+.benefits-band .band-edge.top rect:nth-child(12n+4){--sd:.3s}
+.benefits-band .band-edge.top rect:nth-child(12n+5){--sd:.0s}
+.benefits-band .band-edge.top rect:nth-child(12n+6){--sd:.38s}
+.benefits-band .band-edge.top rect:nth-child(12n+7){--sd:.16s}
+.benefits-band .band-edge.top rect:nth-child(12n+8){--sd:.06s}
+.benefits-band .band-edge.top rect:nth-child(12n+9){--sd:.26s}
+.benefits-band .band-edge.top rect:nth-child(12n+10){--sd:.34s}
+.benefits-band .band-edge.top rect:nth-child(12n+11){--sd:.12s}
+.benefits-band .band-edge.top rect:nth-child(12n){--sd:.2s}
+}
+.features-grid{grid-template-columns:1fr 1fr;gap:24px 32px;margin-top:24px;display:grid}
+.features-grid .feature{margin-top:0}
+@media (width<=960px){.features-grid{grid-template-columns:1fr}}
+.risks-stage[data-active="1"] .risks-v2,.risks-stage[data-active="1"] .risks-v3,.risks-stage[data-active="2"] .risks-v1,.risks-stage[data-active="2"] .risks-v3,.risks-stage[data-active="3"] .risks-v1,.risks-stage[data-active="3"] .risks-v2{display:none}
+.op-illustration{width:73.6%;height:auto;display:block}
+.risks-variant-switch{margin:20px 0 4px}
+.benefits[data-astro-cid-lcdefpme]>div[data-astro-cid-lcdefpme]:first-child{--plot:var(--civic-mint)}
+.pixel-media{aspect-ratio:4/3;margin-bottom:28px;background:var(--bg-deep);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.risks-v3 .pixel-media{border-radius:0}
+.pixel-cluster{width:66%;height:auto;display:block;overflow:visible}
+.pixel-cluster .t0{fill:var(--plot-1)}
+.pixel-cluster .t1{fill:var(--plot-2)}
+.pixel-cluster .t2{fill:var(--plot-3)}
+.pixel-cluster .civic-red{fill:var(--civic-red)}
+.pixel-cluster .civic{fill:var(--civic)}
+.pixel-cluster .socket{fill:none;stroke:var(--rule);stroke-width:1.6;stroke-dasharray:3 3}
+.pixel-cluster .connector{fill:none;stroke:var(--civic);stroke-width:1.8;stroke-dasharray:3 3}
+.pixel-cluster .glow{filter:drop-shadow(0 0 6px currentColor)}
+@media (prefers-reduced-motion:no-preference){
+.pixel-cluster .glow-pulse{animation:px-glow-pulse 2.4s ease-in-out infinite}
+.pixel-cluster .flicker{animation:px-flicker 3.2s ease-in-out infinite}
+.pixel-cluster .lift{animation:px-lift 3s ease-in-out infinite}
+.pixel-cluster .socket{animation:px-socket-pulse 2.6s ease-in-out infinite}
+.pixel-cluster .connector{animation:px-dash-flow 1s linear infinite}
+.pixel-cluster .leak-particle{animation:px-leak 1.6s ease-in infinite}
+@keyframes px-glow-pulse{0%,100%{filter:drop-shadow(0 0 4px currentColor)}50%{filter:drop-shadow(0 0 11px currentColor)}}
+@keyframes px-flicker{0%,100%{opacity:.4}45%{opacity:.1}55%{opacity:.45}72%{opacity:.15}}
+@keyframes px-lift{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes px-socket-pulse{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes px-dash-flow{to{stroke-dashoffset:-12}}
+@keyframes px-leak{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}100%{opacity:0;transform:translate(14px,14px)}}
+}
+.risk-heading{align-items:center;gap:10px;margin:20px 0 8px;display:flex}
+.risks-v1 .risk-heading h3{margin:0!important}
+.mini-badge{position:static!important;width:18px!important;top:auto!important;left:auto!important}
 </style>
 <script type="module">
 (() => {
@@ -594,9 +651,69 @@ document.querySelectorAll('.variant-switch').forEach(switcher => {
           Centralized, proprietary systems leave institutions dependent on a few providers for essential digital
           services. This creates two types of exposure.
         </p>
+        <div class="variant-switch risks-variant-switch" data-astro-cid-lcdefpme data-stage-selector=".risks-stage">
+          <button class="variant-switch-btn" type="button" data-variant="3" aria-pressed="true">Option 01</button>
+          <button class="variant-switch-btn" type="button" data-variant="1" aria-pressed="false">Option 02</button>
+          <button class="variant-switch-btn" type="button" data-variant="2" aria-pressed="false">Option 03</button>
+          <span class="variant-switch-thumb" aria-hidden="true"></span>
+        </div>
       </div>
-      <div data-astro-cid-lcdefpme>
-        <div class="risks" data-astro-cid-lcdefpme>
+      <div class="risks-stage" data-active="3" data-astro-cid-lcdefpme>
+        <div class="risks risks-v1" data-astro-cid-lcdefpme>
+          <article data-astro-cid-lcdefpme>
+            <div class="pixel-media" data-astro-cid-lcdefpme>
+              <svg viewBox="88 46 144 128" class="pixel-cluster" aria-hidden="true" data-astro-cid-lcdefpme>
+                <rect x="140" y="56" width="20" height="20" class="t1" data-astro-cid-lcdefpme></rect>
+                <rect x="118" y="78" width="20" height="20" class="t2" data-astro-cid-lcdefpme></rect>
+                <rect x="140" y="78" width="20" height="20" class="flicker" style="fill:var(--plot-1);opacity:.4" data-astro-cid-lcdefpme></rect>
+                <rect x="162" y="78" width="20" height="20" class="t0" data-astro-cid-lcdefpme></rect>
+                <rect x="96" y="100" width="20" height="20" class="t1" data-astro-cid-lcdefpme></rect>
+                <rect x="118" y="100" width="20" height="20" class="flicker" style="fill:var(--plot-2);opacity:.4;animation-delay:.5s" data-astro-cid-lcdefpme></rect>
+                <rect x="140" y="100" width="20" height="20" class="civic-red glow glow-pulse" data-astro-cid-lcdefpme></rect>
+                <rect x="162" y="100" width="20" height="20" class="flicker" style="fill:var(--plot-2);opacity:.4;animation-delay:1s" data-astro-cid-lcdefpme></rect>
+                <rect x="184" y="100" width="20" height="20" class="t2" data-astro-cid-lcdefpme></rect>
+                <rect x="118" y="122" width="20" height="20" class="t0" data-astro-cid-lcdefpme></rect>
+                <rect x="140" y="122" width="20" height="20" class="flicker" style="fill:var(--plot-1);opacity:.4;animation-delay:1.6s" data-astro-cid-lcdefpme></rect>
+                <rect x="162" y="122" width="20" height="20" class="t1" data-astro-cid-lcdefpme></rect>
+                <rect x="140" y="144" width="20" height="20" class="t2" data-astro-cid-lcdefpme></rect>
+                <circle cx="206" cy="118" r="2.4" class="civic-red glow leak-particle" data-astro-cid-lcdefpme></circle>
+                <circle cx="206" cy="118" r="1.7" class="civic-red glow leak-particle" style="animation-delay:.5s" data-astro-cid-lcdefpme></circle>
+                <circle cx="206" cy="118" r="1.1" class="civic-red glow leak-particle" style="animation-delay:1s" data-astro-cid-lcdefpme></circle>
+              </svg>
+            </div>
+            <div class="risk-heading" data-astro-cid-lcdefpme>
+              <h3 data-astro-cid-lcdefpme>Operational</h3>
+            </div>
+            <p class="muted" data-astro-cid-lcdefpme>A single outage or cyberattack can take the entire system offline, disrupt essential services, or expose citizens&#39; sensitive information</p>
+          </article><article data-astro-cid-lcdefpme>
+            <div class="pixel-media" data-astro-cid-lcdefpme>
+              <svg viewBox="88 46 144 128" class="pixel-cluster" aria-hidden="true" data-astro-cid-lcdefpme>
+                <rect x="140" y="56" width="20" height="20" class="t1" data-astro-cid-lcdefpme></rect>
+                <rect x="118" y="78" width="20" height="20" class="t2" data-astro-cid-lcdefpme></rect>
+                <rect x="140" y="78" width="20" height="20" class="t0" data-astro-cid-lcdefpme></rect>
+                <rect x="162" y="78" width="20" height="20" class="socket" data-astro-cid-lcdefpme></rect>
+                <rect x="96" y="100" width="20" height="20" class="t1" data-astro-cid-lcdefpme></rect>
+                <rect x="118" y="100" width="20" height="20" class="t2" data-astro-cid-lcdefpme></rect>
+                <rect x="140" y="100" width="20" height="20" class="t0" data-astro-cid-lcdefpme></rect>
+                <rect x="162" y="100" width="20" height="20" class="t1" data-astro-cid-lcdefpme></rect>
+                <rect x="184" y="100" width="20" height="20" class="t2" data-astro-cid-lcdefpme></rect>
+                <rect x="118" y="122" width="20" height="20" class="t0" data-astro-cid-lcdefpme></rect>
+                <rect x="140" y="122" width="20" height="20" class="t1" data-astro-cid-lcdefpme></rect>
+                <rect x="162" y="122" width="20" height="20" class="t2" data-astro-cid-lcdefpme></rect>
+                <path d="M150,154 Q185,120 198,76" class="connector" data-astro-cid-lcdefpme></path>
+                <rect x="140" y="144" width="20" height="20" class="civic glow glow-pulse" data-astro-cid-lcdefpme></rect>
+                <g class="lift" data-astro-cid-lcdefpme>
+                  <rect x="188" y="54" width="20" height="20" class="t1" style="opacity:.6" data-astro-cid-lcdefpme></rect>
+                </g>
+              </svg>
+            </div>
+            <div class="risk-heading" data-astro-cid-lcdefpme>
+              <h3 data-astro-cid-lcdefpme>Structural</h3>
+            </div>
+            <p class="muted" data-astro-cid-lcdefpme>Access depends on an operator that can change the rules, restrict access, or remove participants</p>
+          </article>
+        </div>
+        <div class="risks risks-v2" data-astro-cid-lcdefpme hidden>
           <article data-astro-cid-lcdefpme>
                 <div class="risk-media" data-astro-cid-lcdefpme>
                   <img class="tinted" src="shades/plaza.webp" alt="" loading="lazy" style="--fx:74%;--fy:40%;--zoom:2.2" data-astro-cid-uaywa24b>
@@ -645,9 +762,29 @@ document.querySelectorAll('.variant-switch').forEach(switcher => {
                 <p class="muted" data-astro-cid-lcdefpme>Access depends on an operator that can change the rules, restrict access, or remove participants</p>
               </article>
         </div>
+        <div class="risks risks-v3" data-astro-cid-lcdefpme hidden>
+          <article data-astro-cid-lcdefpme>
+            <div class="pixel-media" data-astro-cid-lcdefpme>
+              <img src="assets/operational-risk/operational-reference.png" alt="" loading="lazy" class="op-illustration" data-astro-cid-lcdefpme>
+            </div>
+            <div class="risk-heading" data-astro-cid-lcdefpme>
+              <h3 data-astro-cid-lcdefpme>Operational</h3>
+            </div>
+            <p class="muted" data-astro-cid-lcdefpme>A single outage or cyberattack can take the entire system offline, disrupt essential services, or expose citizens&#39; sensitive information</p>
+          </article>
+          <article data-astro-cid-lcdefpme>
+            <div class="pixel-media" data-astro-cid-lcdefpme>
+              <img src="assets/operational-risk/structural-reference.png" alt="" loading="lazy" class="op-illustration" data-astro-cid-lcdefpme>
+            </div>
+            <div class="risk-heading" data-astro-cid-lcdefpme>
+              <h3 data-astro-cid-lcdefpme>Structural</h3>
+            </div>
+            <p class="muted" data-astro-cid-lcdefpme>Access depends on an operator that can change the rules, restrict access, or remove participants</p>
+          </article>
+        </div>
       </div>
     </div>
-  
+
 </section>
 
   <section class="benefits-band" aria-label="Institutional sovereignty and individual agency" data-astro-cid-lcdefpme>
@@ -667,6 +804,16 @@ document.querySelectorAll('.variant-switch').forEach(switcher => {
     <rect x="3" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="9" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="29" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="33" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="77" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="82" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="124" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="126" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="140" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="142" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="150" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="152" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="154" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect><rect x="163" y="0" width="1.01" height="1.01" data-astro-cid-mtyrvg7x></rect>
   </svg>
 </div>
+<script type="module">
+for (const el of document.querySelectorAll('.benefits-band .band-edge.top')) {
+  el.classList.add('band-settle-pre');
+  new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      el.classList.toggle('band-settle-pre', !entry.isIntersecting);
+    }
+  }, { threshold: 0 }).observe(el);
+}
+</script>
     <div class="band-image" aria-hidden="true" style="--strength:0.15" data-astro-cid-ytd6nfut>
   <div class="silhouette" style="--cutout:url(cupola.webp);aspect-ratio:3 / 4" data-astro-cid-ytd6nfut>
     <img src="shades/cupola.webp" alt="" loading="lazy" data-astro-cid-ytd6nfut>
@@ -784,6 +931,7 @@ document.querySelectorAll('.variant-switch').forEach(switcher => {
   
         <div class="wrap" data-astro-cid-lcdefpme>
           <h2 id="articles-title" class="section-title" data-astro-cid-lcdefpme>Latest articles</h2>
+          <div class="features-grid" data-astro-cid-lcdefpme>
           <article class="feature" data-astro-cid-lcdefpme>
             <a class="feature-media" href="articles/decentralized-identity-and-private-payments/index.html" tabindex="-1" aria-hidden="true" data-astro-cid-lcdefpme>
               <img src="library-loggia.webp" alt="" loading="lazy" style="object-position: 15.000000000000002% 50%" data-astro-cid-lcdefpme>
@@ -794,6 +942,17 @@ document.querySelectorAll('.variant-switch').forEach(switcher => {
               <p class="muted" data-astro-cid-lcdefpme>A proof of concept, built with requirements from humanitarian aid organisations, that pairs private credentials with private payments on a public network.</p>
             </div>
           </article>
+          <article class="feature" data-astro-cid-lcdefpme>
+            <a class="feature-media" href="articles/issuer-hiding-credentials/index.html" tabindex="-1" aria-hidden="true" data-astro-cid-lcdefpme>
+              <img src="record-houses.webp" alt="" loading="lazy" style="object-position: 50% 40%" data-astro-cid-lcdefpme>
+            </a>
+            <div class="feature-copy" data-astro-cid-lcdefpme>
+              <p class="feature-meta" data-astro-cid-lcdefpme>3 November 2026 · Technical Foundations</p>
+              <h3 data-astro-cid-lcdefpme><a class="text-link" href="articles/issuer-hiding-credentials/index.html" data-astro-cid-lcdefpme>Private Credential Verification with Issuer Hiding and Revocation</a></h3>
+              <p class="muted" data-astro-cid-lcdefpme>Two registries on Ethereum that let a zero-knowledge proof show a credential&#39;s issuer is approved and the credential is not revoked, without naming the issuer.</p>
+            </div>
+          </article>
+          </div>
           <a class="button feature-all" href="resources/index.html#articles" data-astro-cid-lcdefpme>View all articles</a>
         </div>
       
