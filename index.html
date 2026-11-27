@@ -113,6 +113,7 @@
       <button class="variant-switch-btn" type="button" data-variant="2" aria-pressed="true">Option 01</button>
       <button class="variant-switch-btn" type="button" data-variant="1" aria-pressed="false">Option 02</button>
       <button class="variant-switch-btn" type="button" data-variant="3" aria-pressed="false">Option 03</button>
+      <button class="variant-switch-btn" type="button" data-variant="4" aria-pressed="false">Option 04</button>
       <span class="variant-switch-thumb" aria-hidden="true"></span>
     </div>
 
@@ -122,6 +123,7 @@
   <div class="hero-reveal hero-reveal-v1" aria-hidden="true" data-src="shades/civic-garden-campus.webp" data-focus="0.5"><canvas></canvas></div>
   <div class="hero-reveal hero-reveal-v2" aria-hidden="true" data-src="shades/hero-campus-sunset.webp" data-focus="0.6"><canvas></canvas></div>
   <div class="hero-reveal hero-reveal-v3" aria-hidden="true" data-src="shades/hero-campus-sunset.webp" data-focus="0.5"><canvas></canvas></div>
+  <div class="hero-reveal hero-reveal-v4" aria-hidden="true" data-src="shades/civic-garden-campus.webp" data-focus="0.5"><canvas></canvas></div>
   </div>
 
 
@@ -154,6 +156,9 @@ h1[data-astro-cid-tfra22jg] .title-follow{color:#fff}
 .page-hero[data-active="3"]{padding-right:max(var(--gutter), (100% - var(--wrap-max)) / 2)}
 .page-hero[data-active="3"] .page-hero-copy[data-astro-cid-tfra22jg]{justify-self:center;justify-items:center;text-align:center}
 .hero-reveal-v3{cursor:default}
+.page-hero:not([data-active="4"]) .hero-reveal-v4,.page-hero[data-active="4"] .hero-reveal:not(.hero-reveal-v4),.page-hero[data-active="4"] .hero-pattern-bg{display:none}
+.page-hero[data-active="4"]{padding-right:max(var(--gutter), (100% - var(--wrap-max)) / 2)}
+.page-hero[data-active="4"] .page-hero-copy[data-astro-cid-tfra22jg]{justify-self:center;justify-items:center;text-align:center}
 .hero-variant-switch{margin-top:4px}
 @media (width<=960px){.hero-reveal-v2{width:100%}}
 :root{--section-space:clamp(96px, 12vw, 173px)}
@@ -413,11 +418,17 @@ const densityV2 = (xNorm, yNorm) => {
 // toward the bottom, like it's handing off into the next section.
 const densityV3 = (xNorm, yNorm) => smoothStep((yNorm - 0.86) / (0.985 - 0.86)) * 0.985;
 
+// v4: clean image in the middle (where the centred text sits), thickening
+// into pixel fields on both the left and right edges.
+const densityV4 = (xNorm) => smoothStep((0.3 - Math.min(xNorm, 1 - xNorm)) / (0.3 - 0.04)) * 0.94;
+
 const v1 = document.querySelector('.hero-reveal-v1');
 const v2 = document.querySelector('.hero-reveal-v2');
 const v3 = document.querySelector('.hero-reveal-v3');
 if (v1) initPixelHero(v1, { densityAt: densityV1, colors: ['#0f2a1e'] });
 if (v2) initPixelHero(v2, { densityAt: densityV2, spill: 140, cell: 32, colors: ['#0f2a1e'], hoverRadius: (w) => Math.min(180, Math.max(110, w * 0.14)) });
+const v4 = document.querySelector('.hero-reveal-v4');
+if (v4) initPixelHero(v4, { densityAt: densityV4, colors: ['#0f2a1e'] });
 if (v3) initPixelHero(v3, { densityAt: densityV3, cell: 28, colors: ['#0d281c'], overlay: 'rgba(10,31,22,0.48)', interactive: false });
 
 // Static tiled texture for the plain green area to the left of the
